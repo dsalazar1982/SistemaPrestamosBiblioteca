@@ -6,11 +6,11 @@ import java.util.logging.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class IngresoLibroGUI extends javax.swing.JInternalFrame {
+public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
 
     DefaultTableModel model;
 
-    public IngresoLibroGUI() {
+    public RegistroLibrosGUI() {
         initComponents();
         this.setLocation(150, 15);
         bloquear();
@@ -61,7 +61,7 @@ public class IngresoLibroGUI extends javax.swing.JInternalFrame {
             }
             tblibro.setModel(model);
         } catch (SQLException ex) {
-            Logger.getLogger(IngresoLibroGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -403,7 +403,7 @@ private void txteditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             }
             cargar("");
         } catch (SQLException ex) {
-            Logger.getLogger(IngresoLibroGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnguardarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

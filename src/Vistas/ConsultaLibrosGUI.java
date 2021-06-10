@@ -6,9 +6,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-public class ConsultaLibroGUI extends javax.swing.JInternalFrame {
+public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
-    public ConsultaLibroGUI() {
+    public ConsultaLibrosGUI() {
         initComponents();
         mostrartodoslibros();
     }
@@ -31,7 +31,7 @@ public class ConsultaLibroGUI extends javax.swing.JInternalFrame {
                 tabla.addRow(Datos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -180,7 +180,7 @@ private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 tabla.addRow(Datos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     } else {
         mostrartodoslibros();

@@ -7,11 +7,11 @@ import java.util.logging.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class IngresoEstudianteGUI extends javax.swing.JInternalFrame {
+public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
 
     DefaultTableModel model;
 
-    public IngresoEstudianteGUI() {
+    public RegistroEstudiantesGUI() {
         initComponents();
         bloquear();
         cargar("");
@@ -64,7 +64,7 @@ public class IngresoEstudianteGUI extends javax.swing.JInternalFrame {
             }
             tbestudiantes.setModel(model);
         } catch (SQLException ex) {
-            Logger.getLogger(IngresoEstudianteGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -379,7 +379,7 @@ public class IngresoEstudianteGUI extends javax.swing.JInternalFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -429,7 +429,7 @@ private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         }
         cargar("");
     } catch (SQLException ex) {
-        Logger.getLogger(IngresoEstudianteGUI.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
     }
 }//GEN-LAST:event_btnActualizarActionPerformed
 private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
@@ -453,7 +453,7 @@ private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         }
         cargar("");
     } catch (SQLException ex) {
-        Logger.getLogger(IngresoEstudianteGUI.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
     }
 }//GEN-LAST:event_btnguardarActionPerformed
 private void txttelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelKeyTyped
@@ -486,7 +486,7 @@ private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             pst.executeUpdate();
             cargar("");
         } catch (SQLException ex) {
-            Logger.getLogger(IngresoEstudianteGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     } else {
         JOptionPane.showMessageDialog(this, "No ha selecionada ninguna fila");

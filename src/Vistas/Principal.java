@@ -201,7 +201,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPrestarLibroActionPerformed
-        IngresarPrestamoGUI prestarLibro = new IngresarPrestamoGUI();
+        RegistroPrestamosGUI prestarLibro = new RegistroPrestamosGUI();
 
         int x = (jdpPrincipal.getWidth() / 2) - prestarLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - prestarLibro.getHeight() / 2;
@@ -221,7 +221,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiIngresarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiIngresarLibroActionPerformed
 
-        IngresoLibroGUI ingresarLibro = new IngresoLibroGUI();
+        RegistroLibrosGUI ingresarLibro = new RegistroLibrosGUI();
 
         int x = (jdpPrincipal.getWidth() / 2) - ingresarLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - ingresarLibro.getHeight() / 2;
@@ -237,7 +237,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiVerLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVerLibroActionPerformed
 
-        Libro verLibro = new Libro();
+        ConsultaLibrosGUI verLibro = new ConsultaLibrosGUI();
 
         int x = (jdpPrincipal.getWidth() / 2) - verLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - verLibro.getHeight() / 2;
@@ -253,7 +253,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiCrearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCrearEstudianteActionPerformed
 
-        IngresoEstudianteGUI crearEstudiante = new IngresoEstudianteGUI();
+        RegistroEstudiantesGUI crearEstudiante = new RegistroEstudiantesGUI();
 
         int x = (jdpPrincipal.getWidth() / 2) - crearEstudiante.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - crearEstudiante.getHeight() / 2;
@@ -285,7 +285,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiConsultarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarPrestamoActionPerformed
 
-        ConsultaPrestamoGUI consultarPrestamo = new ConsultaPrestamoGUI();
+        ConsultaPrestamosGUI consultarPrestamo = new ConsultaPrestamosGUI();
 
         int x = (jdpPrincipal.getWidth() / 2) - consultarPrestamo.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - consultarPrestamo.getHeight() / 2;

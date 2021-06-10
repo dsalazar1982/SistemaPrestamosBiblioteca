@@ -8,11 +8,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Libro extends javax.swing.JInternalFrame {
+public class VistaPrestamoLibrosGUI extends javax.swing.JInternalFrame {
 
     DefaultTableModel tabla;
 
-    public Libro() {
+    public VistaPrestamoLibrosGUI() {
         initComponents();
         cargarlistalibros("");
     }
@@ -26,7 +26,7 @@ public class Libro extends javax.swing.JInternalFrame {
                 cant = rs.getString(4);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaPrestamoLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cant;
     }
@@ -50,7 +50,7 @@ public class Libro extends javax.swing.JInternalFrame {
             }
             tblib.setModel(tabla);
         } catch (SQLException ex) {
-            Logger.getLogger(Libro.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaPrestamoLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -168,7 +168,7 @@ private void txtprodKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 }//GEN-LAST:event_txtprodKeyReleased
 private void mnenviarproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnenviarproActionPerformed
     try {
-        DefaultTableModel tabladet = (DefaultTableModel) IngresarPrestamoGUI.tbdet.getModel();
+        DefaultTableModel tabladet = (DefaultTableModel) RegistroPrestamosGUI.jtDetallePrestamo.getModel();
         String[] dato = new String[5];
         int fila = tblib.getSelectedRow();
         if (fila == -1) {
@@ -183,7 +183,7 @@ private void mnenviarproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             dato[2] = edit;
             dato[3] = ano;
             tabladet.addRow(dato);
-            IngresarPrestamoGUI.tbdet.setModel(tabladet);
+            RegistroPrestamosGUI.jtDetallePrestamo.setModel(tabladet);
         }
     } catch (Exception e) {
     }

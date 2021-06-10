@@ -8,11 +8,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class VistaEstudiante extends javax.swing.JInternalFrame {
+public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
 
     DefaultTableModel modelo;
 
-    public VistaEstudiante() {
+    public VistaPrestamoEstudiantesGUI() {
         initComponents();
         mostrarclientes("");
     }
@@ -34,7 +34,7 @@ public class VistaEstudiante extends javax.swing.JInternalFrame {
             }
             tbestudiantes.setModel(modelo);
         } catch (SQLException ex) {
-            Logger.getLogger(VistaEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaPrestamoEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -183,12 +183,12 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             cod = (String) tbestudiantes.getValueAt(fila, 0);
             nom = (String) tbestudiantes.getValueAt(fila, 1);
             tel = (String) tbestudiantes.getValueAt(fila, 3);
-            IngresarPrestamoGUI.jtfCodigoEstudiante.setDisabledTextColor(Color.blue);
-            IngresarPrestamoGUI.jtfCodigoEstudiante.setText(cod);
-            IngresarPrestamoGUI.txtnom.setDisabledTextColor(Color.blue);
-            IngresarPrestamoGUI.txtnom.setText(nom);
-            IngresarPrestamoGUI.txttel.setDisabledTextColor(Color.blue);
-            IngresarPrestamoGUI.txttel.setText(tel);
+            RegistroPrestamosGUI.jtfCodigoEstudiante.setDisabledTextColor(Color.blue);
+            RegistroPrestamosGUI.jtfCodigoEstudiante.setText(cod);
+            RegistroPrestamosGUI.txtnom.setDisabledTextColor(Color.blue);
+            RegistroPrestamosGUI.txtnom.setText(nom);
+            RegistroPrestamosGUI.txttel.setDisabledTextColor(Color.blue);
+            RegistroPrestamosGUI.txttel.setText(tel);
             this.dispose();
         }
     } catch (Exception e) {
@@ -197,12 +197,12 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void btnRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEstudianteActionPerformed
     try {
 
-        /*IngresoEstudianteGUI registrarEstudiante = new IngresoEstudianteGUI();
+        /*RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
         Principal.jdpPrincipal.add(registrarEstudiante);
         registrarEstudiante.toFront();
         registrarEstudiante.setVisible(true);
         this.dispose();*/
-        IngresoEstudianteGUI registrarEstudiante = new IngresoEstudianteGUI();
+        RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
 
         int x = (Principal.jdpPrincipal.getWidth() / 2) - registrarEstudiante.getWidth() / 2;
         int y = (Principal.jdpPrincipal.getHeight() / 2) - registrarEstudiante.getHeight() / 2;

@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
-public class ConsultaPrestamoGUI extends javax.swing.JInternalFrame {
+public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
-    public ConsultaPrestamoGUI() {
+    public ConsultaPrestamosGUI() {
         initComponents();
         cargartodasEntregas();
         this.setLocation(25, 15);
@@ -34,7 +34,7 @@ public class ConsultaPrestamoGUI extends javax.swing.JInternalFrame {
                 tabla.addRow(Datos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -217,7 +217,7 @@ private void btnbuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             tabla.addRow(Datos);
         }
     } catch (SQLException ex) {
-        Logger.getLogger(ConsultaPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
     }
 }//GEN-LAST:event_btnbuscadorActionPerformed
 private void rdbnnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbnnumeroActionPerformed
@@ -268,7 +268,7 @@ private void mnverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
                 model.addRow(Datos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultaLibroGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }//GEN-LAST:event_mnverActionPerformed
@@ -281,7 +281,7 @@ private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             PreparedStatement pst = cn.prepareStatement("DELETE FROM tb_facturas WHERE num_fac='" + cod + "'");
             pst.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         cargartodasEntregas();
     } else {

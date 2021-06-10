@@ -10,10 +10,10 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class IngresarPrestamoGUI extends javax.swing.JInternalFrame {
+public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
 
     //ConsultaEntrega entr = new ConsultaEntrega();
-    public IngresarPrestamoGUI() {
+    public RegistroPrestamosGUI() {
         initComponents();
         this.setLocation(25, 15);
         jtfConsecutivoPrestamo.setEnabled(false);
@@ -44,7 +44,7 @@ public class IngresarPrestamoGUI extends javax.swing.JInternalFrame {
                 jtfConsecutivoPrestamo.setText(gen.serie());
             }
         } catch (SQLException ex) {
-            Logger.getLogger(IngresarPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -63,22 +63,22 @@ public class IngresarPrestamoGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Los datos se guardaron correctamente");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(IngresarPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistroPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     void detalleEntrega() {
-        for (int i = 0; i < tbdet.getRowCount(); i++) {
+        for (int i = 0; i < jtDetallePrestamo.getRowCount(); i++) {
             String InsertarSQL = "INSERT INTO tb_detalles (numero, ISBN) VALUES (?,?)";
             String numEnt = jtfConsecutivoPrestamo.getText();
-            String ISBN = tbdet.getValueAt(i, 0).toString();
+            String ISBN = jtDetallePrestamo.getValueAt(i, 0).toString();
             try {
                 PreparedStatement pst = cn.prepareStatement(InsertarSQL);
                 pst.setString(1, numEnt);
                 pst.setString(2, ISBN);
                 pst.executeUpdate();
             } catch (SQLException ex) {
-                Logger.getLogger(IngresarPrestamoGUI.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegistroPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -103,7 +103,7 @@ public class IngresarPrestamoGUI extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         tbdetalle = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbdet = new javax.swing.JTable();
+        jtDetallePrestamo = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jtfConsecutivoPrestamo = new javax.swing.JTextField();
@@ -244,8 +244,8 @@ public class IngresarPrestamoGUI extends javax.swing.JInternalFrame {
             }
         ));
 
-        tbdet.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
-        tbdet.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetallePrestamo.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
+        jtDetallePrestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -268,7 +268,7 @@ public class IngresarPrestamoGUI extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tbdet);
+        jScrollPane2.setViewportView(jtDetallePrestamo);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -457,7 +457,7 @@ public class IngresarPrestamoGUI extends javax.swing.JInternalFrame {
     }
 
 private void btnAgregarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEstudianteActionPerformed
-    VistaEstudiante agregarEstudiante = new VistaEstudiante();
+    VistaPrestamoEstudiantesGUI agregarEstudiante = new VistaPrestamoEstudiantesGUI();
 
     int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarEstudiante.getWidth() / 2;
     int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarEstudiante.getHeight() / 2;
@@ -474,11 +474,11 @@ private void btnAgregarEstudianteActionPerformed(java.awt.event.ActionEvent evt)
 private void btnAgregarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarLibroActionPerformed
     try {
 
-        /*Libro agregarLibro = new Libro();
+        /*VistaPrestamoLibrosGUI agregarLibro = new VistaPrestamoLibrosGUI();
         Principal.jdpPrincipal.add(agregarLibro);
         agregarLibro.toFront();
         agregarLibro.setVisible(true);*/
-        Libro agregarLibro = new Libro();
+        VistaPrestamoLibrosGUI agregarLibro = new VistaPrestamoLibrosGUI();
 
         int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarLibro.getWidth() / 2;
         int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarLibro.getHeight() / 2;
@@ -507,17 +507,17 @@ private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         JOptionPane.showMessageDialog(this, "No ingreso Estudiantes O libros ");
     } else {
         String capcod = "", capcan = "";
-        for (int i = 0; i < IngresarPrestamoGUI.tbdet.getRowCount(); i++) {
-            capcod = IngresarPrestamoGUI.tbdet.getValueAt(i, 0).toString();
-            capcan = IngresarPrestamoGUI.tbdet.getValueAt(i, 3).toString();
+        for (int i = 0; i < RegistroPrestamosGUI.jtDetallePrestamo.getRowCount(); i++) {
+            capcod = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 0).toString();
+            capcan = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 3).toString();
         }
         Entrega();
         detalleEntrega();
         jtfCodigoEstudiante.setText("");
         txtnom.setText("");
         txttel.setText("");
-        DefaultTableModel modelo = (DefaultTableModel) tbdet.getModel();
-        int a = tbdet.getRowCount() - 1;
+        DefaultTableModel modelo = (DefaultTableModel) jtDetallePrestamo.getModel();
+        int a = jtDetallePrestamo.getRowCount() - 1;
         int i;
         for (i = a; i >= 0; i--) {
             modelo.removeRow(i);
@@ -527,8 +527,8 @@ private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_btnguardarActionPerformed
 
 private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-    DefaultTableModel modelo = (DefaultTableModel) tbdet.getModel();
-    int fila = tbdet.getSelectedRow();
+    DefaultTableModel modelo = (DefaultTableModel) jtDetallePrestamo.getModel();
+    int fila = jtDetallePrestamo.getSelectedRow();
     if (fila >= 0) {
         modelo.removeRow(fila);
     } else {
@@ -555,10 +555,10 @@ private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jtDetallePrestamo;
     public static javax.swing.JTextField jtfCodigoEstudiante;
     private javax.swing.JTextField jtfConsecutivoPrestamo;
     private javax.swing.JTextField jtfFecha;
-    public static javax.swing.JTable tbdet;
     private javax.swing.JTable tbdetalle;
     public static javax.swing.JTextField txtape;
     public static javax.swing.JTextField txtnom;
