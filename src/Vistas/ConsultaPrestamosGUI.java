@@ -12,16 +12,16 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
     public ConsultaPrestamosGUI() {
         initComponents();
-        cargartodasEntregas();
+        cargarTodosDetallesPrestamo();
         this.setLocation(25, 15);
         //jDateChooser1.setEnabled(false);
     }
 
-    void cargartodasEntregas() {
-        DefaultTableModel tabla = new DefaultTableModel();
+    void cargarTodosDetallesPrestamo() {
+        DefaultTableModel tablaDetallesPrestamos = new DefaultTableModel();
         String[] titulos = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
-        tabla.setColumnIdentifiers(titulos);
-        this.jtDetallePrestamos.setModel(tabla);
+        tablaDetallesPrestamos.setColumnIdentifiers(titulos);
+        this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
         String consulta = "SELECT * FROM tb_prestamos";
         String[] Datos = new String[3];
         try {
@@ -31,7 +31,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
                 Datos[0] = rs.getString("numero");
                 Datos[1] = rs.getString("fecha");
                 Datos[2] = rs.getString("codigo_estu");
-                tabla.addRow(Datos);
+                tablaDetallesPrestamos.addRow(Datos);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,8 +44,8 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        mnver = new javax.swing.JMenuItem();
-        mneliminar = new javax.swing.JMenuItem();
+        mnVer = new javax.swing.JMenuItem();
+        mnEliminar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jrbConsultaPorNumero = new javax.swing.JRadioButton();
         jrbConsultaPorFecha = new javax.swing.JRadioButton();
@@ -55,21 +55,21 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetallePrestamos = new javax.swing.JTable();
 
-        mnver.setText("Ver Detalle");
-        mnver.addActionListener(new java.awt.event.ActionListener() {
+        mnVer.setText("Ver Detalle");
+        mnVer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnverActionPerformed(evt);
+                mnVerActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(mnver);
+        jPopupMenu1.add(mnVer);
 
-        mneliminar.setText("Eliminar");
-        mneliminar.addActionListener(new java.awt.event.ActionListener() {
+        mnEliminar.setText("Eliminar");
+        mnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mneliminarActionPerformed(evt);
+                mnEliminarActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(mneliminar);
+        jPopupMenu1.add(mnEliminar);
 
         setClosable(true);
         setIconifiable(true);
@@ -201,11 +201,13 @@ private void jbBuscarPrestamosActionPerformed(java.awt.event.ActionEvent evt) {/
     }
     if (jrbConsultaTodos.isSelected() == true) {
         consulta = "SELECT * FROM tb_prestamos";
+        jtfDatoDeConsulta.setText("");
+        jtfDatoDeConsulta.setEnabled(false);
     }
-    DefaultTableModel tabla = new DefaultTableModel();
+    DefaultTableModel tablaDetallesPrestamos = new DefaultTableModel();
     String[] titulos = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
-    tabla.setColumnIdentifiers(titulos);
-    this.jtDetallePrestamos.setModel(tabla);
+    tablaDetallesPrestamos.setColumnIdentifiers(titulos);
+    this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
     String[] Datos = new String[4];
     try {
         Statement st = conexionDB.createStatement();
@@ -214,7 +216,7 @@ private void jbBuscarPrestamosActionPerformed(java.awt.event.ActionEvent evt) {/
             Datos[0] = rs.getString("numero");
             Datos[1] = rs.getString("fecha");
             Datos[2] = rs.getString("codigo_estu");
-            tabla.addRow(Datos);
+            tablaDetallesPrestamos.addRow(Datos);
         }
     } catch (SQLException ex) {
         Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,36 +226,47 @@ private void jrbConsultaPorNumeroActionPerformed(java.awt.event.ActionEvent evt)
     if (jrbConsultaPorNumero.isSelected() == true) {
         jtfDatoDeConsulta.setEnabled(true);
         jtfDatoDeConsulta.requestFocus();
-        jDateChooser1.setDate(null);
-        jDateChooser1.setEnabled(false);
+        //jDateChooser1.setDate(null);
+        //jDateChooser1.setEnabled(false);
     }
 }//GEN-LAST:event_jrbConsultaPorNumeroActionPerformed
 private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaPorFechaActionPerformed
     if (jrbConsultaPorFecha.isSelected() == true) {
-        jDateChooser1.setEnabled(true);
-        jtfDatoDeConsulta.setEnabled(false);
+        //jDateChooser1.setEnabled(true);
+        jtfDatoDeConsulta.setEnabled(true);
         jtfDatoDeConsulta.setText("");
+        jtfDatoDeConsulta.requestFocus();
     }
 }//GEN-LAST:event_jrbConsultaPorFechaActionPerformed
 private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaTodosActionPerformed
     if (jrbConsultaTodos.isSelected() == true) {
-        jDateChooser1.setEnabled(false);
-        jDateChooser1.setDate(null);
+        //jDateChooser1.setEnabled(false);
+        //jDateChooser1.setDate(null);
         jtfDatoDeConsulta.setText("");
         jtfDatoDeConsulta.setEnabled(false);
-        cargartodasEntregas();
+        cargarTodosDetallesPrestamo();
     }
 }//GEN-LAST:event_jrbConsultaTodosActionPerformed
-private void mnverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnverActionPerformed
+private void mnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnVerActionPerformed
     int filasele = jtDetallePrestamos.getSelectedRow();
     if (filasele == -1) {
         JOptionPane.showMessageDialog(null, "No Seleciono ninguna fila");
     } else {
+
         DetallePrestamoGUI detalle = new DetallePrestamoGUI();
-        Principal.jdpPrincipal.add(detalle);
-        detalle.toFront();
-        detalle.setVisible(true);
-        DefaultTableModel model = (DefaultTableModel) DetallePrestamoGUI.tbdetalle.getModel();
+
+        int x = (Principal.jdpPrincipal.getWidth() / 2) - detalle.getWidth() / 2;
+        int y = (Principal.jdpPrincipal.getHeight() / 2) - detalle.getHeight() / 2;
+
+        if (detalle.isShowing()) {
+            detalle.setLocation(x, y);
+        } else {
+            Principal.jdpPrincipal.add(detalle);
+            detalle.setLocation(x, y);
+            detalle.setVisible(true);
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) DetallePrestamoGUI.jtDetallePrestamos.getModel();
         String[] titulos = {"NUMERO ENTREGA", "ISBN"};
         model.setColumnIdentifiers(titulos);
         this.jtDetallePrestamos.setModel(model);
@@ -271,23 +284,23 @@ private void mnverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
             Logger.getLogger(ConsultaLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}//GEN-LAST:event_mnverActionPerformed
+}//GEN-LAST:event_mnVerActionPerformed
 
-private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mneliminarActionPerformed
+private void mnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEliminarActionPerformed
     int fila = jtDetallePrestamos.getSelectedRow();
     if (fila >= 0) {
         String cod = jtDetallePrestamos.getValueAt(fila, 0).toString();
         try {
-            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_facturas WHERE num_fac='" + cod + "'");
+            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_prestamos WHERE numero='" + cod + "'");
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        cargartodasEntregas();
+        cargarTodosDetallesPrestamo();
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione alguna fila");
     }
-}//GEN-LAST:event_mneliminarActionPerformed
+}//GEN-LAST:event_mnEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -300,8 +313,8 @@ private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JRadioButton jrbConsultaTodos;
     public static javax.swing.JTable jtDetallePrestamos;
     private javax.swing.JTextField jtfDatoDeConsulta;
-    private javax.swing.JMenuItem mneliminar;
-    private javax.swing.JMenuItem mnver;
+    private javax.swing.JMenuItem mnEliminar;
+    private javax.swing.JMenuItem mnVer;
     // End of variables declaration//GEN-END:variables
 ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();

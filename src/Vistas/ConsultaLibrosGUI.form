@@ -114,7 +114,7 @@
               <Font name="Eras Medium ITC" size="12" style="1"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Mostrar Libro Por ISBN"/>
+            <Property name="text" type="java.lang.String" value="Mostrar Libro Por Titulo:"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtndesActionPerformed"/>

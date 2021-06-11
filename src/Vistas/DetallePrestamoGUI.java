@@ -12,7 +12,7 @@ public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbdetalle = new javax.swing.JTable();
+        jtDetallePrestamos = new javax.swing.JTable();
 
         jLabel2.setText("jLabel2");
 
@@ -20,14 +20,14 @@ public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("DETALLE DE LA ENTREGA");
+        setTitle("Detalle De Prestamo");
 
-        tbdetalle.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetallePrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CODIGO", "NOMBRE", "EDITORIAL", "AÑO"
+                "CODIGO", "TITULO", "EDITORIAL", "AÑO"
             }
         ) {
             Class[] types = new Class [] {
@@ -38,7 +38,7 @@ public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbdetalle);
+        jScrollPane1.setViewportView(jtDetallePrestamos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,6 +62,6 @@ public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JTable tbdetalle;
+    public static javax.swing.JTable jtDetallePrestamos;
     // End of variables declaration//GEN-END:variables
 }

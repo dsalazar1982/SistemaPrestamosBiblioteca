@@ -59,7 +59,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         buttonGroup1.add(rbtndes);
         rbtndes.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
         rbtndes.setSelected(true);
-        rbtndes.setText("Mostrar Libro Por ISBN");
+        rbtndes.setText("Mostrar Libro Por Titulo:");
         rbtndes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtndesActionPerformed(evt);
