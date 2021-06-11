@@ -34,8 +34,8 @@ public class Principal extends javax.swing.JFrame {
         jmiCrearEstudiante = new javax.swing.JMenuItem();
         jmiConsultarEstudiante = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
-        jmiConsultarPrestamo = new javax.swing.JMenuItem();
         jmiInforme = new javax.swing.JMenuItem();
+        jmiConsultarPrestamo = new javax.swing.JMenuItem();
 
         jMenuItem7.setText("jMenuItem7");
 
@@ -88,7 +88,7 @@ public class Principal extends javax.swing.JFrame {
         jmPrestamos.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
         jmiPrestarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiPrestarLibro.setText("PRESTAR LIBRO");
+        jmiPrestarLibro.setText("Registrar Prestamo");
         jmiPrestarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiPrestarLibroActionPerformed(evt);
@@ -97,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
         jmPrestamos.add(jmiPrestarLibro);
 
         jmiSalir.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiSalir.setText("SALIR");
+        jmiSalir.setText("Salir");
         jmiSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiSalirActionPerformed(evt);
@@ -113,7 +113,7 @@ public class Principal extends javax.swing.JFrame {
         jmLibros.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
         jmiIngresarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiIngresarLibro.setText("INGRESAR LIBRO");
+        jmiIngresarLibro.setText("Registrar Libro");
         jmiIngresarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiIngresarLibroActionPerformed(evt);
@@ -122,7 +122,7 @@ public class Principal extends javax.swing.JFrame {
         jmLibros.add(jmiIngresarLibro);
 
         jmiVerLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiVerLibro.setText("VER LIBROS");
+        jmiVerLibro.setText("Consultar Libro");
         jmiVerLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiVerLibroActionPerformed(evt);
@@ -138,7 +138,7 @@ public class Principal extends javax.swing.JFrame {
         jmEstudiantes.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
         jmiCrearEstudiante.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
-        jmiCrearEstudiante.setText("CREAR ESTUDIANTES");
+        jmiCrearEstudiante.setText("Registrar Estudiante");
         jmiCrearEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiCrearEstudianteActionPerformed(evt);
@@ -147,7 +147,7 @@ public class Principal extends javax.swing.JFrame {
         jmEstudiantes.add(jmiCrearEstudiante);
 
         jmiConsultarEstudiante.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiConsultarEstudiante.setText("CONSULTA ESTUDIANTE");
+        jmiConsultarEstudiante.setText("Consultar Estudiante");
         jmiConsultarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiConsultarEstudianteActionPerformed(evt);
@@ -162,18 +162,8 @@ public class Principal extends javax.swing.JFrame {
         jmConsultas.setText("CONSULTAS");
         jmConsultas.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
-        jmiConsultarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiConsultarPrestamo.setText("CONSULTAR PRESTAMO");
-        jmiConsultarPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jmiConsultarPrestamo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiConsultarPrestamoActionPerformed(evt);
-            }
-        });
-        jmConsultas.add(jmiConsultarPrestamo);
-
         jmiInforme.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiInforme.setText("INFORME");
+        jmiInforme.setText("Informe De Prestamo");
         jmiInforme.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jmiInforme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +171,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jmConsultas.add(jmiInforme);
+
+        jmiConsultarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiConsultarPrestamo.setText("Consultar Prestamo");
+        jmiConsultarPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jmiConsultarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiConsultarPrestamoActionPerformed(evt);
+            }
+        });
+        jmConsultas.add(jmiConsultarPrestamo);
 
         jmbPrincipal.add(jmConsultas);
 

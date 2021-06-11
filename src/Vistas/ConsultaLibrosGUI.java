@@ -1,6 +1,6 @@
 package Vistas;
 
-import Servicios.conectar;
+import Servicios.ClaseConexion;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +15,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
     void mostrartodoslibros() {
         DefaultTableModel tabla = new DefaultTableModel();
-        String[] titulos = {"CODIGO", "NOMBRE", "EDITORIAL", "ANO"};
+        String[] titulos = {"CODIGO", "TITULO", "EDITORIAL", "ANO"};
         tabla.setColumnIdentifiers(titulos);
         this.tbproductos.setModel(tabla);
         String consulta = "SELECT * FROM tb_libros";
@@ -44,7 +44,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         rbtndes = new javax.swing.JRadioButton();
         rbtntodo = new javax.swing.JRadioButton();
         txtdes = new javax.swing.JTextField();
-        btnbuscar = new javax.swing.JButton();
+        jbBuscarLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbproductos = new javax.swing.JTable();
 
@@ -52,14 +52,14 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("CONSULTA DE LIBROS");
+        setTitle("Consulta De Libros");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
         buttonGroup1.add(rbtndes);
         rbtndes.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
         rbtndes.setSelected(true);
-        rbtndes.setText("Mostrar Productos por Descripcion");
+        rbtndes.setText("Mostrar Libro Por ISBN");
         rbtndes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtndesActionPerformed(evt);
@@ -68,7 +68,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(rbtntodo);
         rbtntodo.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        rbtntodo.setText("Mostrar todos los Libros");
+        rbtntodo.setText("Mostrar Todos Los Libros");
         rbtntodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtntodoActionPerformed(evt);
@@ -77,12 +77,12 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
         txtdes.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
-        btnbuscar.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
-        btnbuscar.setText("Buscar");
-        btnbuscar.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscarLibro.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
+        jbBuscarLibro.setText("Buscar");
+        jbBuscarLibro.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jbBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
+                jbBuscarLibroActionPerformed(evt);
             }
         });
 
@@ -98,7 +98,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnbuscar))
+                        .addComponent(jbBuscarLibro))
                     .addComponent(rbtntodo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -109,7 +109,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtndes)
                     .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar))
+                    .addComponent(jbBuscarLibro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbtntodo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -160,11 +160,11 @@ private void rbtntodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         mostrartodoslibros();
     }
 }//GEN-LAST:event_rbtntodoActionPerformed
-private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+private void jbBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarLibroActionPerformed
     String buscar = txtdes.getText();
     if (rbtndes.isSelected() == true) {
         DefaultTableModel tabla = new DefaultTableModel();
-        String[] titulos = {"CODIGO", "NOMBRE", "EDITORIAL", "ANO"};
+        String[] titulos = {"CODIGO", "TITULO", "EDITORIAL", "ANO"};
         tabla.setColumnIdentifiers(titulos);
         this.tbproductos.setModel(tabla);
         String consulta = "SELECT * FROM tb_libros WHERE nombre_lib  LIKE '%" + buscar + "%'";
@@ -185,7 +185,7 @@ private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     } else {
         mostrartodoslibros();
     }
-}//GEN-LAST:event_btnbuscarActionPerformed
+}//GEN-LAST:event_jbBuscarLibroActionPerformed
 private void rbtndesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtndesActionPerformed
     if (rbtndes.isSelected() == true) {
         txtdes.setEnabled(true);
@@ -193,15 +193,15 @@ private void rbtndesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }
 }//GEN-LAST:event_rbtndesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbuscar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBuscarLibro;
     private javax.swing.JRadioButton rbtndes;
     private javax.swing.JRadioButton rbtntodo;
     private javax.swing.JTable tbproductos;
     private javax.swing.JTextField txtdes;
     // End of variables declaration//GEN-END:variables
-conectar cc = new conectar();
+ClaseConexion cc = new ClaseConexion();
     Connection cn = cc.conexion();
 }

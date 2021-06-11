@@ -1,6 +1,6 @@
 package Vistas;
 
-import Servicios.conectar;
+import Servicios.ClaseConexion;
 import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.*;
@@ -537,6 +537,6 @@ private void mnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField txtnom;
     private javax.swing.JTextField txttel;
     // End of variables declaration//GEN-END:variables
-conectar cc = new conectar();
+ClaseConexion cc = new ClaseConexion();
     Connection cn = cc.conexion();
 }

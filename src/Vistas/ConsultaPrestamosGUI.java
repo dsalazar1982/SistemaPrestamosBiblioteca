@@ -1,6 +1,6 @@
 package Vistas;
 
-import Servicios.conectar;
+import Servicios.ClaseConexion;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.logging.*;
@@ -25,7 +25,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         String consulta = "SELECT * FROM tb_prestamos";
         String[] Datos = new String[3];
         try {
-            Statement st = cn.createStatement();
+            Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consulta);
             while (rs.next()) {
                 Datos[0] = rs.getString("numero");
@@ -208,7 +208,7 @@ private void btnbuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     this.tbentregas.setModel(tabla);
     String[] Datos = new String[4];
     try {
-        Statement st = cn.createStatement();
+        Statement st = conexionDB.createStatement();
         ResultSet rs = st.executeQuery(consulta);
         while (rs.next()) {
             Datos[0] = rs.getString("numero");
@@ -260,7 +260,7 @@ private void mnverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String consulta = "SELECT * FROM tb_detalles";
         String[] Datos = new String[4];
         try {
-            Statement st = cn.createStatement();
+            Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consulta);
             while (rs.next()) {
                 Datos[0] = rs.getString("numero");
@@ -278,7 +278,7 @@ private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (fila >= 0) {
         String cod = tbentregas.getValueAt(fila, 0).toString();
         try {
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM tb_facturas WHERE num_fac='" + cod + "'");
+            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_facturas WHERE num_fac='" + cod + "'");
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -303,6 +303,6 @@ private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     public static javax.swing.JTable tbentregas;
     private javax.swing.JTextField txtnumero;
     // End of variables declaration//GEN-END:variables
-conectar cc = new conectar();
-    Connection cn = cc.conexion();
+ClaseConexion objConexion = new ClaseConexion();
+    Connection conexionDB = objConexion.conexion();
 }

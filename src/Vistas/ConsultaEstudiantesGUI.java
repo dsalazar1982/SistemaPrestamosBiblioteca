@@ -1,6 +1,6 @@
 package Vistas;
 
-import Servicios.conectar;
+import Servicios.ClaseConexion;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +55,7 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("CONSULTA DE ESTUDIANTES");
+        setTitle("Consulta De Estudiantes");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
@@ -196,6 +196,6 @@ private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEve
     private javax.swing.JTextField jtfCodigoEstudiante;
     private javax.swing.JTable tbestudiantes;
     // End of variables declaration//GEN-END:variables
-conectar cc = new conectar();
+ClaseConexion cc = new ClaseConexion();
     Connection cn = cc.conexion();
 }

@@ -1,6 +1,6 @@
 package Vistas;
 
-import Servicios.conectar;
+import Servicios.ClaseConexion;
 import java.awt.JobAttributes;
 import java.sql.*;
 import java.util.logging.Level;
@@ -93,7 +93,7 @@ public class VistaPrestamoLibrosGUI extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("LIBROS");
+        setTitle("Listado De Libros");
 
         tblib.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,7 +116,7 @@ public class VistaPrestamoLibrosGUI extends javax.swing.JInternalFrame {
         });
 
         btnmostrar.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        btnmostrar.setText("Mostrar todo");
+        btnmostrar.setText("Mostrar todos");
         btnmostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnmostrarActionPerformed(evt);
@@ -124,7 +124,7 @@ public class VistaPrestamoLibrosGUI extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel1.setText("Buscar Productos");
+        jLabel1.setText("Buscar Libro:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,6 +199,6 @@ private void mnenviarproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTable tblib;
     private javax.swing.JTextField txtprod;
     // End of variables declaration//GEN-END:variables
-conectar cc = new conectar();
+ClaseConexion cc = new ClaseConexion();
     Connection cn = cc.conexion();
 }

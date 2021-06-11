@@ -3,7 +3,7 @@ package Servicios;
 import java.sql.*;
 import javax.swing.*;
 
-public class conectar {
+public class ClaseConexion {
 
     Connection conect = null;
 

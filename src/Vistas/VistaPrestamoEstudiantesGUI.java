@@ -1,6 +1,6 @@
 package Vistas;
 
-import Servicios.conectar;
+import Servicios.ClaseConexion;
 import java.awt.Color;
 import java.sql.*;
 import java.util.logging.Level;
@@ -32,7 +32,7 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
                 Registros[3] = rs.getString("telefono_estu");
                 modelo.addRow(Registros);
             }
-            tbestudiantes.setModel(modelo);
+            jtDetallesEstudiantes.setModel(modelo);
         } catch (SQLException ex) {
             Logger.getLogger(VistaPrestamoEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -49,7 +49,7 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         btnBuscarEstudiante = new javax.swing.JButton();
         txtbus = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbestudiantes = new javax.swing.JTable();
+        jtDetallesEstudiantes = new javax.swing.JTable();
         btnRegistrarEstudiante = new javax.swing.JButton();
 
         mnenviar.setText("Enviar Datos");
@@ -64,13 +64,13 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("ESTUDIANTES");
+        setTitle("Listado De Estudiantes");
 
         jLabel1.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel1.setText("Buscar Estudi..");
+        jLabel1.setText("Buscar Estudiante:");
 
         btnBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        btnBuscarEstudiante.setText("Mostrar Todo");
+        btnBuscarEstudiante.setText("Mostrar Todos");
         btnBuscarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarEstudianteActionPerformed(evt);
@@ -88,7 +88,7 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        tbestudiantes.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetallesEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -99,11 +99,11 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
 
             }
         ));
-        tbestudiantes.setComponentPopupMenu(jPopupMenu1);
-        jScrollPane1.setViewportView(tbestudiantes);
+        jtDetallesEstudiantes.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane1.setViewportView(jtDetallesEstudiantes);
 
         btnRegistrarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        btnRegistrarEstudiante.setText("Registrar Estudiantes");
+        btnRegistrarEstudiante.setText("Registrar Estudiante");
         btnRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarEstudianteActionPerformed(evt);
@@ -175,14 +175,14 @@ private void txtbusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t
 
 private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnenviarActionPerformed
     String cod = "", nom = "", tel = "";
-    int fila = tbestudiantes.getSelectedRow();
+    int fila = jtDetallesEstudiantes.getSelectedRow();
     try {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ningun dato");
         } else {
-            cod = (String) tbestudiantes.getValueAt(fila, 0);
-            nom = (String) tbestudiantes.getValueAt(fila, 1);
-            tel = (String) tbestudiantes.getValueAt(fila, 3);
+            cod = (String) jtDetallesEstudiantes.getValueAt(fila, 0);
+            nom = (String) jtDetallesEstudiantes.getValueAt(fila, 1);
+            tel = (String) jtDetallesEstudiantes.getValueAt(fila, 3);
             RegistroPrestamosGUI.jtfCodigoEstudiante.setDisabledTextColor(Color.blue);
             RegistroPrestamosGUI.jtfCodigoEstudiante.setText(cod);
             RegistroPrestamosGUI.txtnom.setDisabledTextColor(Color.blue);
@@ -224,10 +224,10 @@ private void btnRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent ev
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jtDetallesEstudiantes;
     private javax.swing.JMenuItem mnenviar;
-    private javax.swing.JTable tbestudiantes;
     private javax.swing.JTextField txtbus;
     // End of variables declaration//GEN-END:variables
-    conectar cc = new conectar();
+    ClaseConexion cc = new ClaseConexion();
     Connection cn = cc.conexion();
 }
