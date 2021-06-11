@@ -10,7 +10,7 @@
       <SubComponents>
         <MenuItem class="javax.swing.JMenuItem" name="mnenviar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Enviar Datos"/>
+            <Property name="text" type="java.lang.String" value="Enviar a Prestamo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnenviarActionPerformed"/>
@@ -70,15 +70,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="585" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="590" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlBuscarEstudiante" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtbus" min="-2" pref="128" max="-2" attributes="0"/>
+                          <Component id="jtfCodigoEstudiante" min="-2" pref="128" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnBuscarEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbMostrarTodosEstudiantes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnRegistrarEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbRegistrarEstudiante" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -90,20 +90,20 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtbus" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnBuscarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnRegistrarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlBuscarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfCodigoEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbMostrarTodosEstudiantes" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbRegistrarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="115" max="-2" attributes="0"/>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="jlBuscarEstudiante">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
@@ -111,7 +111,7 @@
             <Property name="text" type="java.lang.String" value="Buscar Estudiante:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnBuscarEstudiante">
+        <Component class="javax.swing.JButton" name="jbMostrarTodosEstudiantes">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
@@ -119,13 +119,12 @@
             <Property name="text" type="java.lang.String" value="Mostrar Todos"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarEstudianteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbMostrarTodosEstudiantesActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtbus">
+        <Component class="javax.swing.JTextField" name="jtfCodigoEstudiante">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtbusActionPerformed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtbusKeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfCodigoEstudianteKeyReleased"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -156,7 +155,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnRegistrarEstudiante">
+        <Component class="javax.swing.JButton" name="jbRegistrarEstudiante">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
@@ -164,7 +163,7 @@
             <Property name="text" type="java.lang.String" value="Registrar Estudiante"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarEstudianteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbRegistrarEstudianteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

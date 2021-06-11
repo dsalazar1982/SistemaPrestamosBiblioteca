@@ -11,10 +11,10 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
     public ConsultaEstudiantesGUI() {
         initComponents();
         jtfCodigoEstudiante.setEnabled(false);
-        CargarlistaEstudiantes();
+        cargarListaEstudiantes();
     }
 
-    void CargarlistaEstudiantes() {
+    void cargarListaEstudiantes() {
         DefaultTableModel tabla = new DefaultTableModel();
         String[] titulos = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         tabla.setColumnIdentifiers(titulos);
@@ -69,12 +69,6 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jtfCodigoEstudiante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCodigoEstudianteActionPerformed(evt);
-            }
-        });
-
         btnBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
         btnBuscarEstudiante.setText("BUSCAR");
         btnBuscarEstudiante.addActionListener(new java.awt.event.ActionListener() {
@@ -101,25 +95,24 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarTodosEstudiante)
+                        .addGap(32, 226, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jrbConsultarUnEstudiante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                         .addGap(30, 30, 30)
-                        .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
-                    .addComponent(jrbConsultarUnEstudiante))
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscarEstudiante)
-                .addGap(32, 32, 32))
+                        .addComponent(btnBuscarEstudiante)
+                        .addGap(35, 35, 35))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscarEstudiante)
-                    .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jrbConsultarUnEstudiante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrbConsultarUnEstudiante)
+                    .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarEstudiante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jrbConsultarTodosEstudiante))
         );
 
@@ -170,14 +163,11 @@ private void btnBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) 
 }//GEN-LAST:event_btnBuscarEstudianteActionPerformed
 private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosEstudianteActionPerformed
     if (jrbConsultarTodosEstudiante.isSelected() == true) {
-        CargarlistaEstudiantes();
+        cargarListaEstudiantes();
         jtfCodigoEstudiante.setText("");
         jtfCodigoEstudiante.setEnabled(false);
     }
 }//GEN-LAST:event_jrbConsultarTodosEstudianteActionPerformed
-    private void jtfCodigoEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteActionPerformed
-
-    }//GEN-LAST:event_jtfCodigoEstudianteActionPerformed
 
     private void jrbConsultarUnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnEstudianteActionPerformed
         if (jrbConsultarUnEstudiante.isSelected() == true) {

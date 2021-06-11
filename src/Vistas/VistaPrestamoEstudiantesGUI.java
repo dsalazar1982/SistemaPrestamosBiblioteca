@@ -10,29 +10,27 @@ import javax.swing.table.DefaultTableModel;
 
 public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
 
-    DefaultTableModel modelo;
-
     public VistaPrestamoEstudiantesGUI() {
         initComponents();
-        mostrarclientes("");
+        mostrarListaEstudiantes("");
     }
 
-    void mostrarclientes(String valor) {
-        String[] titulos = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+    void mostrarListaEstudiantes(String valor) {
+        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         String[] Registros = new String[4];
-        modelo = new DefaultTableModel(null, titulos);
+        DefaultTableModel tablaDetallesEstudiantes = new DefaultTableModel(null, encabezadosTabla);
         String Sql = "SELECT * FROM tb_estudiantes WHERE CONCAT(codigo_estu, nombre_estu, apellido_estu, telefono_estu) LIKE '%" + valor + "%'";
         try {
-            Statement st = cn.createStatement();
+            Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(Sql);
             while (rs.next()) {
                 Registros[0] = rs.getString("codigo_estu");
                 Registros[1] = rs.getString("nombre_estu");
                 Registros[2] = rs.getString("apellido_estu");
                 Registros[3] = rs.getString("telefono_estu");
-                modelo.addRow(Registros);
+                tablaDetallesEstudiantes.addRow(Registros);
             }
-            jtDetallesEstudiantes.setModel(modelo);
+            jtDetallesEstudiantes.setModel(tablaDetallesEstudiantes);
         } catch (SQLException ex) {
             Logger.getLogger(VistaPrestamoEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,14 +43,14 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         mnenviar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnBuscarEstudiante = new javax.swing.JButton();
-        txtbus = new javax.swing.JTextField();
+        jlBuscarEstudiante = new javax.swing.JLabel();
+        jbMostrarTodosEstudiantes = new javax.swing.JButton();
+        jtfCodigoEstudiante = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetallesEstudiantes = new javax.swing.JTable();
-        btnRegistrarEstudiante = new javax.swing.JButton();
+        jbRegistrarEstudiante = new javax.swing.JButton();
 
-        mnenviar.setText("Enviar Datos");
+        mnenviar.setText("Enviar a Prestamo");
         mnenviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnenviarActionPerformed(evt);
@@ -66,25 +64,20 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Listado De Estudiantes");
 
-        jLabel1.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel1.setText("Buscar Estudiante:");
+        jlBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jlBuscarEstudiante.setText("Buscar Estudiante:");
 
-        btnBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        btnBuscarEstudiante.setText("Mostrar Todos");
-        btnBuscarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jbMostrarTodosEstudiantes.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jbMostrarTodosEstudiantes.setText("Mostrar Todos");
+        jbMostrarTodosEstudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarEstudianteActionPerformed(evt);
+                jbMostrarTodosEstudiantesActionPerformed(evt);
             }
         });
 
-        txtbus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbusActionPerformed(evt);
-            }
-        });
-        txtbus.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfCodigoEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtbusKeyReleased(evt);
+                jtfCodigoEstudianteKeyReleased(evt);
             }
         });
 
@@ -102,11 +95,11 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         jtDetallesEstudiantes.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jtDetallesEstudiantes);
 
-        btnRegistrarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        btnRegistrarEstudiante.setText("Registrar Estudiante");
-        btnRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jbRegistrarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jbRegistrarEstudiante.setText("Registrar Estudiante");
+        jbRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarEstudianteActionPerformed(evt);
+                jbRegistrarEstudianteActionPerformed(evt);
             }
         });
 
@@ -117,15 +110,15 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jlBuscarEstudiante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBuscarEstudiante)
+                        .addComponent(jbMostrarTodosEstudiantes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRegistrarEstudiante)))
+                        .addComponent(jbRegistrarEstudiante)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,13 +126,13 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarEstudiante)
-                    .addComponent(btnRegistrarEstudiante))
+                    .addComponent(jlBuscarEstudiante)
+                    .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbMostrarTodosEstudiantes)
+                    .addComponent(jbRegistrarEstudiante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,17 +154,14 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void btnBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEstudianteActionPerformed
-    mostrarclientes("");
-}//GEN-LAST:event_btnBuscarEstudianteActionPerformed
+private void jbMostrarTodosEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarTodosEstudiantesActionPerformed
+    mostrarListaEstudiantes("");
+    jtfCodigoEstudiante.setText("");
+}//GEN-LAST:event_jbMostrarTodosEstudiantesActionPerformed
 
-private void txtbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbusActionPerformed
-
-}//GEN-LAST:event_txtbusActionPerformed
-
-private void txtbusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusKeyReleased
-    mostrarclientes(txtbus.getText());
-}//GEN-LAST:event_txtbusKeyReleased
+private void jtfCodigoEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyReleased
+    mostrarListaEstudiantes(jtfCodigoEstudiante.getText());
+}//GEN-LAST:event_jtfCodigoEstudianteKeyReleased
 
 private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnenviarActionPerformed
     String cod = "", nom = "", tel = "";
@@ -194,7 +184,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     } catch (Exception e) {
     }
 }//GEN-LAST:event_mnenviarActionPerformed
-private void btnRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEstudianteActionPerformed
+private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarEstudianteActionPerformed
     try {
 
         /*RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
@@ -216,18 +206,18 @@ private void btnRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent ev
         }
     } catch (Exception e) {
     }
-}//GEN-LAST:event_btnRegistrarEstudianteActionPerformed
+}//GEN-LAST:event_jbRegistrarEstudianteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarEstudiante;
-    private javax.swing.JButton btnRegistrarEstudiante;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbMostrarTodosEstudiantes;
+    private javax.swing.JButton jbRegistrarEstudiante;
+    private javax.swing.JLabel jlBuscarEstudiante;
     private javax.swing.JTable jtDetallesEstudiantes;
+    private javax.swing.JTextField jtfCodigoEstudiante;
     private javax.swing.JMenuItem mnenviar;
-    private javax.swing.JTextField txtbus;
     // End of variables declaration//GEN-END:variables
-    ClaseConexion cc = new ClaseConexion();
-    Connection cn = cc.conexion();
+    ClaseConexion objConexion = new ClaseConexion();
+    Connection conexionDB = objConexion.conexion();
 }

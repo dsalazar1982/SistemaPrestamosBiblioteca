@@ -1,7 +1,7 @@
 package Servicios;
 
 import java.sql.*;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 public class ClaseConexion {
 
@@ -14,9 +14,8 @@ public class ClaseConexion {
         String claveUsuarioDB = "dba_user@MariaDB2020*";
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
             conect = DriverManager.getConnection(serverDB, usuarioDB, claveUsuarioDB);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e, "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
         return conect;

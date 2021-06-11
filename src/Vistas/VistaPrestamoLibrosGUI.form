@@ -24,17 +24,20 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VistaPrestamoLibrosGUI_jPopupMenu1"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <MenuItem class="javax.swing.JMenuItem" name="mnenviarpro">
+        <MenuItem class="javax.swing.JMenuItem" name="mnEnviarPrestamo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Enviar a Factura"/>
+            <Property name="text" type="java.lang.String" value="Enviar a Prestamo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnenviarproActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnEnviarPrestamoActionPerformed"/>
           </Events>
         </MenuItem>
       </SubComponents>
@@ -74,11 +77,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlBuscarLibro" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtprod" min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="jtfTituloLibroConsultar" min="-2" pref="84" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnmostrar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbMostrarTodosLibros" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -90,9 +93,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnmostrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtprod" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="jlBuscarLibro" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbMostrarTodosLibros" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfTituloLibroConsultar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" pref="124" max="32767" attributes="0"/>
@@ -109,7 +112,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tblib">
+        <Component class="javax.swing.JTable" name="jtDetalleLibros">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="0" rowCount="4"/>
@@ -127,12 +130,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtprod">
+    <Component class="javax.swing.JTextField" name="jtfTituloLibroConsultar">
       <Events>
-        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtprodKeyReleased"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfTituloLibroConsultarKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnmostrar">
+    <Component class="javax.swing.JButton" name="jbMostrarTodosLibros">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Eras Medium ITC" size="12" style="1"/>
@@ -140,10 +143,10 @@
         <Property name="text" type="java.lang.String" value="Mostrar todos"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmostrarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbMostrarTodosLibrosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="jlBuscarLibro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Eras Medium ITC" size="12" style="1"/>
