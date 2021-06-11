@@ -19,7 +19,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
     void cargartodasEntregas() {
         DefaultTableModel tabla = new DefaultTableModel();
-        String[] titulos = {"NUMERO", "FECHA", "COD. ESTUDIANTE"};
+        String[] titulos = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
         tabla.setColumnIdentifiers(titulos);
         this.jtDetallePrestamos.setModel(tabla);
         String consulta = "SELECT * FROM tb_prestamos";
@@ -80,7 +80,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         buttonGroup1.add(jrbConsultaPorNumero);
         jrbConsultaPorNumero.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
         jrbConsultaPorNumero.setSelected(true);
-        jrbConsultaPorNumero.setText("Mostrar  por Nº:");
+        jrbConsultaPorNumero.setText("Mostrar por Nº:");
         jrbConsultaPorNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbConsultaPorNumeroActionPerformed(evt);
@@ -106,7 +106,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         });
 
         jbBuscarPrestamos.setFont(new java.awt.Font("Eras Medium ITC", 1, 11)); // NOI18N
-        jbBuscarPrestamos.setText("BUSCAR");
+        jbBuscarPrestamos.setText("Buscar");
         jbBuscarPrestamos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarPrestamosActionPerformed(evt);
@@ -130,7 +130,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jbBuscarPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jrbConsultaTodos))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +195,7 @@ private void jbBuscarPrestamosActionPerformed(java.awt.event.ActionEvent evt) {/
     }
     if (jrbConsultaPorFecha.isSelected() == true) {
         Date fecha = jDateChooser1.getDate();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY-MM-dd");
         String fec = "" + formatofecha.format(fecha);
         consulta = "SELECT * FROM tb_prestamos WHERE fecha='" + fec + "'";
     }
@@ -203,7 +203,7 @@ private void jbBuscarPrestamosActionPerformed(java.awt.event.ActionEvent evt) {/
         consulta = "SELECT * FROM tb_prestamos";
     }
     DefaultTableModel tabla = new DefaultTableModel();
-    String[] titulos = {"NUMERO", "FECHA", "COD. ESTUDIANTE"};
+    String[] titulos = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
     tabla.setColumnIdentifiers(titulos);
     this.jtDetallePrestamos.setModel(tabla);
     String[] Datos = new String[4];
