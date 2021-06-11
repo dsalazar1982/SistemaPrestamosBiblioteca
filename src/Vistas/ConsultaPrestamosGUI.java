@@ -21,7 +21,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         DefaultTableModel tabla = new DefaultTableModel();
         String[] titulos = {"NUMERO", "FECHA", "COD. ESTUDIANTE"};
         tabla.setColumnIdentifiers(titulos);
-        this.tbentregas.setModel(tabla);
+        this.jtDetallePrestamos.setModel(tabla);
         String consulta = "SELECT * FROM tb_prestamos";
         String[] Datos = new String[3];
         try {
@@ -47,13 +47,13 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         mnver = new javax.swing.JMenuItem();
         mneliminar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        rdbnnumero = new javax.swing.JRadioButton();
-        rdbbnfecha = new javax.swing.JRadioButton();
-        rdbntodos = new javax.swing.JRadioButton();
-        txtnumero = new javax.swing.JTextField();
-        btnbuscador = new javax.swing.JButton();
+        jrbConsultaPorNumero = new javax.swing.JRadioButton();
+        jrbConsultaPorFecha = new javax.swing.JRadioButton();
+        jrbConsultaTodos = new javax.swing.JRadioButton();
+        jtfDatoDeConsulta = new javax.swing.JTextField();
+        jbBuscarPrestamos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbentregas = new javax.swing.JTable();
+        jtDetallePrestamos = new javax.swing.JTable();
 
         mnver.setText("Ver Detalle");
         mnver.addActionListener(new java.awt.event.ActionListener() {
@@ -75,41 +75,41 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("CONSULTA DE ENTREGAS");
+        setTitle("Consulta De Prestamos");
 
-        buttonGroup1.add(rdbnnumero);
-        rdbnnumero.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        rdbnnumero.setSelected(true);
-        rdbnnumero.setText("Mostrar  por Nº:");
-        rdbnnumero.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jrbConsultaPorNumero);
+        jrbConsultaPorNumero.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jrbConsultaPorNumero.setSelected(true);
+        jrbConsultaPorNumero.setText("Mostrar  por Nº:");
+        jrbConsultaPorNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbnnumeroActionPerformed(evt);
+                jrbConsultaPorNumeroActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(rdbbnfecha);
-        rdbbnfecha.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        rdbbnfecha.setText("Mostrar por Fecha");
-        rdbbnfecha.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jrbConsultaPorFecha);
+        jrbConsultaPorFecha.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jrbConsultaPorFecha.setText("Mostrar por Fecha");
+        jrbConsultaPorFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbbnfechaActionPerformed(evt);
+                jrbConsultaPorFechaActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(rdbntodos);
-        rdbntodos.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        rdbntodos.setText("Mostrar todas:");
-        rdbntodos.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(jrbConsultaTodos);
+        jrbConsultaTodos.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jrbConsultaTodos.setText("Mostrar todas:");
+        jrbConsultaTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbntodosActionPerformed(evt);
+                jrbConsultaTodosActionPerformed(evt);
             }
         });
 
-        btnbuscador.setFont(new java.awt.Font("Eras Medium ITC", 1, 11)); // NOI18N
-        btnbuscador.setText("BUSCAR");
-        btnbuscador.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscarPrestamos.setFont(new java.awt.Font("Eras Medium ITC", 1, 11)); // NOI18N
+        jbBuscarPrestamos.setText("BUSCAR");
+        jbBuscarPrestamos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscadorActionPerformed(evt);
+                jbBuscarPrestamosActionPerformed(evt);
             }
         });
 
@@ -123,13 +123,13 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rdbnnumero)
+                                .addComponent(jrbConsultaPorNumero)
                                 .addGap(27, 27, 27)
-                                .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(rdbbnfecha))
+                                .addComponent(jtfDatoDeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jrbConsultaPorFecha))
                         .addGap(26, 26, 26)
-                        .addComponent(btnbuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rdbntodos))
+                        .addComponent(jbBuscarPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jrbConsultaTodos))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,17 +139,17 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rdbnnumero))
+                            .addComponent(jtfDatoDeConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jrbConsultaPorNumero))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdbbnfecha)
+                        .addComponent(jrbConsultaPorFecha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rdbntodos))
-                    .addComponent(btnbuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jrbConsultaTodos))
+                    .addComponent(jbBuscarPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        tbentregas.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetallePrestamos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -160,8 +160,8 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
             }
         ));
-        tbentregas.setComponentPopupMenu(jPopupMenu1);
-        jScrollPane1.setViewportView(tbentregas);
+        jtDetallePrestamos.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane1.setViewportView(jtDetallePrestamos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,25 +187,25 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         setBounds(0, 0, 674, 308);
     }// </editor-fold>//GEN-END:initComponents
 
-private void btnbuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscadorActionPerformed
-    String num = txtnumero.getText();
+private void jbBuscarPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPrestamosActionPerformed
+    String num = jtfDatoDeConsulta.getText();
     String consulta = "";
-    if (rdbnnumero.isSelected() == true) {
+    if (jrbConsultaPorNumero.isSelected() == true) {
         consulta = "SELECT * FROM tb_prestamos WHERE numero='" + num + "'";
     }
-    if (rdbbnfecha.isSelected() == true) {
+    if (jrbConsultaPorFecha.isSelected() == true) {
         Date fecha = jDateChooser1.getDate();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
         String fec = "" + formatofecha.format(fecha);
         consulta = "SELECT * FROM tb_prestamos WHERE fecha='" + fec + "'";
     }
-    if (rdbntodos.isSelected() == true) {
+    if (jrbConsultaTodos.isSelected() == true) {
         consulta = "SELECT * FROM tb_prestamos";
     }
     DefaultTableModel tabla = new DefaultTableModel();
     String[] titulos = {"NUMERO", "FECHA", "COD. ESTUDIANTE"};
     tabla.setColumnIdentifiers(titulos);
-    this.tbentregas.setModel(tabla);
+    this.jtDetallePrestamos.setModel(tabla);
     String[] Datos = new String[4];
     try {
         Statement st = conexionDB.createStatement();
@@ -219,33 +219,33 @@ private void btnbuscadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     } catch (SQLException ex) {
         Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
     }
-}//GEN-LAST:event_btnbuscadorActionPerformed
-private void rdbnnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbnnumeroActionPerformed
-    if (rdbnnumero.isSelected() == true) {
-        txtnumero.setEnabled(true);
-        txtnumero.requestFocus();
+}//GEN-LAST:event_jbBuscarPrestamosActionPerformed
+private void jrbConsultaPorNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaPorNumeroActionPerformed
+    if (jrbConsultaPorNumero.isSelected() == true) {
+        jtfDatoDeConsulta.setEnabled(true);
+        jtfDatoDeConsulta.requestFocus();
         jDateChooser1.setDate(null);
         jDateChooser1.setEnabled(false);
     }
-}//GEN-LAST:event_rdbnnumeroActionPerformed
-private void rdbbnfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbbnfechaActionPerformed
-    if (rdbbnfecha.isSelected() == true) {
+}//GEN-LAST:event_jrbConsultaPorNumeroActionPerformed
+private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaPorFechaActionPerformed
+    if (jrbConsultaPorFecha.isSelected() == true) {
         jDateChooser1.setEnabled(true);
-        txtnumero.setEnabled(false);
-        txtnumero.setText("");
+        jtfDatoDeConsulta.setEnabled(false);
+        jtfDatoDeConsulta.setText("");
     }
-}//GEN-LAST:event_rdbbnfechaActionPerformed
-private void rdbntodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbntodosActionPerformed
-    if (rdbntodos.isSelected() == true) {
+}//GEN-LAST:event_jrbConsultaPorFechaActionPerformed
+private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaTodosActionPerformed
+    if (jrbConsultaTodos.isSelected() == true) {
         jDateChooser1.setEnabled(false);
         jDateChooser1.setDate(null);
-        txtnumero.setText("");
-        txtnumero.setEnabled(false);
+        jtfDatoDeConsulta.setText("");
+        jtfDatoDeConsulta.setEnabled(false);
         cargartodasEntregas();
     }
-}//GEN-LAST:event_rdbntodosActionPerformed
+}//GEN-LAST:event_jrbConsultaTodosActionPerformed
 private void mnverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnverActionPerformed
-    int filasele = tbentregas.getSelectedRow();
+    int filasele = jtDetallePrestamos.getSelectedRow();
     if (filasele == -1) {
         JOptionPane.showMessageDialog(null, "No Seleciono ninguna fila");
     } else {
@@ -256,7 +256,7 @@ private void mnverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         DefaultTableModel model = (DefaultTableModel) DetallePrestamoGUI.tbdetalle.getModel();
         String[] titulos = {"NUMERO ENTREGA", "ISBN"};
         model.setColumnIdentifiers(titulos);
-        this.tbentregas.setModel(model);
+        this.jtDetallePrestamos.setModel(model);
         String consulta = "SELECT * FROM tb_detalles";
         String[] Datos = new String[4];
         try {
@@ -274,9 +274,9 @@ private void mnverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
 }//GEN-LAST:event_mnverActionPerformed
 
 private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mneliminarActionPerformed
-    int fila = tbentregas.getSelectedRow();
+    int fila = jtDetallePrestamos.getSelectedRow();
     if (fila >= 0) {
-        String cod = tbentregas.getValueAt(fila, 0).toString();
+        String cod = jtDetallePrestamos.getValueAt(fila, 0).toString();
         try {
             PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_facturas WHERE num_fac='" + cod + "'");
             pst.executeUpdate();
@@ -290,18 +290,18 @@ private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_mneliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnbuscador;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBuscarPrestamos;
+    private javax.swing.JRadioButton jrbConsultaPorFecha;
+    private javax.swing.JRadioButton jrbConsultaPorNumero;
+    private javax.swing.JRadioButton jrbConsultaTodos;
+    public static javax.swing.JTable jtDetallePrestamos;
+    private javax.swing.JTextField jtfDatoDeConsulta;
     private javax.swing.JMenuItem mneliminar;
     private javax.swing.JMenuItem mnver;
-    private javax.swing.JRadioButton rdbbnfecha;
-    private javax.swing.JRadioButton rdbnnumero;
-    private javax.swing.JRadioButton rdbntodos;
-    public static javax.swing.JTable tbentregas;
-    private javax.swing.JTextField txtnumero;
     // End of variables declaration//GEN-END:variables
 ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
