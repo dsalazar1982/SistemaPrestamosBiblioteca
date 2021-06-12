@@ -1,13 +1,8 @@
 package Vistas;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import java.sql.*;
+import javax.swing.*;
+import Servicios.ClaseConexion;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -288,56 +283,52 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInformeActionPerformed
 
-        String dbUrl = "jdbc:mysql://10.0.0.51/db_bibliotecaFCECEP";
-        String user = "dba_user";
-        String pass = "dba_user@MariaDB2020*";
-        Statement stmt = null;
-        Connection con = null;
-        JTextArea pantalla = new JTextArea(20, 70);
-        JScrollPane desliza = new JScrollPane(pantalla);
+        String consultaSQL = "";
+        Statement st = null;
+        JTextArea areaDeTexto = new JTextArea(20, 70);
+        JScrollPane panelInforme = new JScrollPane(areaDeTexto);
         try {
-            con = DriverManager.getConnection(dbUrl, user, pass);
-            stmt = con.createStatement();
-            String sql = "SELECT d.numero, p.fecha, d.ISBN, l.nombre_lib, l.editorial_lib, e.codigo_estu, e.nombre_estu FROM tb_detalles d \n"
+            st = conexionDB.createStatement();
+            consultaSQL = "SELECT d.numero, p.fecha, d.ISBN, l.nombre_lib, l.editorial_lib, e.codigo_estu, e.nombre_estu FROM tb_detalles d \n"
                     + "INNER JOIN tb_prestamos p on d.numero=p.numero\n"
                     + "INNER JOIN tb_libros l on d.ISBN=l.ISBN\n"
-                    + "INNER JOIN tb_estudiantes e on p.codigo_estu=e.codigo_estu";
+                    + "INNER JOIN tb_estudiantes e on p.codigo_estu=e.codigo_estu ORDER BY d.numero";
 
-            ResultSet resultado = stmt.executeQuery(sql);
+            ResultSet rs = st.executeQuery(consultaSQL);
             String listado = "";
-            pantalla.setText("No.PRESTAMO \t FECHA \t ISBN \t NOMBRE LIBRO \t EDITORIAL \t COD.ESTUDIANTE \t NOMBRE \n ");
-            while (resultado.next()) {
-                listado = resultado.getString("numero") + "\t"
-                        + resultado.getString("fecha") + "\t"
-                        + resultado.getString("ISBN") + "\t"
-                        + resultado.getString("nombre_lib") + "\t"
-                        + resultado.getString("editorial_lib") + "\t"
-                        + resultado.getString("Codigo_estu") + "\t"
-                        + resultado.getString("nombre_estu") + "\n";
-                pantalla.append(listado);
+            areaDeTexto.setText("No \t FECHA \t\t ISBN \t\t NOMBRE LIBRO \t\t EDITORIAL \t\t COD.ESTUDIANTE \t\t NOMBRE \n ");
+            while (rs.next()) {
+                listado = rs.getString("numero") + "\t"
+                        + rs.getString("fecha") + "\t\t"
+                        + rs.getString("ISBN") + "\t\t"
+                        + rs.getString("nombre_lib") + "\t\t"
+                        + rs.getString("editorial_lib") + "\t\t"
+                        + rs.getString("Codigo_estu") + "\t\t"
+                        + rs.getString("nombre_estu") + "\n";
+                areaDeTexto.append(listado);
             }
-            JOptionPane.showMessageDialog(null, desliza);
+            JOptionPane.showMessageDialog(null, panelInforme, "Informe De Prestamos", JOptionPane.PLAIN_MESSAGE);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Código :" + ex.getErrorCode()
-                    + "\n " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Código: " + ex.getErrorCode()
+                    + "\nMensaje:  " + ex.getMessage());
         } finally {
             try {
-                if (stmt != null) {
-                    stmt.close();
+                if (st != null) {
+                    st.close();
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Código :" + ex.getErrorCode()
-                        + "\n " + ex.getMessage());
-            }// nothing we can do
+                JOptionPane.showMessageDialog(null, "Código: " + ex.getErrorCode()
+                        + "\nMensaje: " + ex.getMessage());
+            }
             try {
-                if (con != null) {
-                    con.close();
+                if (conexionDB != null) {
+                    conexionDB.close();
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Código :" + ex.getErrorCode()
-                        + "\n " + ex.getMessage());
-            }//fin finally try
-        }// Fin de try
+                JOptionPane.showMessageDialog(null, "Código: " + ex.getErrorCode()
+                        + "\nMensaje: " + ex.getMessage());
+            }
+        }
     }//GEN-LAST:event_jmiInformeActionPerformed
 
     public static void main(String args[]) {
@@ -380,4 +371,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiPrestarLibro;
     private javax.swing.JMenuItem jmiVerLibro;
     // End of variables declaration//GEN-END:variables
+
+    ClaseConexion objConexion = new ClaseConexion();
+    Connection conexionDB = objConexion.conexion();
 }

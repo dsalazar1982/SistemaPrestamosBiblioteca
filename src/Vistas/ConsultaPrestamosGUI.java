@@ -1,11 +1,11 @@
 package Vistas;
 
-import Servicios.ClaseConexion;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.logging.*;
-import javax.swing.JOptionPane;
 import java.util.Date;
+import java.util.logging.*;
+import Servicios.ClaseConexion;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
