@@ -19,7 +19,6 @@
         <MenuItem class="javax.swing.JMenuItem" name="jpmiEliminarLibro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Registro"/>
-            <Property name="actionCommand" type="java.lang.String" value="Eliminar Registro"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmiEliminarLibroActionPerformed"/>

@@ -1,6 +1,7 @@
 package Vistas;
 
 import Servicios.ClaseConexion;
+
 import java.sql.*;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
@@ -47,22 +48,22 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
 
     void cargar(String dato) {
         String consultaSQL = "SELECT * FROM tb_libros WHERE CONCAT(ISBN, nombre_lib, editorial_lib, ano_publicacion) LIKE '%" + dato + "%'";
-        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "EDITORIAL", "AÑO"};
-        String[] Registros = new String[4];
-        DefaultTableModel tablaDetallesLibros = new DefaultTableModel(null, encabezadosTabla);
+        String[] encabezadoTabla = {"CODIGO", "NOMBRES", "EDITORIAL", "AÑO"};
+        String[] registros = new String[4];
+        DefaultTableModel tablaDetallesLibros = new DefaultTableModel(null, encabezadoTabla);
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Registros[0] = rs.getString("ISBN");
-                Registros[1] = rs.getString("nombre_lib");
-                Registros[2] = rs.getString("editorial_lib");
-                Registros[3] = rs.getString("ano_publicacion");
-                tablaDetallesLibros.addRow(Registros);
+                registros[0] = rs.getString("ISBN");
+                registros[1] = rs.getString("nombre_lib");
+                registros[2] = rs.getString("editorial_lib");
+                registros[3] = rs.getString("ano_publicacion");
+                tablaDetallesLibros.addRow(registros);
             }
             jtDetalleLibros.setModel(tablaDetallesLibros);
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistroLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -336,22 +337,31 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         ano = jtfAnoPublicacionLibro.getText();
         consultaSQL = "INSERT INTO tb_libros (ISBN, nombre_lib, editorial_lib, ano_publicacion) VALUES (?,?,?,?)";
         try {
-            PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-            pst.setString(1, isbn);
-            pst.setString(2, titulo);
-            pst.setString(3, editorial);
-            pst.setString(4, ano);
-            int n = pst.executeUpdate();
-            if (n > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                bloquear();
+            if (isbn.isEmpty() || titulo.isEmpty() || editorial.isEmpty() || ano.equalsIgnoreCase("AAAA-MM-DD")) {
+                JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
+            } else {
+                PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+                pst.setString(1, isbn);
+                pst.setString(2, titulo);
+                pst.setString(3, editorial);
+                pst.setString(4, ano);
+                int n = pst.executeUpdate();
+                if (n > 0) {
+                    JOptionPane.showMessageDialog(null, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    bloquear();
+                }
+                cargar("");
+                limpiar();
             }
-            cargar("");
-            limpiar();
             placeHolder();
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistroLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Registre toda la informacion.", "Informacion incompleta", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException excepcion) {
+            if(excepcion.getSQLState().equalsIgnoreCase("23000")){
+                JOptionPane.showMessageDialog(null, "El codigo ISBN " + isbn + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
+                jtfISBNLibro.requestFocus();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jbGuardarLibroActionPerformed
 
@@ -421,7 +431,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             pst.setString(4, isbn);
             int n = pst.executeUpdate();
             if (n > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
                 bloquear();
             }
             cargar("");
@@ -456,6 +466,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfISBNLibro;
     private javax.swing.JTextField jtfTituloLibro;
     // End of variables declaration//GEN-END:variables
-   ClaseConexion objConexion = new ClaseConexion();
+
+    ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

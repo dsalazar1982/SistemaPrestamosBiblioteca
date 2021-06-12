@@ -1,9 +1,9 @@
 package Vistas;
 
 import Servicios.ClaseConexion;
-import java.awt.event.KeyEvent;
+
 import java.sql.*;
-import java.util.logging.*;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,22 +47,22 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
 
     void cargar(String dato) {
         String consultaSQL = "SELECT * FROM tb_estudiantes WHERE CONCAT(codigo_estu, nombre_estu, apellido_estu, telefono_estu) LIKE '%" + dato + "%'";
-        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
-        String[] Registros = new String[4];
-        DefaultTableModel tablaDetallesEstudiante = new DefaultTableModel(null, encabezadosTabla);
+        String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+        String[] registros = new String[4];
+        DefaultTableModel tablaDetallesEstudiante = new DefaultTableModel(null, encabezadoTabla);
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Registros[0] = rs.getString("codigo_estu");
-                Registros[1] = rs.getString("nombre_estu");
-                Registros[2] = rs.getString("apellido_estu");
-                Registros[3] = rs.getString("telefono_estu");
-                tablaDetallesEstudiante.addRow(Registros);
+                registros[0] = rs.getString("codigo_estu");
+                registros[1] = rs.getString("nombre_estu");
+                registros[2] = rs.getString("apellido_estu");
+                registros[3] = rs.getString("telefono_estu");
+                tablaDetallesEstudiante.addRow(registros);
             }
             jtDetalleEstudiantes.setModel(tablaDetallesEstudiante);
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -380,29 +380,29 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfNombresEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombresEstudianteKeyTyped
-        char car = evt.getKeyChar();
-        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+        char caracter = evt.getKeyChar();
+        if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != (char) KeyEvent.VK_SPACE) && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Los nombres ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Los nombres ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfNombresEstudianteKeyTyped
 
     private void jtfApellidosEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidosEstudianteKeyTyped
-        char car = evt.getKeyChar();
-        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+        char caracter = evt.getKeyChar();
+        if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != (char) KeyEvent.VK_SPACE) && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Los apellidos ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Los apellidos ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfApellidosEstudianteKeyTyped
 
     private void jtfTelefonoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoEstudianteKeyTyped
-        char car = evt.getKeyChar();
+        char caracter = evt.getKeyChar();
         if (jtfTelefonoEstudiante.getText().length() >= 10) {
             evt.consume();
         }
-        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+        if ((caracter < '0' || caracter > '9') && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "El telefono ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El telefono ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfTelefonoEstudianteKeyTyped
 
@@ -436,13 +436,13 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             pst.setString(4, codigo);
             int n = pst.executeUpdate();
             if (n > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
                 bloquear();
             }
             cargar("");
             limpiar();
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbActualizarEstudianteActionPerformed
 
@@ -465,19 +465,19 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                 pst.setString(4, telefono);
                 int n = pst.executeUpdate();
                 if (n > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                     limpiar();
                     bloquear();
                 }
                 cargar("");
             }
-        } catch (SQLException ex) {
-            if(ex.getSQLState().equalsIgnoreCase("23000")){
+        } catch (SQLException excepcion) {
+            if(excepcion.getSQLState().equalsIgnoreCase("23000")){
                 JOptionPane.showMessageDialog(null, "El codigo " + codigo + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
                 jtfCodigoEstudiante.requestFocus();
             }
             else{
-                JOptionPane.showMessageDialog(null, "Codigo de error: " + ex.getErrorCode() + "\n" + "Mensaje de error: " + ex.getMessage(), "Error en el proceso", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbGuardarEstudianteActionPerformed
@@ -511,20 +511,21 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             try {
                 PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_estudiantes WHERE Codigo_estu='" + codigo + "'");
                 pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                 cargar("");
-            } catch (SQLException ex) {
-                Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+        }
         } else {
             JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jpmiEliminarEstudianteActionPerformed
 
     private void jtfCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyTyped
-        char car = evt.getKeyChar();
-        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "El codigo ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El codigo ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfCodigoEstudianteKeyTyped
 
@@ -555,6 +556,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfNombresEstudiante;
     private javax.swing.JTextField jtfTelefonoEstudiante;
     // End of variables declaration//GEN-END:variables
-ClaseConexion objConexion = new ClaseConexion();
+
+    ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }
