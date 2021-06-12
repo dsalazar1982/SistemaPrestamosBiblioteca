@@ -14,7 +14,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         this.setLocation(150, 15);
         bloquear();
         cargar("");
-        PlaceHolder placeHolder = new PlaceHolder(jtfAnoPublicacionLibro, "AAAA-MM-DD");
+        placeHolder();
     }
 
     void bloquear() {
@@ -65,6 +65,10 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         }
     }
 
+    void placeHolder(){
+        PlaceHolder placeHolder = new PlaceHolder(jtfAnoPublicacionLibro, "AAAA-MM-DD");
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -90,7 +94,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbNuevoLibro = new javax.swing.JButton();
 
-        jpmiActualizarLibro.setText("Modificar");
+        jpmiActualizarLibro.setText("Modificar Registro");
         jpmiActualizarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpmiActualizarLibroActionPerformed(evt);
@@ -99,6 +103,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jPopupMenu1.add(jpmiActualizarLibro);
 
         jpmiEliminarLibro.setText("Eliminar");
+        jpmiEliminarLibro.setActionCommand("Eliminar Registro");
         jpmiEliminarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpmiEliminarLibroActionPerformed(evt);
@@ -303,7 +308,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     private void jbNuevoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoLibroActionPerformed
         desbloquear();
         limpiar();
-        PlaceHolder placeHolder = new PlaceHolder(jtfAnoPublicacionLibro, "AAAA-MM-DD");
+        placeHolder();
         jtfISBNLibro.requestFocus();
     }//GEN-LAST:event_jbNuevoLibroActionPerformed
 
@@ -328,6 +333,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             }
             cargar("");
             limpiar();
+            placeHolder();
         } catch (SQLException ex) {
             Logger.getLogger(RegistroLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Registre toda la informacion.", "Informacion incompleta", JOptionPane.INFORMATION_MESSAGE);
@@ -336,7 +342,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         bloquear();
-        PlaceHolder placeHolder = new PlaceHolder(jtfAnoPublicacionLibro, "AAAA-MM-DD");
+        placeHolder();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
