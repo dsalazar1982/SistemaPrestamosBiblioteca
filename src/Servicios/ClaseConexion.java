@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 public class ClaseConexion {
 
-    Connection conect = null;
+    Connection conexionDB = null;
 
     public Connection conexion() {
 
@@ -14,10 +14,10 @@ public class ClaseConexion {
         String claveUsuarioDB = "dba_user@MariaDB2020*";
 
         try {
-            conect = DriverManager.getConnection(serverDB, usuarioDB, claveUsuarioDB);
+            conexionDB = DriverManager.getConnection(serverDB, usuarioDB, claveUsuarioDB);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e, "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
-        return conect;
+        return conexionDB;
     }
 }
