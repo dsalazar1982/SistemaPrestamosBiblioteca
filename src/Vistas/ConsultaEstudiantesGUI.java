@@ -16,8 +16,8 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
 
     void cargarListaEstudiantes() {
         DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
-        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
-        tablaDetalleEstudiantes.setColumnIdentifiers(encabezadosTabla);
+        String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+        tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
         jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
         String consultaSQL = "SELECT * FROM tb_estudiantes";
         String[] Datos = new String[4];
@@ -139,8 +139,8 @@ private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {
     if (jrbConsultarUnEstudiante.isSelected() == true) {
         String dato = jtfDatoEstudiante.getText();
         DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
-        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
-        tablaDetalleEstudiantes.setColumnIdentifiers(encabezadosTabla);
+        String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+        tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
         this.jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
         try {
             String consultaSQL = "SELECT * FROM tb_estudiantes WHERE codigo_estu='" + dato + "'";

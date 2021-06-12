@@ -1,9 +1,9 @@
 package Vistas;
 
 import Servicios.ClaseConexion;
+
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
@@ -19,11 +19,11 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         String[] encabezadoTabla = {"CODIGO", "TITULO", "EDITORIAL", "AÑO"};
         tablaDetallesLibros.setColumnIdentifiers(encabezadoTabla);
         jtDetalleLibros.setModel(tablaDetallesLibros);
-        String consulta = "SELECT * FROM tb_libros";
+        String consultaSQL = "SELECT * FROM tb_libros";
         String[] Datos = new String[4];
         try {
             Statement st = conexionDB.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
+            ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 Datos[0] = rs.getString("ISBN");
                 Datos[1] = rs.getString("nombre_lib");
@@ -31,8 +31,8 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                 Datos[3] = rs.getString("ano_publicacion");
                 tablaDetallesLibros.addRow(Datos);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -180,8 +180,8 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                     tablaDetalleLibros.addRow(registros);
                 }
                 jtDetalleLibros.setModel(tablaDetalleLibros);
-            } catch (SQLException e) {
-                Logger.getLogger(ConsultaEstudiantesGUI.class.getName()).log(Level.SEVERE, null, e);
+            } catch (SQLException excepcion) {
+                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbBuscarLibroActionPerformed
@@ -211,6 +211,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtDetalleLibros;
     private javax.swing.JTextField jtfDatosLibro;
     // End of variables declaration//GEN-END:variables
-ClaseConexion objConexion = new ClaseConexion();
+
+    ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

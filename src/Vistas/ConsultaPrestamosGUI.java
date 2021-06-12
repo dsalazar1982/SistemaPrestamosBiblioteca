@@ -1,9 +1,9 @@
 package Vistas;
 
+import Servicios.ClaseConexion;
+
 import java.sql.*;
 import java.util.Date;
-import java.util.logging.*;
-import Servicios.ClaseConexion;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -14,13 +14,12 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         initComponents();
         cargarListaPrestamos();
         this.setLocation(25, 15);
-        //jDateChooser1.setEnabled(false);
     }
 
     void cargarListaPrestamos() {
         DefaultTableModel tablaDetallesPrestamos = new DefaultTableModel();
-        String[] encabezadosTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
-        tablaDetallesPrestamos.setColumnIdentifiers(encabezadosTabla);
+        String[] encabezadoTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
+        tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
         String consultaSQL = "SELECT * FROM tb_prestamos";
         String[] Datos = new String[3];
@@ -33,8 +32,8 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
                 Datos[2] = rs.getString("codigo_estu");
                 tablaDetallesPrestamos.addRow(Datos);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -206,8 +205,8 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
         jtfDatoPrestamo.setEnabled(false);
     }
     DefaultTableModel tablaDetallesPrestamos = new DefaultTableModel();
-    String[] encabezadosTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
-    tablaDetallesPrestamos.setColumnIdentifiers(encabezadosTabla);
+    String[] encabezadoTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
+    tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
     this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
     String[] Datos = new String[4];
     try {
@@ -219,22 +218,20 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
             Datos[2] = rs.getString("codigo_estu");
             tablaDetallesPrestamos.addRow(Datos);
         }
-    } catch (SQLException ex) {
-        Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException excepcion) {
+        JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jbBuscarPrestamoActionPerformed
+
 private void jrbConsultaUnPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaUnPrestamoActionPerformed
     if (jrbConsultaUnPrestamo.isSelected() == true) {
         jtfDatoPrestamo.setEnabled(true);
         jtfDatoPrestamo.setText("");
         jtfDatoPrestamo.requestFocus();
-        //jDateChooser1.setDate(null);
-        //jDateChooser1.setEnabled(false);
     }
 }//GEN-LAST:event_jrbConsultaUnPrestamoActionPerformed
 private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaPorFechaActionPerformed
     if (jrbConsultaPorFecha.isSelected() == true) {
-        //jDateChooser1.setEnabled(true);
         jtfDatoPrestamo.setEnabled(true);
         jtfDatoPrestamo.setText("");
         jtfDatoPrestamo.requestFocus();
@@ -242,8 +239,6 @@ private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) 
 }//GEN-LAST:event_jrbConsultaPorFechaActionPerformed
 private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaTodosActionPerformed
     if (jrbConsultaTodos.isSelected() == true) {
-        //jDateChooser1.setEnabled(false);
-        //jDateChooser1.setDate(null);
         jtfDatoPrestamo.setEnabled(false);
         jtfDatoPrestamo.setText("");
         cargarListaPrestamos();
@@ -269,8 +264,8 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
         }
 
         DefaultTableModel tablaDetallePrestamosEmergente = (DefaultTableModel) DetallePrestamoGUI.jtDetallePrestamos.getModel();
-        String[] encabezadosTabla = {"NUMERO PRESTAMO", "ISBN"};
-        tablaDetallePrestamosEmergente.setColumnIdentifiers(encabezadosTabla);
+        String[] encabezadoTabla = {"NUMERO PRESTAMO", "ISBN"};
+        tablaDetallePrestamosEmergente.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallePrestamosEmergente);
         String consultaSQL = "SELECT * FROM tb_detalles";
         String[] Datos = new String[2];
@@ -282,8 +277,8 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
                 Datos[1] = rs.getString("ISBN");
                 tablaDetallePrestamosEmergente.addRow(Datos);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 }//GEN-LAST:event_jpmVerDetallePrestamoActionPerformed
@@ -295,8 +290,8 @@ private void jpmEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEven
         try {
             PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_prestamos WHERE numero='" + codigo + "'");
             pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaPrestamosGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
         cargarListaPrestamos();
     } else {
@@ -318,6 +313,7 @@ private void jpmEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEven
     public static javax.swing.JTable jtDetallePrestamos;
     private javax.swing.JTextField jtfDatoPrestamo;
     // End of variables declaration//GEN-END:variables
-ClaseConexion objConexion = new ClaseConexion();
+
+    ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }
