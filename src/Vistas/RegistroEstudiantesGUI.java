@@ -9,8 +9,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
 
-    DefaultTableModel model;
-
     public RegistroEstudiantesGUI() {
         initComponents();
         bloquear();
@@ -18,51 +16,51 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     }
 
     void bloquear() {
-        txtcod.setEnabled(false);
-        txtnom.setEnabled(false);
-        txtape.setEnabled(false);
-        txtdir.setEnabled(false);
-        txttel.setEnabled(false);
+        jtfCodigoEstudiante.setEnabled(false);
+        jtfNombresEstudiante.setEnabled(false);
+        jtfApellidosEstudiante.setEnabled(false);
+        jtfTelefonoEstudiante.setEnabled(false);
         jbGuardarEstudiante.setEnabled(false);
         jbNuevoEstudiante.setEnabled(true);
+        jbCancelar.setEnabled(false);
         jbActualizarEstudiante.setEnabled(false);
+        jbGuardarEstudiante.setEnabled(false);
+        jbSalir.setEnabled(true);
     }
 
     void limpiar() {
-        txtcod.setText("");
-        txtnom.setText("");
-        txtdir.setText("");
-        txttel.setText("");
-        txtape.setText("");
+        jtfCodigoEstudiante.setText("");
+        jtfNombresEstudiante.setText("");
+        jtfTelefonoEstudiante.setText("");
+        jtfApellidosEstudiante.setText("");
     }
 
     void desbloquear() {
-        txtcod.setEnabled(true);
-        txtnom.setEnabled(true);
-        txtape.setEnabled(true);
-        txtdir.setEnabled(true);
-        txttel.setEnabled(true);
+        jtfCodigoEstudiante.setEnabled(true);
+        jtfNombresEstudiante.setEnabled(true);
+        jtfApellidosEstudiante.setEnabled(true);
+        jtfTelefonoEstudiante.setEnabled(true);
         jbGuardarEstudiante.setEnabled(true);
         jbNuevoEstudiante.setEnabled(false);
         jbActualizarEstudiante.setEnabled(true);
     }
 
-    void cargar(String valor) {
-        String mostrar = "SELECT * FROM tb_estudiantes WHERE CONCAT(codigo_estu,nombre_estu,apellido_estu,telefono_estu) LIKE '%" + valor + "%'";
-        String[] titulos = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+    void cargar(String dato) {
+        String consultaSQL = "SELECT * FROM tb_estudiantes WHERE CONCAT(codigo_estu, nombre_estu, apellido_estu, telefono_estu) LIKE '%" + dato + "%'";
+        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         String[] Registros = new String[4];
-        model = new DefaultTableModel(null, titulos);
+        DefaultTableModel tablaDetallesEstudiante = new DefaultTableModel(null, encabezadosTabla);
         try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(mostrar);
+            Statement st = conexionDB.createStatement();
+            ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 Registros[0] = rs.getString("codigo_estu");
                 Registros[1] = rs.getString("nombre_estu");
                 Registros[2] = rs.getString("apellido_estu");
                 Registros[3] = rs.getString("telefono_estu");
-                model.addRow(Registros);
+                tablaDetallesEstudiante.addRow(Registros);
             }
-            jtDetalleEstudiantes.setModel(model);
+            jtDetalleEstudiantes.setModel(tablaDetallesEstudiante);
         } catch (SQLException ex) {
             Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,27 +71,24 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        mnmodificar = new javax.swing.JMenuItem();
-        mneliminar = new javax.swing.JMenuItem();
+        jpmiModificarEstudiante = new javax.swing.JMenuItem();
+        jpmiEliminarEstudiante = new javax.swing.JMenuItem();
         jpDetalleEstudiantes = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtDetalleEstudiantes = new javax.swing.JTable();
         jpDatosEstudiante = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtcod = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtnom = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtape = new javax.swing.JTextField();
-        txttel = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtdir = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jlCodigoEstudiante = new javax.swing.JLabel();
+        jtfCodigoEstudiante = new javax.swing.JTextField();
+        jlNombresEstudiante = new javax.swing.JLabel();
+        jtfNombresEstudiante = new javax.swing.JTextField();
+        jlApellidosEstudiante = new javax.swing.JLabel();
+        jtfApellidosEstudiante = new javax.swing.JTextField();
+        jtfTelefonoEstudiante = new javax.swing.JTextField();
+        jlTelefonoEstudiante = new javax.swing.JLabel();
+        jlAsteriscoNombresEstudiante = new javax.swing.JLabel();
+        jlAsteriscoApellidosEstudiante = new javax.swing.JLabel();
+        jlAsteriscoCodigoEstudiante = new javax.swing.JLabel();
+        jlAsteriscoTelefonoEstudiante = new javax.swing.JLabel();
         jpControles = new javax.swing.JPanel();
         jbActualizarEstudiante = new javax.swing.JButton();
         jbNuevoEstudiante = new javax.swing.JButton();
@@ -101,21 +96,21 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
 
-        mnmodificar.setText("Modificar");
-        mnmodificar.addActionListener(new java.awt.event.ActionListener() {
+        jpmiModificarEstudiante.setText("Modificar Estudiante");
+        jpmiModificarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnmodificarActionPerformed(evt);
+                jpmiModificarEstudianteActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(mnmodificar);
+        jPopupMenu1.add(jpmiModificarEstudiante);
 
-        mneliminar.setText("Eliminar");
-        mneliminar.addActionListener(new java.awt.event.ActionListener() {
+        jpmiEliminarEstudiante.setText("Eliminar Estudiante");
+        jpmiEliminarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mneliminarActionPerformed(evt);
+                jpmiEliminarEstudianteActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(mneliminar);
+        jPopupMenu1.add(jpmiEliminarEstudiante);
 
         setClosable(true);
         setIconifiable(true);
@@ -145,7 +140,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jpDetalleEstudiantes.setLayout(jpDetalleEstudiantesLayout);
         jpDetalleEstudiantesLayout.setHorizontalGroup(
             jpDetalleEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
         );
         jpDetalleEstudiantesLayout.setVerticalGroup(
             jpDetalleEstudiantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,133 +149,120 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
 
         jpDatosEstudiante.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Datos Del Estudiante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DialogInput", 1, 14)))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel1.setText("Codigo:");
+        jlCodigoEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jlCodigoEstudiante.setText("Codigo:");
 
-        jLabel2.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel2.setText("Nombre:");
-
-        txtnom.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfCodigoEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtnomKeyTyped(evt);
+                jtfCodigoEstudianteKeyTyped(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel3.setText("Apellidos:");
+        jlNombresEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jlNombresEstudiante.setText("Nombres:");
 
-        txtape.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtfNombresEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtapeKeyTyped(evt);
+                jtfNombresEstudianteKeyTyped(evt);
             }
         });
 
-        txttel.addKeyListener(new java.awt.event.KeyAdapter() {
+        jlApellidosEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jlApellidosEstudiante.setText("Apellidos:");
+
+        jtfApellidosEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txttelKeyTyped(evt);
+                jtfApellidosEstudianteKeyTyped(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel6.setText("Telefono:");
+        jtfTelefonoEstudiante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfTelefonoEstudianteKeyTyped(evt);
+            }
+        });
 
-        jLabel8.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jLabel8.setText("Direccion:");
+        jlTelefonoEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jlTelefonoEstudiante.setText("Telefono:");
 
-        jLabel12.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel12.setText("*");
+        jlAsteriscoNombresEstudiante.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jlAsteriscoNombresEstudiante.setForeground(new java.awt.Color(255, 0, 0));
+        jlAsteriscoNombresEstudiante.setText("*");
 
-        jLabel13.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel13.setText("*");
+        jlAsteriscoApellidosEstudiante.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jlAsteriscoApellidosEstudiante.setForeground(new java.awt.Color(255, 0, 0));
+        jlAsteriscoApellidosEstudiante.setText("*");
 
-        jLabel16.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel16.setText("*");
+        jlAsteriscoCodigoEstudiante.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jlAsteriscoCodigoEstudiante.setForeground(new java.awt.Color(255, 0, 0));
+        jlAsteriscoCodigoEstudiante.setText("*");
 
-        jLabel14.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel14.setText("*");
-
-        jLabel15.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel15.setText("*");
+        jlAsteriscoTelefonoEstudiante.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jlAsteriscoTelefonoEstudiante.setForeground(new java.awt.Color(255, 0, 0));
+        jlAsteriscoTelefonoEstudiante.setText("*");
 
         javax.swing.GroupLayout jpDatosEstudianteLayout = new javax.swing.GroupLayout(jpDatosEstudiante);
         jpDatosEstudiante.setLayout(jpDatosEstudianteLayout);
         jpDatosEstudianteLayout.setHorizontalGroup(
             jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(8, 8, 8)
+                .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlTelefonoEstudiante)
+                    .addComponent(jlApellidosEstudiante))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                        .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                                .addComponent(txtape, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                                .addComponent(txtdir, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                                .addComponent(txttel, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jtfApellidosEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jlAsteriscoApellidosEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                        .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                                .addComponent(txtcod, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
-                                .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jtfTelefonoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jlAsteriscoTelefonoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
+                .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jlCodigoEstudiante))
+                    .addComponent(jlNombresEstudiante, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
+                        .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlAsteriscoCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
+                        .addComponent(jtfNombresEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlAsteriscoNombresEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpDatosEstudianteLayout.setVerticalGroup(
             jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDatosEstudianteLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtcod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlAsteriscoCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlCodigoEstudiante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlNombresEstudiante)
+                    .addComponent(jtfNombresEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlAsteriscoNombresEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfApellidosEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlApellidosEstudiante)
+                    .addComponent(jlAsteriscoApellidosEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txttel)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdir, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jtfTelefonoEstudiante)
+                    .addComponent(jlTelefonoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlAsteriscoTelefonoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         jpControles.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Controles", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Eras Medium ITC", 1, 14)))); // NOI18N
@@ -374,14 +356,11 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpDatosEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(35, 35, 35))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jpControles, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jpDetalleEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpControles, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpDatosEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jpDetalleEstudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -394,130 +373,151 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                         .addComponent(jpDatosEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpControles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-    this.dispose();
-}//GEN-LAST:event_jbSalirActionPerformed
-private void jbNuevoEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoEstudianteActionPerformed
-    desbloquear();
-    limpiar();
-    txtcod.requestFocus();
-}//GEN-LAST:event_jbNuevoEstudianteActionPerformed
-private void jbActualizarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarEstudianteActionPerformed
-    String cod, nom, ape, tel;
-    String sql = "";
-    cod = txtcod.getText();
-    nom = txtnom.getText();
-    ape = txtape.getText();
-    tel = txttel.getText();
-    sql = "INSERT INTO tb_estudiantes (codigo_estu, nombre_estu, apellido_estu, telefono_estu) VALUES (?,?,?,?)";
-    try {
-        PreparedStatement pst = cn.prepareStatement(sql);
-        pst.setString(1, cod);
-        pst.setString(2, nom);
-        pst.setString(3, ape);
-        pst.setString(4, tel);
-        int n = pst.executeUpdate();
-        if (n > 0) {
-            JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
-            bloquear();
+    private void jtfNombresEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombresEstudianteKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Los nombres ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
         }
-        cargar("");
-    } catch (SQLException ex) {
-        Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
-    }
-}//GEN-LAST:event_jbActualizarEstudianteActionPerformed
-private void jbGuardarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarEstudianteActionPerformed
-    String cod, nom, ape, tel;
-    String sql = "";
-    cod = txtcod.getText();
-    nom = txtnom.getText();
-    ape = txtape.getText();
-    tel = txttel.getText();
-    sql = "INSERT INTO tb_estudiantes (codigo_estu, nombre_estu, apellido_estu, telefono_estu) VALUES (?,?,?,?)";
-    try {
-        PreparedStatement pst = cn.prepareStatement(sql);
-        pst.setString(1, cod);
-        pst.setString(2, nom);
-        pst.setString(3, ape);
-        pst.setString(4, tel);
-        int n = pst.executeUpdate();
-        if (n > 0) {
-            JOptionPane.showMessageDialog(null, "Registro Guardado con Exito");
-            bloquear();
+    }//GEN-LAST:event_jtfNombresEstudianteKeyTyped
+
+    private void jtfApellidosEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidosEstudianteKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_SPACE) && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Los apellidos ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
         }
-        cargar("");
-    } catch (SQLException ex) {
-        Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
-    }
-}//GEN-LAST:event_jbGuardarEstudianteActionPerformed
-private void txttelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelKeyTyped
-    char car = evt.getKeyChar();
-    if (txttel.getText().length() >= 9) {
-        evt.consume();
-    }
-    if ((car < '0' || car > '9'))
-        evt.consume();
-}//GEN-LAST:event_txttelKeyTyped
-private void txtnomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnomKeyTyped
-    char car = evt.getKeyChar();
-    if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_SPACE)) {
-        evt.consume();
-    }
-}//GEN-LAST:event_txtnomKeyTyped
-private void txtapeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapeKeyTyped
-    char car = evt.getKeyChar();
-    if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_SPACE)) {
-        evt.consume();
-    }
-}//GEN-LAST:event_txtapeKeyTyped
-private void mneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mneliminarActionPerformed
-    int fila = jtDetalleEstudiantes.getSelectedRow();
-    String cod = "";
-    cod = jtDetalleEstudiantes.getValueAt(fila, 0).toString();
-    if (fila >= 0) {
+    }//GEN-LAST:event_jtfApellidosEstudianteKeyTyped
+
+    private void jtfTelefonoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoEstudianteKeyTyped
+        char car = evt.getKeyChar();
+        if (jtfTelefonoEstudiante.getText().length() >= 10) {
+            evt.consume();
+        }
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "El telefono ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jtfTelefonoEstudianteKeyTyped
+
+    private void jbNuevoEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoEstudianteActionPerformed
+        desbloquear();
+        limpiar();
+        jbCancelar.setEnabled(true);
+        jbActualizarEstudiante.setEnabled(false);
+        jtfCodigoEstudiante.requestFocus();
+    }//GEN-LAST:event_jbNuevoEstudianteActionPerformed
+
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        limpiar();
+        bloquear();
+        jbCancelar.setEnabled(false);
+    }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void jbActualizarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarEstudianteActionPerformed
+        String codigo, nombres, apellidos, telefono;
+        String consultaSQL = "";
+        codigo = jtfCodigoEstudiante.getText();
+        nombres = jtfNombresEstudiante.getText();
+        apellidos = jtfApellidosEstudiante.getText();
+        telefono = jtfTelefonoEstudiante.getText();
+        consultaSQL = "UPDATE tb_estudiantes SET nombre_estu = ?, apellido_estu = ?, telefono_estu = ? WHERE codigo_estu = ?";
         try {
-            PreparedStatement pst = cn.prepareStatement("DELETE FROM tb_estudiantes WHERE Codigo_estu='" + cod + "'");
-            pst.executeUpdate();
+            PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+            pst.setString(1, nombres);
+            pst.setString(2, apellidos);
+            pst.setString(3, telefono);
+            pst.setString(4, codigo);
+            int n = pst.executeUpdate();
+            if (n > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                bloquear();
+            }
             cargar("");
         } catch (SQLException ex) {
             Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "No ha selecionada ninguna fila");
-    }
-}//GEN-LAST:event_mneliminarActionPerformed
-private void mnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnmodificarActionPerformed
-    desbloquear();
-    int filamodificar = jtDetalleEstudiantes.getSelectedRow();
-    if (filamodificar >= 0) {
-        txtcod.setText(jtDetalleEstudiantes.getValueAt(filamodificar, 0).toString());
-        txtnom.setText(jtDetalleEstudiantes.getValueAt(filamodificar, 1).toString());
-        txtape.setText(jtDetalleEstudiantes.getValueAt(filamodificar, 2).toString());
-        txttel.setText(jtDetalleEstudiantes.getValueAt(filamodificar, 3).toString());
-    } else {
-        JOptionPane.showMessageDialog(this, "No ha seleccionado ");
-    }
-}//GEN-LAST:event_mnmodificarActionPerformed
-    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+    }//GEN-LAST:event_jbActualizarEstudianteActionPerformed
 
-    }//GEN-LAST:event_jbCancelarActionPerformed
+    private void jbGuardarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarEstudianteActionPerformed
+        String codigo, nombres, apellidos, telefono;
+        String consultaSQL = "";
+        codigo = jtfCodigoEstudiante.getText();
+        nombres = jtfNombresEstudiante.getText();
+        apellidos = jtfApellidosEstudiante.getText();
+        telefono = jtfTelefonoEstudiante.getText();
+        consultaSQL = "INSERT INTO tb_estudiantes (codigo_estu, nombre_estu, apellido_estu, telefono_estu) VALUES (?,?,?,?)";
+        try {
+            PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+            pst.setString(1, codigo);
+            pst.setString(2, nombres);
+            pst.setString(3, apellidos);
+            pst.setString(4, telefono);
+            int n = pst.executeUpdate();
+            if (n > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                bloquear();
+            }
+            cargar("");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
+        }
+        limpiar();
+    }//GEN-LAST:event_jbGuardarEstudianteActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jpmiModificarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiModificarEstudianteActionPerformed
+        desbloquear();
+        jbCancelar.setEnabled(true);
+        jbGuardarEstudiante.setEnabled(false);
+        int modificarRegistro = jtDetalleEstudiantes.getSelectedRow();
+        if (modificarRegistro >= 0) {
+            jtfCodigoEstudiante.setText(jtDetalleEstudiantes.getValueAt(modificarRegistro, 0).toString());
+            jtfNombresEstudiante.setText(jtDetalleEstudiantes.getValueAt(modificarRegistro, 1).toString());
+            jtfApellidosEstudiante.setText(jtDetalleEstudiantes.getValueAt(modificarRegistro, 2).toString());
+            jtfTelefonoEstudiante.setText(jtDetalleEstudiantes.getValueAt(modificarRegistro, 3).toString());
+        } else {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jpmiModificarEstudianteActionPerformed
+
+    private void jpmiEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarEstudianteActionPerformed
+        int fila = jtDetalleEstudiantes.getSelectedRow();
+        String cod = "";
+        cod = jtDetalleEstudiantes.getValueAt(fila, 0).toString();
+        if (fila >= 0) {
+            try {
+                PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_estudiantes WHERE Codigo_estu='" + cod + "'");
+                pst.executeUpdate();
+                cargar("");
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jpmiEliminarEstudianteActionPerformed
+
+    private void jtfCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyTyped
+        char car = evt.getKeyChar();
+        if ((car < '0' || car > '9') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_DELETE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "El codigo ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jtfCodigoEstudianteKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbActualizarEstudiante;
@@ -525,18 +525,25 @@ private void mnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JButton jbGuardarEstudiante;
     private javax.swing.JButton jbNuevoEstudiante;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JLabel jlApellidosEstudiante;
+    private javax.swing.JLabel jlAsteriscoApellidosEstudiante;
+    private javax.swing.JLabel jlAsteriscoCodigoEstudiante;
+    private javax.swing.JLabel jlAsteriscoNombresEstudiante;
+    private javax.swing.JLabel jlAsteriscoTelefonoEstudiante;
+    private javax.swing.JLabel jlCodigoEstudiante;
+    private javax.swing.JLabel jlNombresEstudiante;
+    private javax.swing.JLabel jlTelefonoEstudiante;
     private javax.swing.JPanel jpControles;
     private javax.swing.JPanel jpDatosEstudiante;
     private javax.swing.JPanel jpDetalleEstudiantes;
+    private javax.swing.JMenuItem jpmiEliminarEstudiante;
+    private javax.swing.JMenuItem jpmiModificarEstudiante;
     private javax.swing.JTable jtDetalleEstudiantes;
-    private javax.swing.JMenuItem mneliminar;
-    private javax.swing.JMenuItem mnmodificar;
-    private javax.swing.JTextField txtape;
-    private javax.swing.JTextField txtcod;
-    private javax.swing.JTextField txtdir;
-    private javax.swing.JTextField txtnom;
-    private javax.swing.JTextField txttel;
+    private javax.swing.JTextField jtfApellidosEstudiante;
+    private javax.swing.JTextField jtfCodigoEstudiante;
+    private javax.swing.JTextField jtfNombresEstudiante;
+    private javax.swing.JTextField jtfTelefonoEstudiante;
     // End of variables declaration//GEN-END:variables
-ClaseConexion cc = new ClaseConexion();
-    Connection cn = cc.conexion();
+ClaseConexion objConexion = new ClaseConexion();
+    Connection conexionDB = objConexion.conexion();
 }
