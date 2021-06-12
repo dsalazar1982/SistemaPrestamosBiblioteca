@@ -10,11 +10,8 @@ public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetallePrestamos = new javax.swing.JTable();
-
-        jLabel2.setText("jLabel2");
 
         setClosable(true);
         setIconifiable(true);
@@ -27,11 +24,11 @@ public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CODIGO", "TITULO", "EDITORIAL", "AÑO"
+                "NUMERO PRESTAMO", "ISBN"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -60,7 +57,6 @@ public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable jtDetallePrestamos;
     // End of variables declaration//GEN-END:variables

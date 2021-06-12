@@ -2,7 +2,6 @@ package Vistas;
 
 import Servicios.ClaseConexion;
 import java.sql.*;
-import java.util.concurrent.locks.StampedLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -11,7 +10,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
     public ConsultaLibrosGUI() {
         initComponents();
-        jtfTituloLibroConsultar.setEnabled(false);
+        jtfDatosLibro.setEnabled(false);
         cargarListaLibros();
     }
 
@@ -41,11 +40,11 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        jbgBuscarLibro = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jrbConsultarUnLibro = new javax.swing.JRadioButton();
         jrbConsultarTodosLibros = new javax.swing.JRadioButton();
-        jtfTituloLibroConsultar = new javax.swing.JTextField();
+        jtfDatosLibro = new javax.swing.JTextField();
         jbBuscarLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetalleLibros = new javax.swing.JTable();
@@ -58,17 +57,17 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
-        buttonGroup1.add(jrbConsultarUnLibro);
+        jbgBuscarLibro.add(jrbConsultarUnLibro);
         jrbConsultarUnLibro.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
         jrbConsultarUnLibro.setSelected(true);
-        jrbConsultarUnLibro.setText("Mostrar Libro Por Titulo:");
+        jrbConsultarUnLibro.setText("Buscar Libro Por Titulo:");
         jrbConsultarUnLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbConsultarUnLibroActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jrbConsultarTodosLibros);
+        jbgBuscarLibro.add(jrbConsultarTodosLibros);
         jrbConsultarTodosLibros.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
         jrbConsultarTodosLibros.setText("Mostrar Todos Los Libros");
         jrbConsultarTodosLibros.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +76,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jtfTituloLibroConsultar.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jtfDatosLibro.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
         jbBuscarLibro.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
         jbBuscarLibro.setText("Buscar");
@@ -101,7 +100,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarUnLibro)
                         .addGap(18, 18, 18)
-                        .addComponent(jtfTituloLibroConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfDatosLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))))
@@ -112,7 +111,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtfTituloLibroConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfDatosLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jrbConsultarUnLibro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,25 +161,25 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarLibroActionPerformed
-        if(jrbConsultarUnLibro.isSelected() == true){
-            String titulo = jtfTituloLibroConsultar.getText();
-            DefaultTableModel modelo = new DefaultTableModel();
+        if (jrbConsultarUnLibro.isSelected() == true) {
+            String dato = jtfDatosLibro.getText();
+            DefaultTableModel tablaDetalleLibros = new DefaultTableModel();
             String[] encabezadoTabla = {"CODIGO", "TITULO", "EDITORIAL", "AÑO"};
-            modelo.setColumnIdentifiers(encabezadoTabla);
-            this.jtDetalleLibros.setModel(modelo);
+            tablaDetalleLibros.setColumnIdentifiers(encabezadoTabla);
+            this.jtDetalleLibros.setModel(tablaDetalleLibros);
             try {
-                String consultaSQL = "SELECT * FROM tb_libros WHERE nombre_lib LIKE '%" + titulo + "%'";
+                String consultaSQL = "SELECT * FROM tb_libros WHERE nombre_lib LIKE '%" + dato + "%'";
                 String[] registros = new String[4];
                 Statement st = conexionDB.createStatement();
                 ResultSet rs = st.executeQuery(consultaSQL);
-                while (rs.next()) {                    
+                while (rs.next()) {
                     registros[0] = rs.getString("ISBN");
                     registros[1] = rs.getString("nombre_lib");
                     registros[2] = rs.getString("editorial_lib");
                     registros[3] = rs.getString("ano_publicacion");
-                    modelo.addRow(registros);
+                    tablaDetalleLibros.addRow(registros);
                 }
-                jtDetalleLibros.setModel(modelo);
+                jtDetalleLibros.setModel(tablaDetalleLibros);
             } catch (SQLException e) {
                 Logger.getLogger(ConsultaEstudiantesGUI.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -188,29 +187,29 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarLibroActionPerformed
 
     private void jrbConsultarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosLibrosActionPerformed
-        if(jrbConsultarTodosLibros.isSelected() == true){
+        if (jrbConsultarTodosLibros.isSelected() == true) {
+            jtfDatosLibro.setText("");
+            jtfDatosLibro.setEnabled(false);
             cargarListaLibros();
-            jtfTituloLibroConsultar.setText("");
-            jtfTituloLibroConsultar.setEnabled(false);
         }
     }//GEN-LAST:event_jrbConsultarTodosLibrosActionPerformed
 
     private void jrbConsultarUnLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnLibroActionPerformed
-        if(jrbConsultarUnLibro.isSelected() == true){
-            jtfTituloLibroConsultar.setEnabled(true);
-            jtfTituloLibroConsultar.requestFocus();
+        if (jrbConsultarUnLibro.isSelected() == true) {
+            jtfDatosLibro.setEnabled(true);
+            jtfDatosLibro.requestFocus();
         }
     }//GEN-LAST:event_jrbConsultarUnLibroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscarLibro;
+    private javax.swing.ButtonGroup jbgBuscarLibro;
     private javax.swing.JRadioButton jrbConsultarTodosLibros;
     private javax.swing.JRadioButton jrbConsultarUnLibro;
     private javax.swing.JTable jtDetalleLibros;
-    private javax.swing.JTextField jtfTituloLibroConsultar;
+    private javax.swing.JTextField jtfDatosLibro;
     // End of variables declaration//GEN-END:variables
 ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();

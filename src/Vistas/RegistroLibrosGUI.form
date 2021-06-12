@@ -113,7 +113,7 @@
                 <BevelBorder/>
               </Border>
               <Border PropertyName="inside" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Registro"/>
+                <TitledBorder title="Datos de Libro"/>
               </Border>
             </CompoundBorder>
           </Border>
@@ -248,7 +248,7 @@
                 <BevelBorder/>
               </Border>
               <Border PropertyName="inside" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Detalles">
+                <TitledBorder title="Detalles De Los Libros">
                   <Font PropertyName="font" name="Eras Medium ITC" size="12" style="1"/>
                 </TitledBorder>
               </Border>

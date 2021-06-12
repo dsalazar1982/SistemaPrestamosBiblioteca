@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="jbgBuscarLibro">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -87,7 +87,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jrbConsultarUnLibro" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jtfTituloLibroConsultar" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Component id="jtfDatosLibro" min="-2" pref="160" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jbBuscarLibro" min="-2" pref="68" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jtfTituloLibroConsultar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jtfDatosLibro" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="jbBuscarLibro" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jrbConsultarUnLibro" min="-2" max="-2" attributes="0"/>
@@ -118,13 +118,13 @@
         <Component class="javax.swing.JRadioButton" name="jrbConsultarUnLibro">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup1"/>
+              <ComponentRef name="jbgBuscarLibro"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Mostrar Libro Por Titulo:"/>
+            <Property name="text" type="java.lang.String" value="Buscar Libro Por Titulo:"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultarUnLibroActionPerformed"/>
@@ -133,7 +133,7 @@
         <Component class="javax.swing.JRadioButton" name="jrbConsultarTodosLibros">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup1"/>
+              <ComponentRef name="jbgBuscarLibro"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
@@ -144,7 +144,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultarTodosLibrosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfTituloLibroConsultar">
+        <Component class="javax.swing.JTextField" name="jtfDatosLibro">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.CompoundBorderInfo">

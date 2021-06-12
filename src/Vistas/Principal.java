@@ -19,14 +19,13 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem7 = new javax.swing.JMenuItem();
         jdpPrincipal = new javax.swing.JDesktopPane();
         jlImagenFCECEP = new javax.swing.JLabel();
         jlTituloBiblioteca = new javax.swing.JLabel();
         jmbPrincipal = new javax.swing.JMenuBar();
         jmPrestamos = new javax.swing.JMenu();
         jmiPrestarLibro = new javax.swing.JMenuItem();
-        jmiSalir = new javax.swing.JMenuItem();
+        jmiConsultarPrestamo = new javax.swing.JMenuItem();
         jmLibros = new javax.swing.JMenu();
         jmiIngresarLibro = new javax.swing.JMenuItem();
         jmiVerLibro = new javax.swing.JMenuItem();
@@ -35,9 +34,6 @@ public class Principal extends javax.swing.JFrame {
         jmiConsultarEstudiante = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
         jmiInforme = new javax.swing.JMenuItem();
-        jmiConsultarPrestamo = new javax.swing.JMenuItem();
-
-        jMenuItem7.setText("jMenuItem7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Biblioteca FCECEP");
@@ -46,11 +42,15 @@ public class Principal extends javax.swing.JFrame {
         jdpPrincipal.setPreferredSize(new java.awt.Dimension(1300, 640));
         jdpPrincipal.setRequestFocusEnabled(false);
 
+        jlImagenFCECEP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlImagenFCECEP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cecep.PNG"))); // NOI18N
+        jlImagenFCECEP.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jlTituloBiblioteca.setFont(new java.awt.Font("DialogInput", 3, 48)); // NOI18N
         jlTituloBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
+        jlTituloBiblioteca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTituloBiblioteca.setText("BIBLIOTECA ");
+        jlTituloBiblioteca.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlTituloBiblioteca.setPreferredSize(new java.awt.Dimension(200, 48));
 
         jdpPrincipal.setLayer(jlImagenFCECEP, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -67,8 +67,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jlImagenFCECEP)
                         .addGap(365, 365, 365))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
-                        .addComponent(jlTituloBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(280, 280, 280))))
+                        .addComponent(jlTituloBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(377, 377, 377))))
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,14 +96,15 @@ public class Principal extends javax.swing.JFrame {
         });
         jmPrestamos.add(jmiPrestarLibro);
 
-        jmiSalir.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiSalir.setText("Salir");
-        jmiSalir.addActionListener(new java.awt.event.ActionListener() {
+        jmiConsultarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiConsultarPrestamo.setText("Consultar Prestamo");
+        jmiConsultarPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jmiConsultarPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiSalirActionPerformed(evt);
+                jmiConsultarPrestamoActionPerformed(evt);
             }
         });
-        jmPrestamos.add(jmiSalir);
+        jmPrestamos.add(jmiConsultarPrestamo);
 
         jmbPrincipal.add(jmPrestamos);
 
@@ -172,16 +173,6 @@ public class Principal extends javax.swing.JFrame {
         });
         jmConsultas.add(jmiInforme);
 
-        jmiConsultarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiConsultarPrestamo.setText("Consultar Prestamo");
-        jmiConsultarPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jmiConsultarPrestamo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiConsultarPrestamoActionPerformed(evt);
-            }
-        });
-        jmConsultas.add(jmiConsultarPrestamo);
-
         jmbPrincipal.add(jmConsultas);
 
         setJMenuBar(jmbPrincipal);
@@ -214,10 +205,6 @@ public class Principal extends javax.swing.JFrame {
             prestarLibro.setVisible(true);
         }
     }//GEN-LAST:event_jmiPrestarLibroActionPerformed
-
-    private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jmiSalirActionPerformed
 
     private void jmiIngresarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiIngresarLibroActionPerformed
 
@@ -377,7 +364,6 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jMenuItem7;
     public static javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JLabel jlImagenFCECEP;
     private javax.swing.JLabel jlTituloBiblioteca;
@@ -392,7 +378,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiInforme;
     private javax.swing.JMenuItem jmiIngresarLibro;
     private javax.swing.JMenuItem jmiPrestarLibro;
-    private javax.swing.JMenuItem jmiSalir;
     private javax.swing.JMenuItem jmiVerLibro;
     // End of variables declaration//GEN-END:variables
 }

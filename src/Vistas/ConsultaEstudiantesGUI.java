@@ -10,28 +10,26 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
 
     public ConsultaEstudiantesGUI() {
         initComponents();
-        jtfCodigoEstudiante.setEnabled(false);
+        jtfDatoEstudiante.setEnabled(false);
         cargarListaEstudiantes();
     }
 
     void cargarListaEstudiantes() {
-        DefaultTableModel tabla = new DefaultTableModel();
-        String[] titulos = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
-        tabla.setColumnIdentifiers(titulos);
-        tbestudiantes.setModel(tabla);
-        String consulta = "SELECT * FROM tb_estudiantes";
-        String[] Datos = new String[5];
+        DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
+        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+        tablaDetalleEstudiantes.setColumnIdentifiers(encabezadosTabla);
+        jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
+        String consultaSQL = "SELECT * FROM tb_estudiantes";
+        String[] Datos = new String[4];
         try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
+            Statement st = conexionDB.createStatement();
+            ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 Datos[0] = rs.getString("codigo_estu");
                 Datos[1] = rs.getString("nombre_estu");
                 Datos[2] = rs.getString("apellido_estu");
                 Datos[3] = rs.getString("telefono_estu");
-                //Datos[4] = rs.getString("dir_estu");
-
-                tabla.addRow(Datos);
+                tablaDetalleEstudiantes.addRow(Datos);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,14 +40,14 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btestugrupo = new javax.swing.ButtonGroup();
+        jbgBuscarEstudiante = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jrbConsultarTodosEstudiante = new javax.swing.JRadioButton();
-        jtfCodigoEstudiante = new javax.swing.JTextField();
-        btnBuscarEstudiante = new javax.swing.JButton();
         jrbConsultarUnEstudiante = new javax.swing.JRadioButton();
+        jtfDatoEstudiante = new javax.swing.JTextField();
+        jbBuscarEstudiante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbestudiantes = new javax.swing.JTable();
+        jtDetalleEstudiantes = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -60,29 +58,29 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
-        btestugrupo.add(jrbConsultarTodosEstudiante);
+        jbgBuscarEstudiante.add(jrbConsultarTodosEstudiante);
         jrbConsultarTodosEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jrbConsultarTodosEstudiante.setText("Mostrar Todos los Estudiantes");
+        jrbConsultarTodosEstudiante.setText("Mostrar Todos Los Estudiantes");
         jrbConsultarTodosEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbConsultarTodosEstudianteActionPerformed(evt);
             }
         });
 
-        btnBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
-        btnBuscarEstudiante.setText("BUSCAR");
-        btnBuscarEstudiante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarEstudianteActionPerformed(evt);
-            }
-        });
-
-        btestugrupo.add(jrbConsultarUnEstudiante);
+        jbgBuscarEstudiante.add(jrbConsultarUnEstudiante);
         jrbConsultarUnEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jrbConsultarUnEstudiante.setText("Buscar Estudiante por Codigo:");
+        jrbConsultarUnEstudiante.setText("Buscar Estudiante Por Codigo:");
         jrbConsultarUnEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbConsultarUnEstudianteActionPerformed(evt);
+            }
+        });
+
+        jbBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
+        jbBuscarEstudiante.setText("BUSCAR");
+        jbBuscarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarEstudianteActionPerformed(evt);
             }
         });
 
@@ -95,13 +93,13 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarTodosEstudiante)
-                        .addGap(32, 226, Short.MAX_VALUE))
+                        .addGap(32, 223, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarUnEstudiante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                        .addComponent(jtfDatoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                         .addGap(30, 30, 30)
-                        .addComponent(btnBuscarEstudiante)
+                        .addComponent(jbBuscarEstudiante)
                         .addGap(35, 35, 35))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,16 +108,16 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbConsultarUnEstudiante)
-                    .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarEstudiante))
+                    .addComponent(jtfDatoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBuscarEstudiante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jrbConsultarTodosEstudiante))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 470, 80));
 
-        tbestudiantes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tbestudiantes.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetalleEstudiantes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtDetalleEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -130,62 +128,62 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tbestudiantes);
+        jScrollPane1.setViewportView(jtDetalleEstudiantes);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 470, 121));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void btnBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEstudianteActionPerformed
+private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarEstudianteActionPerformed
     if (jrbConsultarUnEstudiante.isSelected() == true) {
-        String cod = jtfCodigoEstudiante.getText();
-        DefaultTableModel modelo = new DefaultTableModel();
-        String[] Titulos = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
-        modelo.setColumnIdentifiers(Titulos);
-        this.tbestudiantes.setModel(modelo);
+        String dato = jtfDatoEstudiante.getText();
+        DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
+        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+        tablaDetalleEstudiantes.setColumnIdentifiers(encabezadosTabla);
+        this.jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
         try {
-            String ConsultaSQL = "SELECT * FROM tb_estudiantes WHERE codigo_estu='" + cod + "'";
-            String[] registros = new String[9];
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(ConsultaSQL);
+            String consultaSQL = "SELECT * FROM tb_estudiantes WHERE codigo_estu='" + dato + "'";
+            String[] registros = new String[4];
+            Statement st = conexionDB.createStatement();
+            ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 registros[0] = rs.getString("codigo_estu");
                 registros[1] = rs.getString("nombre_estu");
                 registros[2] = rs.getString("apellido_estu");
                 registros[3] = rs.getString("telefono_estu");
-                modelo.addRow(registros);
+                tablaDetalleEstudiantes.addRow(registros);
             }
-            tbestudiantes.setModel(modelo);
+            jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}//GEN-LAST:event_btnBuscarEstudianteActionPerformed
+}//GEN-LAST:event_jbBuscarEstudianteActionPerformed
 private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosEstudianteActionPerformed
     if (jrbConsultarTodosEstudiante.isSelected() == true) {
+        jtfDatoEstudiante.setText("");
+        jtfDatoEstudiante.setEnabled(false);
         cargarListaEstudiantes();
-        jtfCodigoEstudiante.setText("");
-        jtfCodigoEstudiante.setEnabled(false);
     }
 }//GEN-LAST:event_jrbConsultarTodosEstudianteActionPerformed
 
     private void jrbConsultarUnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnEstudianteActionPerformed
         if (jrbConsultarUnEstudiante.isSelected() == true) {
-            jtfCodigoEstudiante.setEnabled(true);
-            jtfCodigoEstudiante.requestFocus();
+            jtfDatoEstudiante.setEnabled(true);
+            jtfDatoEstudiante.requestFocus();
         }
     }//GEN-LAST:event_jrbConsultarUnEstudianteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup btestugrupo;
-    private javax.swing.JButton btnBuscarEstudiante;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBuscarEstudiante;
+    private javax.swing.ButtonGroup jbgBuscarEstudiante;
     private javax.swing.JRadioButton jrbConsultarTodosEstudiante;
     private javax.swing.JRadioButton jrbConsultarUnEstudiante;
-    private javax.swing.JTextField jtfCodigoEstudiante;
-    private javax.swing.JTable tbestudiantes;
+    private javax.swing.JTable jtDetalleEstudiantes;
+    private javax.swing.JTextField jtfDatoEstudiante;
     // End of variables declaration//GEN-END:variables
-ClaseConexion cc = new ClaseConexion();
-    Connection cn = cc.conexion();
+ClaseConexion objConexion = new ClaseConexion();
+    Connection conexionDB = objConexion.conexion();
 }

@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="btestugrupo">
+    <Component class="javax.swing.ButtonGroup" name="jbgBuscarEstudiante">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -61,14 +61,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jrbConsultarTodosEstudiante" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="32" pref="226" max="32767" attributes="0"/>
+                          <EmptySpace min="32" pref="223" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jrbConsultarUnEstudiante" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jtfCodigoEstudiante" pref="93" max="32767" attributes="0"/>
+                          <Component id="jtfDatoEstudiante" pref="93" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="btnBuscarEstudiante" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbBuscarEstudiante" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -81,8 +81,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jrbConsultarUnEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfCodigoEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnBuscarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfDatoEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbBuscarEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="8" max="32767" attributes="0"/>
                   <Component id="jrbConsultarTodosEstudiante" min="-2" max="-2" attributes="0"/>
@@ -94,20 +94,34 @@
         <Component class="javax.swing.JRadioButton" name="jrbConsultarTodosEstudiante">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="btestugrupo"/>
+              <ComponentRef name="jbgBuscarEstudiante"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Mostrar Todos los Estudiantes"/>
+            <Property name="text" type="java.lang.String" value="Mostrar Todos Los Estudiantes"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultarTodosEstudianteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfCodigoEstudiante">
+        <Component class="javax.swing.JRadioButton" name="jrbConsultarUnEstudiante">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="jbgBuscarEstudiante"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Eras Medium ITC" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Buscar Estudiante Por Codigo:"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultarUnEstudianteActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnBuscarEstudiante">
+        <Component class="javax.swing.JTextField" name="jtfDatoEstudiante">
+        </Component>
+        <Component class="javax.swing.JButton" name="jbBuscarEstudiante">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="11" style="0"/>
@@ -115,21 +129,7 @@
             <Property name="text" type="java.lang.String" value="BUSCAR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarEstudianteActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="jrbConsultarUnEstudiante">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="btestugrupo"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Eras Medium ITC" size="12" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Buscar Estudiante por Codigo:"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultarUnEstudianteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarEstudianteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -146,7 +146,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbestudiantes">
+        <Component class="javax.swing.JTable" name="jtDetalleEstudiantes">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">

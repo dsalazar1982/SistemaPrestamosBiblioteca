@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="jbgBuscarPrestamo">
     </Component>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
 
@@ -10,20 +10,21 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <MenuItem class="javax.swing.JMenuItem" name="mnVer">
+        <MenuItem class="javax.swing.JMenuItem" name="jpmVerDetallePrestamo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Detalle"/>
+            <Property name="actionCommand" type="java.lang.String" value="Ver Detalle Prestamo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnVerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmVerDetallePrestamoActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="mnEliminar">
+        <MenuItem class="javax.swing.JMenuItem" name="jpmEliminarDetallePrestamo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
+            <Property name="text" type="java.lang.String" value="Eliminar Prestamo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnEliminarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmEliminarDetallePrestamoActionPerformed"/>
           </Events>
         </MenuItem>
       </SubComponents>
@@ -92,18 +93,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jrbConsultaPorNumero" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jrbConsultaUnPrestamo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="jtfDatoDeConsulta" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="jtfDatoPrestamo" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jrbConsultaPorFecha" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jbBuscarPrestamos" min="-2" pref="89" max="-2" attributes="0"/>
+                          <Component id="jbBuscarPrestamo" min="-2" pref="89" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jrbConsultaTodos" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="191" max="32767" attributes="0"/>
+                  <EmptySpace pref="141" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -114,15 +115,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jtfDatoDeConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jrbConsultaPorNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jtfDatoPrestamo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jrbConsultaUnPrestamo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jrbConsultaPorFecha" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jrbConsultaTodos" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jbBuscarPrestamos" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="jbBuscarPrestamo" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="11" max="32767" attributes="0"/>
               </Group>
@@ -130,30 +131,30 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JRadioButton" name="jrbConsultaPorNumero">
+        <Component class="javax.swing.JRadioButton" name="jrbConsultaUnPrestamo">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup1"/>
+              <ComponentRef name="jbgBuscarPrestamo"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Mostrar por N&#xba;:"/>
+            <Property name="text" type="java.lang.String" value="Buscar Prestamo Por N&#xba;:"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultaPorNumeroActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultaUnPrestamoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrbConsultaPorFecha">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup1"/>
+              <ComponentRef name="jbgBuscarPrestamo"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Mostrar por Fecha"/>
+            <Property name="text" type="java.lang.String" value="Buscar Prestamo Por Fecha:"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultaPorFechaActionPerformed"/>
@@ -162,20 +163,20 @@
         <Component class="javax.swing.JRadioButton" name="jrbConsultaTodos">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup1"/>
+              <ComponentRef name="jbgBuscarPrestamo"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Mostrar todas:"/>
+            <Property name="text" type="java.lang.String" value="Mostrar Todos Los Prestamos"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultaTodosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfDatoDeConsulta">
+        <Component class="javax.swing.JTextField" name="jtfDatoPrestamo">
         </Component>
-        <Component class="javax.swing.JButton" name="jbBuscarPrestamos">
+        <Component class="javax.swing.JButton" name="jbBuscarPrestamo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Eras Medium ITC" size="11" style="1"/>
@@ -183,7 +184,7 @@
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarPrestamosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarPrestamoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
