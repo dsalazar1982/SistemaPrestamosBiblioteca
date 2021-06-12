@@ -57,56 +57,27 @@ public class VistaPrestamoLibrosGUI extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        mnEnviarPrestamo = new javax.swing.JMenuItem();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtDetalleLibros = new javax.swing.JTable();
+        jpmiEnviarPrestamo = new javax.swing.JMenuItem();
         jtfTituloLibroConsultar = new javax.swing.JTextField();
         jbMostrarTodosLibros = new javax.swing.JButton();
         jlBuscarLibro = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtDetalleLibros = new javax.swing.JTable();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        mnEnviarPrestamo.setText("Enviar a Prestamo");
-        mnEnviarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+        jpmiEnviarPrestamo.setText("Enviar a Prestamo");
+        jpmiEnviarPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnEnviarPrestamoActionPerformed(evt);
+                jpmiEnviarPrestamoActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(mnEnviarPrestamo);
+        jPopupMenu1.add(jpmiEnviarPrestamo);
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Listado De Libros");
-
-        jtDetalleLibros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jtDetalleLibros.setComponentPopupMenu(jPopupMenu1);
-        jScrollPane2.setViewportView(jtDetalleLibros);
 
         jtfTituloLibroConsultar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -125,24 +96,35 @@ public class VistaPrestamoLibrosGUI extends javax.swing.JInternalFrame {
         jlBuscarLibro.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
         jlBuscarLibro.setText("Buscar Libro:");
 
+        jtDetalleLibros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jtDetalleLibros.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(jtDetalleLibros);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jlBuscarLibro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfTituloLibroConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbMostrarTodosLibros)
-                        .addGap(30, 30, 30))))
+                .addGap(18, 18, 18)
+                .addComponent(jlBuscarLibro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfTituloLibroConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jbMostrarTodosLibros)
+                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +135,7 @@ public class VistaPrestamoLibrosGUI extends javax.swing.JInternalFrame {
                     .addComponent(jbMostrarTodosLibros)
                     .addComponent(jtfTituloLibroConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -165,7 +147,7 @@ private void jbMostrarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt)
 private void jtfTituloLibroConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTituloLibroConsultarKeyReleased
     cargarListaLibros(jtfTituloLibroConsultar.getText());
 }//GEN-LAST:event_jtfTituloLibroConsultarKeyReleased
-private void mnEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEnviarPrestamoActionPerformed
+private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
     try {
         DefaultTableModel tabladet = (DefaultTableModel) RegistroPrestamosGUI.jtDetallePrestamo.getModel();
         String[] dato = new String[5];
@@ -186,17 +168,15 @@ private void mnEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
         }
     } catch (Exception e) {
     }
-}//GEN-LAST:event_mnEnviarPrestamoActionPerformed
+}//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbMostrarTodosLibros;
     private javax.swing.JLabel jlBuscarLibro;
+    private javax.swing.JMenuItem jpmiEnviarPrestamo;
     private javax.swing.JTable jtDetalleLibros;
     private javax.swing.JTextField jtfTituloLibroConsultar;
-    private javax.swing.JMenuItem mnEnviarPrestamo;
     // End of variables declaration//GEN-END:variables
 ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();

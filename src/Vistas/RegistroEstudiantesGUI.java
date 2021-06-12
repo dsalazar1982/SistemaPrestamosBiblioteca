@@ -71,7 +71,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jpmiModificarEstudiante = new javax.swing.JMenuItem();
+        jpmiActualizarEstudiante = new javax.swing.JMenuItem();
         jpmiEliminarEstudiante = new javax.swing.JMenuItem();
         jpDetalleEstudiantes = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -96,13 +96,13 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
 
-        jpmiModificarEstudiante.setText("Modificar Estudiante");
-        jpmiModificarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jpmiActualizarEstudiante.setText("Modificar Estudiante");
+        jpmiActualizarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jpmiModificarEstudianteActionPerformed(evt);
+                jpmiActualizarEstudianteActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(jpmiModificarEstudiante);
+        jPopupMenu1.add(jpmiActualizarEstudiante);
 
         jpmiEliminarEstudiante.setText("Eliminar Estudiante");
         jpmiEliminarEstudiante.addActionListener(new java.awt.event.ActionListener() {
@@ -440,6 +440,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                 bloquear();
             }
             cargar("");
+            limpiar();
         } catch (SQLException ex) {
             Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -477,10 +478,12 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jpmiModificarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiModificarEstudianteActionPerformed
+    private void jpmiActualizarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiActualizarEstudianteActionPerformed
         desbloquear();
         jbCancelar.setEnabled(true);
         jbGuardarEstudiante.setEnabled(false);
+        jtfCodigoEstudiante.setEditable(false);
+        jtfCodigoEstudiante.setEnabled(false);
         int modificarRegistro = jtDetalleEstudiantes.getSelectedRow();
         if (modificarRegistro >= 0) {
             jtfCodigoEstudiante.setText(jtDetalleEstudiantes.getValueAt(modificarRegistro, 0).toString());
@@ -490,15 +493,15 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jpmiModificarEstudianteActionPerformed
+    }//GEN-LAST:event_jpmiActualizarEstudianteActionPerformed
 
     private void jpmiEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarEstudianteActionPerformed
-        int fila = jtDetalleEstudiantes.getSelectedRow();
-        String cod = "";
-        cod = jtDetalleEstudiantes.getValueAt(fila, 0).toString();
-        if (fila >= 0) {
+        int eliminarRegistro = jtDetalleEstudiantes.getSelectedRow();
+        String codigo = "";
+        codigo = jtDetalleEstudiantes.getValueAt(eliminarRegistro, 0).toString();
+        if (eliminarRegistro >= 0) {
             try {
-                PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_estudiantes WHERE Codigo_estu='" + cod + "'");
+                PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_estudiantes WHERE Codigo_estu='" + codigo + "'");
                 pst.executeUpdate();
                 cargar("");
             } catch (SQLException ex) {
@@ -536,8 +539,8 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpControles;
     private javax.swing.JPanel jpDatosEstudiante;
     private javax.swing.JPanel jpDetalleEstudiantes;
+    private javax.swing.JMenuItem jpmiActualizarEstudiante;
     private javax.swing.JMenuItem jpmiEliminarEstudiante;
-    private javax.swing.JMenuItem jpmiModificarEstudiante;
     private javax.swing.JTable jtDetalleEstudiantes;
     private javax.swing.JTextField jtfApellidosEstudiante;
     private javax.swing.JTextField jtfCodigoEstudiante;

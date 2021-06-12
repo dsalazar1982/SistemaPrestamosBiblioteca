@@ -25,6 +25,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jbGuardarLibro.setEnabled(false);
         jbNuevoLibro.setEnabled(true);
         jbCancelar.setEnabled(false);
+        jbActualizarLibro.setEnabled(false);
     }
 
     void limpiar() {
@@ -59,16 +60,16 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
                 Registros[3] = rs.getString("ano_publicacion");
                 tablaDetallesLibros.addRow(Registros);
             }
-            jtTablaDetallesLibros.setModel(tablaDetallesLibros);
+            jtDetalleLibros.setModel(tablaDetallesLibros);
         } catch (SQLException ex) {
             Logger.getLogger(RegistroLibrosGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    void placeHolder(){
+    void placeHolder() {
         PlaceHolder placeHolder = new PlaceHolder(jtfAnoPublicacionLibro, "AAAA-MM-DD");
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,12 +88,13 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jlAnoPublicacionLibro = new javax.swing.JLabel();
         jpDetalleLibros = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtTablaDetallesLibros = new javax.swing.JTable();
+        jtDetalleLibros = new javax.swing.JTable();
         jpControles = new javax.swing.JPanel();
         jbGuardarLibro = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jbNuevoLibro = new javax.swing.JButton();
+        jbActualizarLibro = new javax.swing.JButton();
 
         jpmiActualizarLibro.setText("Modificar Registro");
         jpmiActualizarLibro.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +104,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         });
         jPopupMenu1.add(jpmiActualizarLibro);
 
-        jpmiEliminarLibro.setText("Eliminar");
+        jpmiEliminarLibro.setText("Eliminar Registro");
         jpmiEliminarLibro.setActionCommand("Eliminar Registro");
         jpmiEliminarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +184,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
 
         jpDetalleLibros.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createTitledBorder("Detalles De Los Libros")));
 
-        jtTablaDetallesLibros.setModel(new javax.swing.table.DefaultTableModel(
+        jtDetalleLibros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -193,8 +195,8 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
 
             }
         ));
-        jtTablaDetallesLibros.setComponentPopupMenu(jPopupMenu1);
-        jScrollPane2.setViewportView(jtTablaDetallesLibros);
+        jtDetalleLibros.setComponentPopupMenu(jPopupMenu1);
+        jScrollPane2.setViewportView(jtDetalleLibros);
 
         javax.swing.GroupLayout jpDetalleLibrosLayout = new javax.swing.GroupLayout(jpDetalleLibros);
         jpDetalleLibros.setLayout(jpDetalleLibrosLayout);
@@ -249,6 +251,16 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        jbActualizarLibro.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
+        jbActualizarLibro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CANCEL_opt.png"))); // NOI18N
+        jbActualizarLibro.setText("Actualizar");
+        jbActualizarLibro.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jbActualizarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarLibroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpControlesLayout = new javax.swing.GroupLayout(jpControles);
         jpControles.setLayout(jpControlesLayout);
         jpControlesLayout.setHorizontalGroup(
@@ -260,6 +272,8 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
                 .addComponent(jbGuardarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jbCancelar)
+                .addGap(18, 18, 18)
+                .addComponent(jbActualizarLibro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -271,7 +285,8 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
                     .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbGuardarLibro)
                     .addComponent(jbNuevoLibro)
-                    .addComponent(jbCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbActualizarLibro))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -341,6 +356,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarLibroActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        limpiar();
         bloquear();
         placeHolder();
     }//GEN-LAST:event_jbCancelarActionPerformed
@@ -350,16 +366,31 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jpmiActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiActualizarLibroActionPerformed
-        // TODO add your handling code here:
+        desbloquear();
+        jbCancelar.setEnabled(true);
+        jbActualizarLibro.setEnabled(true);
+        jbGuardarLibro.setEnabled(false);
+        jtfISBNLibro.setEditable(false);
+        jtfISBNLibro.setEnabled(false);
+        jtfAnoPublicacionLibro.setEditable(true);
+        int modificarRegistro = jtDetalleLibros.getSelectedRow();
+        if (modificarRegistro >= 0) {
+            jtfISBNLibro.setText(jtDetalleLibros.getValueAt(modificarRegistro, 0).toString());
+            jtfTituloLibro.setText(jtDetalleLibros.getValueAt(modificarRegistro, 1).toString());
+            jtfEditorialLibro.setText(jtDetalleLibros.getValueAt(modificarRegistro, 2).toString());
+            jtfAnoPublicacionLibro.setText(jtDetalleLibros.getValueAt(modificarRegistro, 3).toString());
+        } else {
+            JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jpmiActualizarLibroActionPerformed
 
     private void jpmiEliminarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarLibroActionPerformed
-        int eliminarSeleccion = jtTablaDetallesLibros.getSelectedRow();
+        int eliminarSeleccion = jtDetalleLibros.getSelectedRow();
         try {
             if (eliminarSeleccion == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
-                String isbn = (String) jtTablaDetallesLibros.getValueAt(eliminarSeleccion, 0);
+                String isbn = (String) jtDetalleLibros.getValueAt(eliminarSeleccion, 0);
                 String eliminarSQL = "DELETE FROM tb_libros WHERE ISBN = '" + isbn + "'";
                 try {
                     PreparedStatement pst = conexionDB.prepareStatement(eliminarSQL);
@@ -374,9 +405,38 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jpmiEliminarLibroActionPerformed
 
+    private void jbActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarLibroActionPerformed
+        String isbn, titulo, editorial, anoPublicacion;
+        String consultaSQL = "";
+        isbn = jtfISBNLibro.getText();
+        titulo = jtfTituloLibro.getText();
+        editorial = jtfEditorialLibro.getText();
+        anoPublicacion = jtfAnoPublicacionLibro.getText();
+        consultaSQL = "UPDATE tb_libros SET nombre_lib = ?, editorial_lib = ?, ano_publicacion = ? WHERE ISBN = ?";
+        try {
+            PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+            pst.setString(1, titulo);
+            pst.setString(2, editorial);
+            pst.setString(3, anoPublicacion);
+            pst.setString(4, isbn);
+            int n = pst.executeUpdate();
+            if (n > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                bloquear();
+            }
+            cargar("");
+            limpiar();
+            bloquear();
+            placeHolder();
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbActualizarLibroActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jbActualizarLibro;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbGuardarLibro;
     private javax.swing.JButton jbNuevoLibro;
@@ -390,7 +450,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jpDetalleLibros;
     private javax.swing.JMenuItem jpmiActualizarLibro;
     private javax.swing.JMenuItem jpmiEliminarLibro;
-    private javax.swing.JTable jtTablaDetallesLibros;
+    private javax.swing.JTable jtDetalleLibros;
     private javax.swing.JTextField jtfAnoPublicacionLibro;
     private javax.swing.JTextField jtfEditorialLibro;
     private javax.swing.JTextField jtfISBNLibro;

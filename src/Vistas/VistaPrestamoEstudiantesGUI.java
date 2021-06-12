@@ -41,22 +41,22 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        mnenviar = new javax.swing.JMenuItem();
+        jpmiEnviarPrestamo = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jlBuscarEstudiante = new javax.swing.JLabel();
         jbMostrarTodosEstudiantes = new javax.swing.JButton();
         jtfCodigoEstudiante = new javax.swing.JTextField();
+        jbRegistrarEstudiante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetallesEstudiantes = new javax.swing.JTable();
-        jbRegistrarEstudiante = new javax.swing.JButton();
 
-        mnenviar.setText("Enviar a Prestamo");
-        mnenviar.addActionListener(new java.awt.event.ActionListener() {
+        jpmiEnviarPrestamo.setText("Enviar a Prestamo");
+        jpmiEnviarPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnenviarActionPerformed(evt);
+                jpmiEnviarPrestamoActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(mnenviar);
+        jPopupMenu1.add(jpmiEnviarPrestamo);
 
         setClosable(true);
         setIconifiable(true);
@@ -81,6 +81,14 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
             }
         });
 
+        jbRegistrarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
+        jbRegistrarEstudiante.setText("Registrar Estudiante");
+        jbRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarEstudianteActionPerformed(evt);
+            }
+        });
+
         jtDetallesEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -94,14 +102,6 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         ));
         jtDetallesEstudiantes.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jtDetallesEstudiantes);
-
-        jbRegistrarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 1, 12)); // NOI18N
-        jbRegistrarEstudiante.setText("Registrar Estudiante");
-        jbRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRegistrarEstudianteActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,7 +163,7 @@ private void jtfCodigoEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-
     mostrarListaEstudiantes(jtfCodigoEstudiante.getText());
 }//GEN-LAST:event_jtfCodigoEstudianteKeyReleased
 
-private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnenviarActionPerformed
+private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
     String cod = "", nom = "", tel = "";
     int fila = jtDetallesEstudiantes.getSelectedRow();
     try {
@@ -183,7 +183,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     } catch (Exception e) {
     }
-}//GEN-LAST:event_mnenviarActionPerformed
+}//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
 private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarEstudianteActionPerformed
     try {
 
@@ -214,9 +214,9 @@ private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JButton jbMostrarTodosEstudiantes;
     private javax.swing.JButton jbRegistrarEstudiante;
     private javax.swing.JLabel jlBuscarEstudiante;
+    private javax.swing.JMenuItem jpmiEnviarPrestamo;
     private javax.swing.JTable jtDetallesEstudiantes;
     private javax.swing.JTextField jtfCodigoEstudiante;
-    private javax.swing.JMenuItem mnenviar;
     // End of variables declaration//GEN-END:variables
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
