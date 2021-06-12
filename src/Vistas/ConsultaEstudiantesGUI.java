@@ -1,9 +1,9 @@
 package Vistas;
 
 import Servicios.ClaseConexion;
+
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
@@ -31,8 +31,8 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                 Datos[3] = rs.getString("telefono_estu");
                 tablaDetalleEstudiantes.addRow(Datos);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -134,6 +134,7 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarEstudianteActionPerformed
     if (jrbConsultarUnEstudiante.isSelected() == true) {
         String dato = jtfDatoEstudiante.getText();
@@ -154,11 +155,12 @@ private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {
                 tablaDetalleEstudiantes.addRow(registros);
             }
             jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 }//GEN-LAST:event_jbBuscarEstudianteActionPerformed
+
 private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosEstudianteActionPerformed
     if (jrbConsultarTodosEstudiante.isSelected() == true) {
         jtfDatoEstudiante.setText("");
@@ -184,6 +186,7 @@ private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEve
     private javax.swing.JTable jtDetalleEstudiantes;
     private javax.swing.JTextField jtfDatoEstudiante;
     // End of variables declaration//GEN-END:variables
-ClaseConexion objConexion = new ClaseConexion();
+
+    ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

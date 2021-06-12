@@ -455,23 +455,31 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         telefono = jtfTelefonoEstudiante.getText();
         consultaSQL = "INSERT INTO tb_estudiantes (codigo_estu, nombre_estu, apellido_estu, telefono_estu) VALUES (?,?,?,?)";
         try {
-            PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-            pst.setString(1, codigo);
-            pst.setString(2, nombres);
-            pst.setString(3, apellidos);
-            pst.setString(4, telefono);
-            int n = pst.executeUpdate();
-            if (n > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                bloquear();
+            if (codigo.isEmpty() || nombres.isEmpty() || apellidos.isEmpty() || telefono.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
+            } else {
+                PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+                pst.setString(1, codigo);
+                pst.setString(2, nombres);
+                pst.setString(3, apellidos);
+                pst.setString(4, telefono);
+                int n = pst.executeUpdate();
+                if (n > 0) {
+                    JOptionPane.showMessageDialog(null, "Registro Guardado con Exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                    bloquear();
+                }
+                cargar("");
             }
-            cargar("");
-
         } catch (SQLException ex) {
-            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
+            if(ex.getSQLState().equalsIgnoreCase("23000")){
+                JOptionPane.showMessageDialog(null, "El codigo " + codigo + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
+                jtfCodigoEstudiante.requestFocus();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Codigo de error: " + ex.getErrorCode() + "\n" + "Mensaje de error: " + ex.getMessage(), "Error en el proceso", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        limpiar();
     }//GEN-LAST:event_jbGuardarEstudianteActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -482,7 +490,6 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         desbloquear();
         jbCancelar.setEnabled(true);
         jbGuardarEstudiante.setEnabled(false);
-        jtfCodigoEstudiante.setEditable(false);
         jtfCodigoEstudiante.setEnabled(false);
         int modificarRegistro = jtDetalleEstudiantes.getSelectedRow();
         if (modificarRegistro >= 0) {
@@ -491,6 +498,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             jtfApellidosEstudiante.setText(jtDetalleEstudiantes.getValueAt(modificarRegistro, 2).toString());
             jtfTelefonoEstudiante.setText(jtDetalleEstudiantes.getValueAt(modificarRegistro, 3).toString());
         } else {
+            bloquear();
             JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jpmiActualizarEstudianteActionPerformed

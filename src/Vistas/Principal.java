@@ -18,15 +18,15 @@ public class Principal extends javax.swing.JFrame {
         jlImagenFCECEP = new javax.swing.JLabel();
         jlTituloBiblioteca = new javax.swing.JLabel();
         jmbPrincipal = new javax.swing.JMenuBar();
-        jmPrestamos = new javax.swing.JMenu();
-        jmiPrestarLibro = new javax.swing.JMenuItem();
-        jmiConsultarPrestamo = new javax.swing.JMenuItem();
-        jmLibros = new javax.swing.JMenu();
-        jmiIngresarLibro = new javax.swing.JMenuItem();
-        jmiVerLibro = new javax.swing.JMenuItem();
         jmEstudiantes = new javax.swing.JMenu();
         jmiCrearEstudiante = new javax.swing.JMenuItem();
         jmiConsultarEstudiante = new javax.swing.JMenuItem();
+        jmLibros = new javax.swing.JMenu();
+        jmiIngresarLibro = new javax.swing.JMenuItem();
+        jmiVerLibro = new javax.swing.JMenuItem();
+        jmPrestamos = new javax.swing.JMenu();
+        jmiPrestarLibro = new javax.swing.JMenuItem();
+        jmiConsultarPrestamo = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
         jmiInforme = new javax.swing.JMenuItem();
 
@@ -72,36 +72,35 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jlTituloBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jlImagenFCECEP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
 
         jmbPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.magenta, java.awt.Color.green));
 
-        jmPrestamos.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jmPrestamos.setForeground(new java.awt.Color(51, 0, 255));
-        jmPrestamos.setText("PRESTRAMOS");
-        jmPrestamos.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        jmEstudiantes.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jmEstudiantes.setForeground(new java.awt.Color(51, 0, 255));
+        jmEstudiantes.setText("ESTUDIANTES");
+        jmEstudiantes.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
-        jmiPrestarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiPrestarLibro.setText("Registrar Prestamo");
-        jmiPrestarLibro.addActionListener(new java.awt.event.ActionListener() {
+        jmiCrearEstudiante.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
+        jmiCrearEstudiante.setText("Registrar Estudiante");
+        jmiCrearEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiPrestarLibroActionPerformed(evt);
+                jmiCrearEstudianteActionPerformed(evt);
             }
         });
-        jmPrestamos.add(jmiPrestarLibro);
+        jmEstudiantes.add(jmiCrearEstudiante);
 
-        jmiConsultarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiConsultarPrestamo.setText("Consultar Prestamo");
-        jmiConsultarPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jmiConsultarPrestamo.addActionListener(new java.awt.event.ActionListener() {
+        jmiConsultarEstudiante.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiConsultarEstudiante.setText("Consultar Estudiante");
+        jmiConsultarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiConsultarPrestamoActionPerformed(evt);
+                jmiConsultarEstudianteActionPerformed(evt);
             }
         });
-        jmPrestamos.add(jmiConsultarPrestamo);
+        jmEstudiantes.add(jmiConsultarEstudiante);
 
-        jmbPrincipal.add(jmPrestamos);
+        jmbPrincipal.add(jmEstudiantes);
 
         jmLibros.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jmLibros.setForeground(new java.awt.Color(51, 0, 255));
@@ -128,30 +127,31 @@ public class Principal extends javax.swing.JFrame {
 
         jmbPrincipal.add(jmLibros);
 
-        jmEstudiantes.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jmEstudiantes.setForeground(new java.awt.Color(51, 0, 255));
-        jmEstudiantes.setText("ESTUDIANTES");
-        jmEstudiantes.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        jmPrestamos.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jmPrestamos.setForeground(new java.awt.Color(51, 0, 255));
+        jmPrestamos.setText("PRESTRAMOS");
+        jmPrestamos.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
-        jmiCrearEstudiante.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
-        jmiCrearEstudiante.setText("Registrar Estudiante");
-        jmiCrearEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jmiPrestarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiPrestarLibro.setText("Registrar Prestamo");
+        jmiPrestarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCrearEstudianteActionPerformed(evt);
+                jmiPrestarLibroActionPerformed(evt);
             }
         });
-        jmEstudiantes.add(jmiCrearEstudiante);
+        jmPrestamos.add(jmiPrestarLibro);
 
-        jmiConsultarEstudiante.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiConsultarEstudiante.setText("Consultar Estudiante");
-        jmiConsultarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jmiConsultarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiConsultarPrestamo.setText("Consultar Prestamo");
+        jmiConsultarPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jmiConsultarPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiConsultarEstudianteActionPerformed(evt);
+                jmiConsultarPrestamoActionPerformed(evt);
             }
         });
-        jmEstudiantes.add(jmiConsultarEstudiante);
+        jmPrestamos.add(jmiConsultarPrestamo);
 
-        jmbPrincipal.add(jmEstudiantes);
+        jmbPrincipal.add(jmPrestamos);
 
         jmConsultas.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jmConsultas.setForeground(new java.awt.Color(51, 0, 255));
@@ -180,7 +180,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
         );
 
         pack();
@@ -296,11 +296,11 @@ public class Principal extends javax.swing.JFrame {
 
             ResultSet rs = st.executeQuery(consultaSQL);
             String listado = "";
-            areaDeTexto.setText("No \t FECHA \t\t ISBN \t\t NOMBRE LIBRO \t\t EDITORIAL \t\t COD.ESTUDIANTE \t\t NOMBRE \n ");
+            areaDeTexto.setText("No \t FECHA \t ISBN \t NOMBRE LIBRO \t\t EDITORIAL \t\t COD.ESTUDIANTE \t\t NOMBRE \n ");
             while (rs.next()) {
                 listado = rs.getString("numero") + "\t"
-                        + rs.getString("fecha") + "\t\t"
-                        + rs.getString("ISBN") + "\t\t"
+                        + rs.getString("fecha") + "\t"
+                        + rs.getString("ISBN") + "\t"
                         + rs.getString("nombre_lib") + "\t\t"
                         + rs.getString("editorial_lib") + "\t\t"
                         + rs.getString("Codigo_estu") + "\t\t"
@@ -311,24 +311,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código: " + ex.getErrorCode()
                     + "\nMensaje:  " + ex.getMessage());
-        } finally {
-            try {
-                if (st != null) {
-                    st.close();
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Código: " + ex.getErrorCode()
-                        + "\nMensaje: " + ex.getMessage());
-            }
-            try {
-                if (conexionDB != null) {
-                    conexionDB.close();
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Código: " + ex.getErrorCode()
-                        + "\nMensaje: " + ex.getMessage());
-            }
-        }
+        } 
     }//GEN-LAST:event_jmiInformeActionPerformed
 
     public static void main(String args[]) {

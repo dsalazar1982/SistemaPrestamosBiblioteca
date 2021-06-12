@@ -15,8 +15,8 @@ public class ClaseConexion {
 
         try {
             conexionDB = DriverManager.getConnection(serverDB, usuarioDB, claveUsuarioDB);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e, "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
         return conexionDB;
     }
