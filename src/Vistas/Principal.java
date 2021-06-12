@@ -1,8 +1,9 @@
 package Vistas;
 
+import Servicios.ClaseConexion;
+
 import java.sql.*;
 import javax.swing.*;
-import Servicios.ClaseConexion;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -188,10 +189,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jmiPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPrestarLibroActionPerformed
         RegistroPrestamosGUI prestarLibro = new RegistroPrestamosGUI();
-
         int x = (jdpPrincipal.getWidth() / 2) - prestarLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - prestarLibro.getHeight() / 2;
-
         if (prestarLibro.isShowing()) {
             prestarLibro.setLocation(x, y);
         } else {
@@ -202,12 +201,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiPrestarLibroActionPerformed
 
     private void jmiIngresarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiIngresarLibroActionPerformed
-
         RegistroLibrosGUI ingresarLibro = new RegistroLibrosGUI();
-
         int x = (jdpPrincipal.getWidth() / 2) - ingresarLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - ingresarLibro.getHeight() / 2;
-
         if (ingresarLibro.isShowing()) {
             ingresarLibro.setLocation(x, y);
         } else {
@@ -218,9 +214,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiIngresarLibroActionPerformed
 
     private void jmiVerLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVerLibroActionPerformed
-
         ConsultaLibrosGUI verLibro = new ConsultaLibrosGUI();
-
         int x = (jdpPrincipal.getWidth() / 2) - verLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - verLibro.getHeight() / 2;
 
@@ -234,12 +228,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiVerLibroActionPerformed
 
     private void jmiCrearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCrearEstudianteActionPerformed
-
         RegistroEstudiantesGUI crearEstudiante = new RegistroEstudiantesGUI();
-
         int x = (jdpPrincipal.getWidth() / 2) - crearEstudiante.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - crearEstudiante.getHeight() / 2;
-
         if (crearEstudiante.isShowing()) {
             crearEstudiante.setLocation(x, y);
         } else {
@@ -250,12 +241,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiCrearEstudianteActionPerformed
 
     private void jmiConsultarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarEstudianteActionPerformed
-
         ConsultaEstudiantesGUI consultarEstudiante = new ConsultaEstudiantesGUI();
-
         int x = (jdpPrincipal.getWidth() / 2) - consultarEstudiante.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - consultarEstudiante.getHeight() / 2;
-
         if (consultarEstudiante.isShowing()) {
             consultarEstudiante.setLocation(x, y);
         } else {
@@ -266,12 +254,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiConsultarEstudianteActionPerformed
 
     private void jmiConsultarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarPrestamoActionPerformed
-
         ConsultaPrestamosGUI consultarPrestamo = new ConsultaPrestamosGUI();
-
         int x = (jdpPrincipal.getWidth() / 2) - consultarPrestamo.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - consultarPrestamo.getHeight() / 2;
-
         if (consultarPrestamo.isShowing()) {
             consultarPrestamo.setLocation(x, y);
         } else {
@@ -282,18 +267,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiConsultarPrestamoActionPerformed
 
     private void jmiInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInformeActionPerformed
-
-        String consultaSQL = "";
-        Statement st = null;
         JTextArea areaDeTexto = new JTextArea(20, 70);
         JScrollPane panelInforme = new JScrollPane(areaDeTexto);
         try {
-            st = conexionDB.createStatement();
-            consultaSQL = "SELECT d.numero, p.fecha, d.ISBN, l.nombre_lib, l.editorial_lib, e.codigo_estu, e.nombre_estu FROM tb_detalles d \n"
+            String consultaSQL = "SELECT d.numero, p.fecha, d.ISBN, l.nombre_lib, l.editorial_lib, e.codigo_estu, e.nombre_estu FROM tb_detalles d \n"
                     + "INNER JOIN tb_prestamos p on d.numero=p.numero\n"
                     + "INNER JOIN tb_libros l on d.ISBN=l.ISBN\n"
                     + "INNER JOIN tb_estudiantes e on p.codigo_estu=e.codigo_estu ORDER BY d.numero";
-
+            Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             String listado = "";
             areaDeTexto.setText("No \t FECHA \t ISBN \t NOMBRE LIBRO \t\t EDITORIAL \t\t COD.ESTUDIANTE \t\t NOMBRE \n ");
@@ -308,10 +289,9 @@ public class Principal extends javax.swing.JFrame {
                 areaDeTexto.append(listado);
             }
             JOptionPane.showMessageDialog(null, panelInforme, "Informe De Prestamos", JOptionPane.PLAIN_MESSAGE);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Código: " + ex.getErrorCode()
-                    + "\nMensaje:  " + ex.getMessage());
-        } 
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jmiInformeActionPerformed
 
     public static void main(String args[]) {
@@ -322,14 +302,14 @@ public class Principal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException excepcion) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, excepcion);
+        } catch (InstantiationException excepcion) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, excepcion);
+        } catch (IllegalAccessException excepcion) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, excepcion);
+        } catch (javax.swing.UnsupportedLookAndFeelException excepcion) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, excepcion);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -337,6 +317,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JLabel jlImagenFCECEP;
