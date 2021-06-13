@@ -20,15 +20,15 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
         String consultaSQL = "SELECT * FROM t_prestamos";
-        String[] Datos = new String[3];
+        String[] datos = new String[3];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Datos[0] = rs.getString("id_prestamo");
-                Datos[1] = rs.getString("fecha");
-                Datos[2] = rs.getString("codigo_est");
-                tablaDetallesPrestamos.addRow(Datos);
+                datos[0] = rs.getString("id_prestamo");
+                datos[1] = rs.getString("fecha");
+                datos[2] = rs.getString("codigo_est");
+                tablaDetallesPrestamos.addRow(datos);
             }
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
@@ -254,24 +254,6 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
             Principal.jdpPrincipal.add(detallePrestamo);
             detallePrestamo.setLocation(x, y);
             detallePrestamo.setVisible(true);
-        }
-        DefaultTableModel tablaDetallePrestamosEmergente = (DefaultTableModel) ConsultaPrestamoDetalleGUI.jtDetallePrestamos.getModel();
-        String[] encabezadoTabla = {"No", "NUMERO DE PRESTAMO", "ISBN"};
-        tablaDetallePrestamosEmergente.setColumnIdentifiers(encabezadoTabla);
-        this.jtDetallePrestamos.setModel(tablaDetallePrestamosEmergente);
-        String consultaSQL = "SELECT * FROM t_detalles_prestamos";
-        String[] datos = new String[3];
-        try {
-            Statement st = conexionDB.createStatement();
-            ResultSet rs = st.executeQuery(consultaSQL);
-            while (rs.next()) {
-                datos[0] = rs.getString("id_detalle");
-                datos[1] = rs.getString("id_prestamo");
-                datos[2] = rs.getString("isbn");
-                tablaDetallePrestamosEmergente.addRow(datos);
-            }
-        } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 }//GEN-LAST:event_jpmVerDetallePrestamoActionPerformed
