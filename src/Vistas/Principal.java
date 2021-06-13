@@ -20,16 +20,16 @@ public class Principal extends javax.swing.JFrame {
         jlTituloBiblioteca = new javax.swing.JLabel();
         jmbPrincipal = new javax.swing.JMenuBar();
         jmEstudiantes = new javax.swing.JMenu();
-        jmiCrearEstudiante = new javax.swing.JMenuItem();
+        jmiRegistrarEstudiante = new javax.swing.JMenuItem();
         jmiConsultarEstudiante = new javax.swing.JMenuItem();
         jmLibros = new javax.swing.JMenu();
-        jmiIngresarLibro = new javax.swing.JMenuItem();
-        jmiVerLibro = new javax.swing.JMenuItem();
+        jmiRegistrarLibro = new javax.swing.JMenuItem();
+        jmiConsultarLibro = new javax.swing.JMenuItem();
         jmPrestamos = new javax.swing.JMenu();
-        jmiPrestarLibro = new javax.swing.JMenuItem();
+        jmiRegistarPrestamo = new javax.swing.JMenuItem();
         jmiConsultarPrestamo = new javax.swing.JMenuItem();
         jmConsultas = new javax.swing.JMenu();
-        jmiInforme = new javax.swing.JMenuItem();
+        jmiInformePrestamo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Biblioteca FCECEP");
@@ -83,14 +83,14 @@ public class Principal extends javax.swing.JFrame {
         jmEstudiantes.setText("ESTUDIANTES");
         jmEstudiantes.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
-        jmiCrearEstudiante.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
-        jmiCrearEstudiante.setText("Registrar Estudiante");
-        jmiCrearEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jmiRegistrarEstudiante.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
+        jmiRegistrarEstudiante.setText("Registrar Estudiante");
+        jmiRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiCrearEstudianteActionPerformed(evt);
+                jmiRegistrarEstudianteActionPerformed(evt);
             }
         });
-        jmEstudiantes.add(jmiCrearEstudiante);
+        jmEstudiantes.add(jmiRegistrarEstudiante);
 
         jmiConsultarEstudiante.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         jmiConsultarEstudiante.setText("Consultar Estudiante");
@@ -108,23 +108,23 @@ public class Principal extends javax.swing.JFrame {
         jmLibros.setText("LIBROS");
         jmLibros.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
-        jmiIngresarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiIngresarLibro.setText("Registrar Libro");
-        jmiIngresarLibro.addActionListener(new java.awt.event.ActionListener() {
+        jmiRegistrarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiRegistrarLibro.setText("Registrar Libro");
+        jmiRegistrarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiIngresarLibroActionPerformed(evt);
+                jmiRegistrarLibroActionPerformed(evt);
             }
         });
-        jmLibros.add(jmiIngresarLibro);
+        jmLibros.add(jmiRegistrarLibro);
 
-        jmiVerLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiVerLibro.setText("Consultar Libro");
-        jmiVerLibro.addActionListener(new java.awt.event.ActionListener() {
+        jmiConsultarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiConsultarLibro.setText("Consultar Libro");
+        jmiConsultarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiVerLibroActionPerformed(evt);
+                jmiConsultarLibroActionPerformed(evt);
             }
         });
-        jmLibros.add(jmiVerLibro);
+        jmLibros.add(jmiConsultarLibro);
 
         jmbPrincipal.add(jmLibros);
 
@@ -133,18 +133,17 @@ public class Principal extends javax.swing.JFrame {
         jmPrestamos.setText("PRESTRAMOS");
         jmPrestamos.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
-        jmiPrestarLibro.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiPrestarLibro.setText("Registrar Prestamo");
-        jmiPrestarLibro.addActionListener(new java.awt.event.ActionListener() {
+        jmiRegistarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiRegistarPrestamo.setText("Registrar Prestamo");
+        jmiRegistarPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiPrestarLibroActionPerformed(evt);
+                jmiRegistarPrestamoActionPerformed(evt);
             }
         });
-        jmPrestamos.add(jmiPrestarLibro);
+        jmPrestamos.add(jmiRegistarPrestamo);
 
         jmiConsultarPrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
         jmiConsultarPrestamo.setText("Consultar Prestamo");
-        jmiConsultarPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
         jmiConsultarPrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiConsultarPrestamoActionPerformed(evt);
@@ -159,15 +158,14 @@ public class Principal extends javax.swing.JFrame {
         jmConsultas.setText("CONSULTAS");
         jmConsultas.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
 
-        jmiInforme.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
-        jmiInforme.setText("Informe De Prestamo");
-        jmiInforme.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        jmiInforme.addActionListener(new java.awt.event.ActionListener() {
+        jmiInformePrestamo.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jmiInformePrestamo.setText("Informe De Prestamo");
+        jmiInformePrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiInformeActionPerformed(evt);
+                jmiInformePrestamoActionPerformed(evt);
             }
         });
-        jmConsultas.add(jmiInforme);
+        jmConsultas.add(jmiInformePrestamo);
 
         jmbPrincipal.add(jmConsultas);
 
@@ -187,7 +185,7 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jmiPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPrestarLibroActionPerformed
+    private void jmiRegistarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistarPrestamoActionPerformed
         RegistroPrestamosGUI prestarLibro = new RegistroPrestamosGUI();
         int x = (jdpPrincipal.getWidth() / 2) - prestarLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - prestarLibro.getHeight() / 2;
@@ -198,9 +196,9 @@ public class Principal extends javax.swing.JFrame {
             prestarLibro.setLocation(x, y);
             prestarLibro.setVisible(true);
         }
-    }//GEN-LAST:event_jmiPrestarLibroActionPerformed
+    }//GEN-LAST:event_jmiRegistarPrestamoActionPerformed
 
-    private void jmiIngresarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiIngresarLibroActionPerformed
+    private void jmiRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarLibroActionPerformed
         RegistroLibrosGUI ingresarLibro = new RegistroLibrosGUI();
         int x = (jdpPrincipal.getWidth() / 2) - ingresarLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - ingresarLibro.getHeight() / 2;
@@ -211,9 +209,9 @@ public class Principal extends javax.swing.JFrame {
             ingresarLibro.setLocation(x, y);
             ingresarLibro.setVisible(true);
         }
-    }//GEN-LAST:event_jmiIngresarLibroActionPerformed
+    }//GEN-LAST:event_jmiRegistrarLibroActionPerformed
 
-    private void jmiVerLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiVerLibroActionPerformed
+    private void jmiConsultarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarLibroActionPerformed
         ConsultaLibrosGUI verLibro = new ConsultaLibrosGUI();
         int x = (jdpPrincipal.getWidth() / 2) - verLibro.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - verLibro.getHeight() / 2;
@@ -225,9 +223,9 @@ public class Principal extends javax.swing.JFrame {
             verLibro.setLocation(x, y);
             verLibro.setVisible(true);
         }
-    }//GEN-LAST:event_jmiVerLibroActionPerformed
+    }//GEN-LAST:event_jmiConsultarLibroActionPerformed
 
-    private void jmiCrearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCrearEstudianteActionPerformed
+    private void jmiRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarEstudianteActionPerformed
         RegistroEstudiantesGUI crearEstudiante = new RegistroEstudiantesGUI();
         int x = (jdpPrincipal.getWidth() / 2) - crearEstudiante.getWidth() / 2;
         int y = (jdpPrincipal.getHeight() / 2) - crearEstudiante.getHeight() / 2;
@@ -238,7 +236,7 @@ public class Principal extends javax.swing.JFrame {
             crearEstudiante.setLocation(x, y);
             crearEstudiante.setVisible(true);
         }
-    }//GEN-LAST:event_jmiCrearEstudianteActionPerformed
+    }//GEN-LAST:event_jmiRegistrarEstudianteActionPerformed
 
     private void jmiConsultarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarEstudianteActionPerformed
         ConsultaEstudiantesGUI consultarEstudiante = new ConsultaEstudiantesGUI();
@@ -266,7 +264,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiConsultarPrestamoActionPerformed
 
-    private void jmiInformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInformeActionPerformed
+    private void jmiInformePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInformePrestamoActionPerformed
         JTextArea areaDeTexto = new JTextArea(20, 70);
         JScrollPane panelInforme = new JScrollPane(areaDeTexto);
         try {
@@ -292,7 +290,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jmiInformeActionPerformed
+    }//GEN-LAST:event_jmiInformePrestamoActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -328,12 +326,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jmPrestamos;
     private javax.swing.JMenuBar jmbPrincipal;
     private javax.swing.JMenuItem jmiConsultarEstudiante;
+    private javax.swing.JMenuItem jmiConsultarLibro;
     private javax.swing.JMenuItem jmiConsultarPrestamo;
-    private javax.swing.JMenuItem jmiCrearEstudiante;
-    private javax.swing.JMenuItem jmiInforme;
-    private javax.swing.JMenuItem jmiIngresarLibro;
-    private javax.swing.JMenuItem jmiPrestarLibro;
-    private javax.swing.JMenuItem jmiVerLibro;
+    private javax.swing.JMenuItem jmiInformePrestamo;
+    private javax.swing.JMenuItem jmiRegistarPrestamo;
+    private javax.swing.JMenuItem jmiRegistrarEstudiante;
+    private javax.swing.JMenuItem jmiRegistrarLibro;
     // End of variables declaration//GEN-END:variables
 
     ClaseConexion objConexion = new ClaseConexion();

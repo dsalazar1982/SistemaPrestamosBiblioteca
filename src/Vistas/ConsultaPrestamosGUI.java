@@ -3,8 +3,6 @@ package Vistas;
 import Servicios.ClaseConexion;
 
 import java.sql.*;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -194,9 +192,7 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
         consultaSQL = "SELECT * FROM tb_prestamos WHERE numero='" + dato + "'";
     }
     if (jrbConsultaPorFecha.isSelected() == true) {
-        Date objFecha = jDateChooser1.getDate();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY-MM-dd");
-        String fecha = "" + formatoFecha.format(objFecha);
+        String fecha = jtfDatoPrestamo.getText();
         consultaSQL = "SELECT * FROM tb_prestamos WHERE fecha='" + fecha + "'";
     }
     if (jrbConsultaTodos.isSelected() == true) {

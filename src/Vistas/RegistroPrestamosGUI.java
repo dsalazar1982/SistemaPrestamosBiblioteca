@@ -46,7 +46,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         }
     }
 
-    void Entrega() {
+    void entrega() {
         String consultaSQL = "INSERT INTO tb_prestamos (numero, fecha, codigo_estu) VALUES (?,?,?)";
         String consecutivoPrestamo = jtfConsecutivoPrestamo.getText();
         String fecha = jtfFecha.getText();
@@ -447,15 +447,19 @@ private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_jbSalirActionPerformed
 
 private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPrestarLibroActionPerformed
-    if ((jtfCodigoEstudiante.getText().equals("")) || (jtfNombresEstudiante.getText().equals(""))) {
-        JOptionPane.showMessageDialog(this, "No selecciono estudiante o libros", "Dato invalido", JOptionPane.WARNING_MESSAGE);
-    } else {
+    if (jtfCodigoEstudiante.getText().equals("")) {
+        JOptionPane.showMessageDialog(this, "No selecciono un estudiante.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+    } 
+    else if (jtDetallePrestamo.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No selecciono libros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+    }
+    else {
         String capturarCodigo = "", capturarCantidad = "";
         for (int i = 0; i < RegistroPrestamosGUI.jtDetallePrestamo.getRowCount(); i++) {
             capturarCodigo = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 0).toString();
             capturarCantidad = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 3).toString();
         }
-        Entrega();
+        entrega();
         detalleEntrega();
         jtfCodigoEstudiante.setText("");
         jtfNombresEstudiante.setText("");
