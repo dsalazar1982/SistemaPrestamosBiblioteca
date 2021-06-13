@@ -19,16 +19,16 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
         jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
-        String consultaSQL = "SELECT * FROM tb_estudiantes";
+        String consultaSQL = "SELECT * FROM t_estudiantes";
         String[] Datos = new String[4];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Datos[0] = rs.getString("codigo_estu");
-                Datos[1] = rs.getString("nombre_estu");
-                Datos[2] = rs.getString("apellido_estu");
-                Datos[3] = rs.getString("telefono_estu");
+                Datos[0] = rs.getString("codigo_est");
+                Datos[1] = rs.getString("nombre_est");
+                Datos[2] = rs.getString("apellido_est");
+                Datos[3] = rs.getString("telefono_est");
                 tablaDetalleEstudiantes.addRow(Datos);
             }
         } catch (SQLException excepcion) {
@@ -144,15 +144,15 @@ private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {
         tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
         this.jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
         try {
-            String consultaSQL = "SELECT * FROM tb_estudiantes WHERE codigo_estu='" + dato + "'";
+            String consultaSQL = "SELECT * FROM t_estudiantes WHERE codigo_est='" + dato + "'";
             String[] registros = new String[4];
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                registros[0] = rs.getString("codigo_estu");
-                registros[1] = rs.getString("nombre_estu");
-                registros[2] = rs.getString("apellido_estu");
-                registros[3] = rs.getString("telefono_estu");
+                registros[0] = rs.getString("codigo_est");
+                registros[1] = rs.getString("nombre_est");
+                registros[2] = rs.getString("apellido_est");
+                registros[3] = rs.getString("telefono_est");
                 tablaDetalleEstudiantes.addRow(registros);
             }
             jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);

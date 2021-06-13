@@ -26,7 +26,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         int contador = 1;
         String numero = "";
         String c = "";
-        String consultaSQL = "SELECT MAX(numero) FROM tb_prestamos";
+        String consultaSQL = "SELECT MAX(numero) FROM t_prestamos";
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
@@ -47,7 +47,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
     }
 
     void entrega() {
-        String consultaSQL = "INSERT INTO tb_prestamos (numero, fecha, codigo_estu) VALUES (?,?,?)";
+        String consultaSQL = "INSERT INTO t_prestamos (numero, fecha, codigo_est) VALUES (?,?,?)";
         String consecutivoPrestamo = jtfConsecutivoPrestamo.getText();
         String fecha = jtfFecha.getText();
         String codigoEstudiante = jtfCodigoEstudiante.getText();
@@ -67,12 +67,14 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
 
     void detalleEntrega() {
         for (int i = 0; i < jtDetallePrestamo.getRowCount(); i++) {
-            String consultaSQL = "INSERT INTO tb_detalles (numero, ISBN) VALUES (?,?)";
-            String consecutivo = jtfConsecutivoPrestamo.getText();
-            String isbn = jtDetallePrestamo.getValueAt(i, 0).toString();
+            String consultaSQL = "INSERT INTO t_detalles (id_detalle, id_prestamo, isbn) VALUES (?,?,?)";
+            String idDetalle = jtfConsecutivoPrestamo.getText();
+            String idPrestamo = jtDetallePrestamo.getValueAt(i, 0).toString();
+            String isbn = jtDetallePrestamo.getValueAt(i, 1).toString();
             try {
                 PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-                pst.setString(1, consecutivo);
+                pst.setString(1, idDetalle);
+                pst.setString(1, idPrestamo);
                 pst.setString(2, isbn);
                 pst.executeUpdate();
             } catch (SQLException excepcion) {

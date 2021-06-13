@@ -46,7 +46,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     }
 
     void cargar(String dato) {
-        String consultaSQL = "SELECT * FROM tb_estudiantes WHERE CONCAT(codigo_estu, nombre_estu, apellido_estu, telefono_estu) LIKE '%" + dato + "%'";
+        String consultaSQL = "SELECT * FROM t_estudiantes WHERE CONCAT(codigo_est, nombres_est, apellidos_est, telefono_est) LIKE '%" + dato + "%'";
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         String[] registros = new String[4];
         DefaultTableModel tablaDetallesEstudiante = new DefaultTableModel(null, encabezadoTabla);
@@ -54,10 +54,10 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                registros[0] = rs.getString("codigo_estu");
-                registros[1] = rs.getString("nombre_estu");
-                registros[2] = rs.getString("apellido_estu");
-                registros[3] = rs.getString("telefono_estu");
+                registros[0] = rs.getString("codigo_est");
+                registros[1] = rs.getString("nombres_est");
+                registros[2] = rs.getString("apellidos_est");
+                registros[3] = rs.getString("telefono_est");
                 tablaDetallesEstudiante.addRow(registros);
             }
             jtDetalleEstudiantes.setModel(tablaDetallesEstudiante);
@@ -427,7 +427,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         nombres = jtfNombresEstudiante.getText();
         apellidos = jtfApellidosEstudiante.getText();
         telefono = jtfTelefonoEstudiante.getText();
-        consultaSQL = "UPDATE tb_estudiantes SET nombre_estu = ?, apellido_estu = ?, telefono_estu = ? WHERE codigo_estu = ?";
+        consultaSQL = "UPDATE t_estudiantes SET nombres_est = ?, apellidos_est = ?, telefono_est = ? WHERE codigo_est = ?";
         try {
             PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
             pst.setString(1, nombres);
@@ -453,7 +453,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         nombres = jtfNombresEstudiante.getText();
         apellidos = jtfApellidosEstudiante.getText();
         telefono = jtfTelefonoEstudiante.getText();
-        consultaSQL = "INSERT INTO tb_estudiantes (codigo_estu, nombre_estu, apellido_estu, telefono_estu) VALUES (?,?,?,?)";
+        consultaSQL = "INSERT INTO t_estudiantes (codigo_est, nombres_est, apellidos_est, telefono_est) VALUES (?,?,?,?)";
         try {
             if (codigo.isEmpty() || nombres.isEmpty() || apellidos.isEmpty() || telefono.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
@@ -509,7 +509,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         codigo = jtDetalleEstudiantes.getValueAt(eliminarRegistro, 0).toString();
         if (eliminarRegistro >= 0) {
             try {
-                PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_estudiantes WHERE Codigo_estu='" + codigo + "'");
+                PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_estudiantes WHERE Codigo_est='" + codigo + "'");
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                 cargar("");

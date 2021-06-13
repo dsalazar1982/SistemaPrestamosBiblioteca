@@ -19,7 +19,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         String[] encabezadoTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
         tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
-        String consultaSQL = "SELECT * FROM tb_prestamos";
+        String consultaSQL = "SELECT * FROM t_prestamos";
         String[] Datos = new String[3];
         try {
             Statement st = conexionDB.createStatement();
@@ -27,7 +27,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 Datos[0] = rs.getString("numero");
                 Datos[1] = rs.getString("fecha");
-                Datos[2] = rs.getString("codigo_estu");
+                Datos[2] = rs.getString("codigo_est");
                 tablaDetallesPrestamos.addRow(Datos);
             }
         } catch (SQLException excepcion) {
@@ -189,14 +189,14 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
     String dato = jtfDatoPrestamo.getText();
     String consultaSQL = "";
     if (jrbConsultaUnPrestamo.isSelected() == true) {
-        consultaSQL = "SELECT * FROM tb_prestamos WHERE numero='" + dato + "'";
+        consultaSQL = "SELECT * FROM t_prestamos WHERE numero='" + dato + "'";
     }
     if (jrbConsultaPorFecha.isSelected() == true) {
         String fecha = jtfDatoPrestamo.getText();
-        consultaSQL = "SELECT * FROM tb_prestamos WHERE fecha='" + fecha + "'";
+        consultaSQL = "SELECT * FROM t_prestamos WHERE fecha='" + fecha + "'";
     }
     if (jrbConsultaTodos.isSelected() == true) {
-        consultaSQL = "SELECT * FROM tb_prestamos";
+        consultaSQL = "SELECT * FROM t_prestamos";
         jtfDatoPrestamo.setText("");
         jtfDatoPrestamo.setEnabled(false);
     }
@@ -211,7 +211,7 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
         while (rs.next()) {
             Datos[0] = rs.getString("numero");
             Datos[1] = rs.getString("fecha");
-            Datos[2] = rs.getString("codigo_estu");
+            Datos[2] = rs.getString("codigo_est");
             tablaDetallesPrestamos.addRow(Datos);
         }
     } catch (SQLException excepcion) {
@@ -260,18 +260,19 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
         }
 
         DefaultTableModel tablaDetallePrestamosEmergente = (DefaultTableModel) ConsultaPrestamoDetalleGUI.jtDetallePrestamos.getModel();
-        String[] encabezadoTabla = {"NUMERO PRESTAMO", "ISBN"};
+        String[] encabezadoTabla = {"No", "NUMERO DE PRESTAMO", "ISBN"};
         tablaDetallePrestamosEmergente.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallePrestamosEmergente);
-        String consultaSQL = "SELECT * FROM tb_detalles";
-        String[] Datos = new String[2];
+        String consultaSQL = "SELECT * FROM t_detalles";
+        String[] datos = new String[3];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Datos[0] = rs.getString("numero");
-                Datos[1] = rs.getString("ISBN");
-                tablaDetallePrestamosEmergente.addRow(Datos);
+                datos[0] = rs.getString("id_detalle");
+                datos[1] = rs.getString("id_prestamo");
+                datos[2] = rs.getString("isbn");
+                tablaDetallePrestamosEmergente.addRow(datos);
             }
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
@@ -284,7 +285,7 @@ private void jpmEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEven
     if (filaSeleccionada >= 0) {
         String codigo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();
         try {
-            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM tb_prestamos WHERE numero='" + codigo + "'");
+            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_prestamos WHERE numero='" + codigo + "'");
             pst.executeUpdate();
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);

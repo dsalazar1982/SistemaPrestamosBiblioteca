@@ -46,16 +46,16 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     }
 
     void cargar(String dato) {
-        String consultaSQL = "SELECT * FROM tb_libros WHERE CONCAT(ISBN, nombre_lib, editorial_lib, ano_publicacion) LIKE '%" + dato + "%'";
-        String[] encabezadoTabla = {"CODIGO", "NOMBRES", "EDITORIAL", "AÑO"};
+        String consultaSQL = "SELECT * FROM t_libros WHERE CONCAT(isbn, titulo_lib, editorial_lib, ano_publicacion) LIKE '%" + dato + "%'";
+        String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
         String[] registros = new String[4];
         DefaultTableModel tablaDetallesLibros = new DefaultTableModel(null, encabezadoTabla);
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                registros[0] = rs.getString("ISBN");
-                registros[1] = rs.getString("nombre_lib");
+                registros[0] = rs.getString("isbn");
+                registros[1] = rs.getString("titulo_lib");
                 registros[2] = rs.getString("editorial_lib");
                 registros[3] = rs.getString("ano_publicacion");
                 tablaDetallesLibros.addRow(registros);
@@ -328,22 +328,22 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoLibroActionPerformed
 
     private void jbGuardarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarLibroActionPerformed
-        String isbn, titulo, editorial, ano;
+        String isbn, titulo, editorial, anoPublicacion;
         String consultaSQL = "";
         isbn = jtfISBNLibro.getText();
         titulo = jtfTituloLibro.getText();
         editorial = jtfEditorialLibro.getText();
-        ano = jtfAnoPublicacionLibro.getText();
-        consultaSQL = "INSERT INTO tb_libros (ISBN, nombre_lib, editorial_lib, ano_publicacion) VALUES (?,?,?,?)";
+        anoPublicacion = jtfAnoPublicacionLibro.getText();
+        consultaSQL = "INSERT INTO t_libros (isbn, titulo_lib, editorial_lib, ano_publicacion) VALUES (?,?,?,?)";
         try {
-            if (isbn.isEmpty() || titulo.isEmpty() || editorial.isEmpty() || ano.equalsIgnoreCase("AAAA-MM-DD")) {
+            if (isbn.isEmpty() || titulo.isEmpty() || editorial.isEmpty() || anoPublicacion.equalsIgnoreCase("AAAA-MM-DD")) {
                 JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
             } else {
                 PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
                 pst.setString(1, isbn);
                 pst.setString(2, titulo);
                 pst.setString(3, editorial);
-                pst.setString(4, ano);
+                pst.setString(4, anoPublicacion);
                 int n = pst.executeUpdate();
                 if (n > 0) {
                     JOptionPane.showMessageDialog(null, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
@@ -400,7 +400,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
                 String isbn = (String) jtDetalleLibros.getValueAt(eliminarSeleccion, 0);
-                String eliminarSQL = "DELETE FROM tb_libros WHERE ISBN = '" + isbn + "'";
+                String eliminarSQL = "DELETE FROM t_libros WHERE isbn = '" + isbn + "'";
                 try {
                     PreparedStatement pst = conexionDB.prepareStatement(eliminarSQL);
                     pst.executeUpdate();
@@ -421,7 +421,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         titulo = jtfTituloLibro.getText();
         editorial = jtfEditorialLibro.getText();
         anoPublicacion = jtfAnoPublicacionLibro.getText();
-        consultaSQL = "UPDATE tb_libros SET nombre_lib = ?, editorial_lib = ?, ano_publicacion = ? WHERE ISBN = ?";
+        consultaSQL = "UPDATE t_libros SET titulo_lib = ?, editorial_lib = ?, ano_publicacion = ? WHERE isbn = ?";
         try {
             PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
             pst.setString(1, titulo);

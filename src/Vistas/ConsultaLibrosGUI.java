@@ -19,13 +19,13 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
         tablaDetallesLibros.setColumnIdentifiers(encabezadoTabla);
         jtDetalleLibros.setModel(tablaDetallesLibros);
-        String consultaSQL = "SELECT * FROM tb_libros";
+        String consultaSQL = "SELECT * FROM t_libros";
         String[] Datos = new String[4];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Datos[0] = rs.getString("ISBN");
+                Datos[0] = rs.getString("isbn");
                 Datos[1] = rs.getString("nombre_lib");
                 Datos[2] = rs.getString("editorial_lib");
                 Datos[3] = rs.getString("ano_publicacion");
@@ -168,12 +168,12 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
             tablaDetalleLibros.setColumnIdentifiers(encabezadoTabla);
             this.jtDetalleLibros.setModel(tablaDetalleLibros);
             try {
-                String consultaSQL = "SELECT * FROM tb_libros WHERE nombre_lib LIKE '%" + dato + "%'";
+                String consultaSQL = "SELECT * FROM t_libros WHERE nombre_lib LIKE '%" + dato + "%'";
                 String[] registros = new String[4];
                 Statement st = conexionDB.createStatement();
                 ResultSet rs = st.executeQuery(consultaSQL);
                 while (rs.next()) {
-                    registros[0] = rs.getString("ISBN");
+                    registros[0] = rs.getString("isbn");
                     registros[1] = rs.getString("nombre_lib");
                     registros[2] = rs.getString("editorial_lib");
                     registros[3] = rs.getString("ano_publicacion");
