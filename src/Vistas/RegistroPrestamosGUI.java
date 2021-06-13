@@ -6,8 +6,6 @@ import java.awt.Color;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -78,8 +76,8 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
                 pst.setString(2, isbn);
                 pst.executeUpdate();
             } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
-        }
+                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -159,11 +157,6 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         jtfApellidosEstudiante.setForeground(new java.awt.Color(0, 51, 204));
         jtfApellidosEstudiante.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtfApellidosEstudiante.setEnabled(false);
-        jtfApellidosEstudiante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfApellidosEstudianteActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpDatosEstudianteLayout = new javax.swing.GroupLayout(jpDatosEstudiante);
         jpDatosEstudiante.setLayout(jpDatosEstudianteLayout);
@@ -415,7 +408,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
 
     public static String fechaHoy() {
         Date fecha = new Date();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("AAAA-MM-dd");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatoFecha.format(fecha);
     }
 
@@ -455,7 +448,7 @@ private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
 private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPrestarLibroActionPerformed
     if ((jtfCodigoEstudiante.getText().equals("")) || (jtfNombresEstudiante.getText().equals(""))) {
-        JOptionPane.showMessageDialog(this, "No ingreso Estudiantes O libros", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No selecciono estudiante o libros", "Dato invalido", JOptionPane.WARNING_MESSAGE);
     } else {
         String capturarCodigo = "", capturarCantidad = "";
         for (int i = 0; i < RegistroPrestamosGUI.jtDetallePrestamo.getRowCount(); i++) {
@@ -466,6 +459,7 @@ private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
         detalleEntrega();
         jtfCodigoEstudiante.setText("");
         jtfNombresEstudiante.setText("");
+        jtfApellidosEstudiante.setText("");
         jtfTelefonoEstudiante.setText("");
         DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) jtDetallePrestamo.getModel();
         int a = jtDetallePrestamo.getRowCount() - 1;
@@ -483,13 +477,9 @@ private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
     if (registroSeleccionado >= 0) {
         tablaDetallePrestamo.removeRow(registroSeleccionado);
     } else {
-        JOptionPane.showMessageDialog(null, "No Selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
     }
 }//GEN-LAST:event_jbRetirarLibroActionPerformed
-
-    private void jtfApellidosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfApellidosEstudianteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfApellidosEstudianteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;
@@ -516,7 +506,7 @@ private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
     public static javax.swing.JTextField jtfNombresEstudiante;
     public static javax.swing.JTextField jtfTelefonoEstudiante;
     // End of variables declaration//GEN-END:variables
-   
+
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

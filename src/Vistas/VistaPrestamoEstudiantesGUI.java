@@ -1,10 +1,9 @@
 package Vistas;
 
 import Servicios.ClaseConexion;
+
 import java.awt.Color;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,24 +14,24 @@ public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         mostrarListaEstudiantes("");
     }
 
-    void mostrarListaEstudiantes(String valor) {
-        String[] encabezadosTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
-        String[] Registros = new String[4];
-        DefaultTableModel tablaDetallesEstudiantes = new DefaultTableModel(null, encabezadosTabla);
-        String Sql = "SELECT * FROM tb_estudiantes WHERE CONCAT(codigo_estu, nombre_estu, apellido_estu, telefono_estu) LIKE '%" + valor + "%'";
+    void mostrarListaEstudiantes(String dato) {
+        String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+        String[] registros = new String[4];
+        DefaultTableModel tablaDetallesEstudiantes = new DefaultTableModel(null, encabezadoTabla);
+        String consultaSQL = "SELECT * FROM tb_estudiantes WHERE CONCAT(codigo_estu, nombre_estu, apellido_estu, telefono_estu) LIKE '%" + dato + "%'";
         try {
             Statement st = conexionDB.createStatement();
-            ResultSet rs = st.executeQuery(Sql);
+            ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Registros[0] = rs.getString("codigo_estu");
-                Registros[1] = rs.getString("nombre_estu");
-                Registros[2] = rs.getString("apellido_estu");
-                Registros[3] = rs.getString("telefono_estu");
-                tablaDetallesEstudiantes.addRow(Registros);
+                registros[0] = rs.getString("codigo_estu");
+                registros[1] = rs.getString("nombre_estu");
+                registros[2] = rs.getString("apellido_estu");
+                registros[3] = rs.getString("telefono_estu");
+                tablaDetallesEstudiantes.addRow(registros);
             }
             jtDetallesEstudiantes.setModel(tablaDetallesEstudiantes);
-        } catch (SQLException ex) {
-            Logger.getLogger(VistaPrestamoEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -164,39 +163,35 @@ private void jtfCodigoEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-
 }//GEN-LAST:event_jtfCodigoEstudianteKeyReleased
 
 private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
-    String cod = "", nom = "", tel = "";
-    int fila = jtDetallesEstudiantes.getSelectedRow();
+    String codigo = "", nombres = "", apellidos = "", telefono = "";
+    int registroSeleccionado = jtDetallesEstudiantes.getSelectedRow();
     try {
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun dato");
+        if (registroSeleccionado == -1) {
+            JOptionPane.showMessageDialog(null, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         } else {
-            cod = (String) jtDetallesEstudiantes.getValueAt(fila, 0);
-            nom = (String) jtDetallesEstudiantes.getValueAt(fila, 1);
-            tel = (String) jtDetallesEstudiantes.getValueAt(fila, 3);
+            codigo = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 0);
+            nombres = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 1);
+            apellidos = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 2);
+            telefono = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 3);
             RegistroPrestamosGUI.jtfCodigoEstudiante.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.jtfCodigoEstudiante.setText(cod);
+            RegistroPrestamosGUI.jtfCodigoEstudiante.setText(codigo);
             RegistroPrestamosGUI.jtfNombresEstudiante.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.jtfNombresEstudiante.setText(nom);
+            RegistroPrestamosGUI.jtfNombresEstudiante.setText(nombres);
+            RegistroPrestamosGUI.jtfApellidosEstudiante.setDisabledTextColor(Color.blue);
+            RegistroPrestamosGUI.jtfApellidosEstudiante.setText(apellidos);
             RegistroPrestamosGUI.jtfTelefonoEstudiante.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.jtfTelefonoEstudiante.setText(tel);
+            RegistroPrestamosGUI.jtfTelefonoEstudiante.setText(telefono);
             this.dispose();
         }
-    } catch (Exception e) {
+    } catch (Exception excepcion) {
+        JOptionPane.showMessageDialog(null, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
 private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarEstudianteActionPerformed
     try {
-
-        /*RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
-        Principal.jdpPrincipal.add(registrarEstudiante);
-        registrarEstudiante.toFront();
-        registrarEstudiante.setVisible(true);
-        this.dispose();*/
         RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
-
         int x = (Principal.jdpPrincipal.getWidth() / 2) - registrarEstudiante.getWidth() / 2;
         int y = (Principal.jdpPrincipal.getHeight() / 2) - registrarEstudiante.getHeight() / 2;
-
         if (registrarEstudiante.isShowing()) {
             registrarEstudiante.setLocation(x, y);
         } else {
@@ -204,7 +199,8 @@ private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt
             registrarEstudiante.setLocation(x, y);
             registrarEstudiante.setVisible(true);
         }
-    } catch (Exception e) {
+    } catch (Exception excepcion) {
+        JOptionPane.showMessageDialog(null, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jbRegistrarEstudianteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -218,6 +214,7 @@ private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JTable jtDetallesEstudiantes;
     private javax.swing.JTextField jtfCodigoEstudiante;
     // End of variables declaration//GEN-END:variables
+
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }
