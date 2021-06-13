@@ -3,7 +3,6 @@ package Vistas;
 import Servicios.ClaseConexion;
 
 import java.sql.*;
-import java.util.logging.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.placeholder.PlaceHolder;
@@ -438,8 +437,8 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             limpiar();
             bloquear();
             placeHolder();
-        } catch (SQLException ex) {
-            Logger.getLogger(RegistroEstudiantesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbActualizarLibroActionPerformed
 

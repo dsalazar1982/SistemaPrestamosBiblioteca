@@ -175,10 +175,10 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
             tel = (String) jtDetallesEstudiantes.getValueAt(fila, 3);
             RegistroPrestamosGUI.jtfCodigoEstudiante.setDisabledTextColor(Color.blue);
             RegistroPrestamosGUI.jtfCodigoEstudiante.setText(cod);
-            RegistroPrestamosGUI.txtnom.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.txtnom.setText(nom);
-            RegistroPrestamosGUI.txttel.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.txttel.setText(tel);
+            RegistroPrestamosGUI.jtfNombresEstudiante.setDisabledTextColor(Color.blue);
+            RegistroPrestamosGUI.jtfNombresEstudiante.setText(nom);
+            RegistroPrestamosGUI.jtfTelefonoEstudiante.setDisabledTextColor(Color.blue);
+            RegistroPrestamosGUI.jtfTelefonoEstudiante.setText(tel);
             this.dispose();
         }
     } catch (Exception e) {
