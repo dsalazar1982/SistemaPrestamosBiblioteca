@@ -268,22 +268,22 @@ public class Principal extends javax.swing.JFrame {
         JTextArea areaDeTexto = new JTextArea(20, 70);
         JScrollPane panelInforme = new JScrollPane(areaDeTexto);
         try {
-            String consultaSQL = "SELECT d.id_detalle, p.fecha, d.isbn, l.titulo_lib, l.editorial_lib, e.codigo_est, e.nombres_est FROM t_detalles_prestamos d \n"
-                    + "INNER JOIN t_prestamos p on d.id_prestamo = p.id_prestamo\n"
-                    + "INNER JOIN t_libros l on d.isbn = l.isbn\n"
-                    + "INNER JOIN t_estudiantes e on p.codigo_est = e.codigo_est ORDER BY d.numero";
+            String consultaSQL = "SELECT tdp.id_detalle AS idDetalle, te.codigo_est AS codigoEst, CONCAT(te.nombres_est, \" \", te.apellidos_est) AS nombreEst, tp.fecha, tdp.isbn, tl.titulo_lib AS tituloLib, tl.editorial_lib AS editorialLib  FROM t_detalles_prestamos tdp\n"
+                    + "INNER JOIN t_prestamos tp ON tp.id_prestamo = tdp.id_prestamo \n"
+                    + "INNER JOIN t_libros tl ON tl.isbn = tdp.isbn \n"
+                    + "INNER JOIN t_estudiantes te ON te.codigo_est = tp.codigo_est ORDER BY tdp.id_detalle";
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             String listado = "";
-            areaDeTexto.setText("No \t FECHA \t ISBN \t TITULO LIBRO \t\t EDITORIAL \t\t COD.ESTUDIANTE \t\t NOMBRE \n ");
+            areaDeTexto.setText("No \t COD.ESTUDIANTE \t NOMBRE \t FECHA \t ISBN \t TITULO LIBRO \t EDITORIAL \n ");
             while (rs.next()) {
-                listado = rs.getString("id_detalle") + "\t"
+                listado = rs.getString("idDetalle") + "\t"
+                        + rs.getString("codigoEst") + "\t"
+                        + rs.getString("nombreEst") + "\t"
                         + rs.getString("fecha") + "\t"
                         + rs.getString("isbn") + "\t"
-                        + rs.getString("titulo_lib") + "\t\t"
-                        + rs.getString("editorial_lib") + "\t\t"
-                        + rs.getString("codigo_est") + "\t\t"
-                        + rs.getString("nombres_est") + "\n";
+                        + rs.getString("tituloLib") + "\t"
+                        + rs.getString("editorialLib") + "\n";
                 areaDeTexto.append(listado);
             }
             JOptionPane.showMessageDialog(null, panelInforme, "Informe De Prestamos", JOptionPane.PLAIN_MESSAGE);
@@ -315,7 +315,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane jdpPrincipal;
     private javax.swing.JLabel jlImagenFCECEP;

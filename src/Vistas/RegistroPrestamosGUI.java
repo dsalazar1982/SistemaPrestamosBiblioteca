@@ -14,7 +14,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
     public RegistroPrestamosGUI() {
         initComponents();
         this.setLocation(25, 15);
-        jtfConsecutivoPrestamo.setEnabled(false);
+        jtfIdPrestamo.setEnabled(false);
         jtfFecha.setEnabled(false);
         jtfFecha.setDisabledTextColor(Color.blue);
         jtfFecha.setText(fechaHoy());
@@ -26,7 +26,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         int contador = 1;
         String numero = "";
         String c = "";
-        String consultaSQL = "SELECT MAX(numero) FROM t_prestamos";
+        String consultaSQL = "SELECT MAX(id_prestamo) FROM t_prestamos";
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
@@ -34,26 +34,26 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
                 c = rs.getString(1);
             }
             if (c == null) {
-                jtfConsecutivoPrestamo.setText("1");
+                jtfIdPrestamo.setText("1");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();
                 gen.generar(j);
-                jtfConsecutivoPrestamo.setText(gen.serie());
+                jtfIdPrestamo.setText(gen.serie());
             }
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    void entrega() {
-        String consultaSQL = "INSERT INTO t_prestamos (numero, fecha, codigo_est) VALUES (?,?,?)";
-        String consecutivoPrestamo = jtfConsecutivoPrestamo.getText();
+    void prestamo() {
+        String consultaSQL = "INSERT INTO t_prestamos (id_prestamo, fecha, codigo_est) VALUES (?,?,?)";
+        String idPrestamo = jtfIdPrestamo.getText();
         String fecha = jtfFecha.getText();
         String codigoEstudiante = jtfCodigoEstudiante.getText();
         try {
             PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-            pst.setString(1, consecutivoPrestamo);
+            pst.setString(1, idPrestamo);
             pst.setString(2, fecha);
             pst.setString(3, codigoEstudiante);
             int n = pst.executeUpdate();
@@ -65,15 +65,13 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         }
     }
 
-    void detalleEntrega() {
+    void detallePrestamo() {
         for (int i = 0; i < jtDetallePrestamo.getRowCount(); i++) {
-            String consultaSQL = "INSERT INTO t_detalles (id_detalle, id_prestamo, isbn) VALUES (?,?,?)";
-            String idDetalle = jtfConsecutivoPrestamo.getText();
-            String idPrestamo = jtDetallePrestamo.getValueAt(i, 0).toString();
-            String isbn = jtDetallePrestamo.getValueAt(i, 1).toString();
+            String consultaSQL = "INSERT INTO t_detalles_prestamos (id_prestamo, isbn) VALUES (?,?)";
+            String idPrestamo = jtfIdPrestamo.getText();
+            String isbn = jtDetallePrestamo.getValueAt(i, 0).toString();
             try {
                 PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-                pst.setString(1, idDetalle);
                 pst.setString(1, idPrestamo);
                 pst.setString(2, isbn);
                 pst.executeUpdate();
@@ -102,7 +100,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         jtDetallePrestamo = new javax.swing.JTable();
         jpDatosLibro = new javax.swing.JPanel();
         jlConsecutivoPrestamo = new javax.swing.JLabel();
-        jtfConsecutivoPrestamo = new javax.swing.JTextField();
+        jtfIdPrestamo = new javax.swing.JTextField();
         jlFechaPrestamo = new javax.swing.JLabel();
         jtfFecha = new javax.swing.JTextField();
         jbSeleccionarLibro = new javax.swing.JButton();
@@ -263,7 +261,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         jlConsecutivoPrestamo.setFont(new java.awt.Font("Eras Medium ITC", 0, 14)); // NOI18N
         jlConsecutivoPrestamo.setText("No. De Prestamo");
 
-        jtfConsecutivoPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jtfIdPrestamo.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
         jlFechaPrestamo.setFont(new java.awt.Font("Eras Medium ITC", 0, 14)); // NOI18N
         jlFechaPrestamo.setText("Fecha de Prestamo");
@@ -288,7 +286,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jpDatosLibroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpDatosLibroLayout.createSequentialGroup()
-                        .addComponent(jtfConsecutivoPrestamo)
+                        .addComponent(jtfIdPrestamo)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosLibroLayout.createSequentialGroup()
                         .addGap(0, 25, Short.MAX_VALUE)
@@ -313,7 +311,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
                 .addContainerGap(9, Short.MAX_VALUE)
                 .addComponent(jlConsecutivoPrestamo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfConsecutivoPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfIdPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jlFechaPrestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -459,10 +457,10 @@ private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
         String capturarCodigo = "", capturarCantidad = "";
         for (int i = 0; i < RegistroPrestamosGUI.jtDetallePrestamo.getRowCount(); i++) {
             capturarCodigo = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 0).toString();
-            capturarCantidad = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 3).toString();
+            capturarCantidad = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 1).toString();
         }
-        entrega();
-        detalleEntrega();
+        prestamo();
+        detallePrestamo();
         jtfCodigoEstudiante.setText("");
         jtfNombresEstudiante.setText("");
         jtfApellidosEstudiante.setText("");
@@ -507,8 +505,8 @@ private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
     public static javax.swing.JTable jtDetallePrestamo;
     public static javax.swing.JTextField jtfApellidosEstudiante;
     public static javax.swing.JTextField jtfCodigoEstudiante;
-    private javax.swing.JTextField jtfConsecutivoPrestamo;
     private javax.swing.JTextField jtfFecha;
+    private javax.swing.JTextField jtfIdPrestamo;
     public static javax.swing.JTextField jtfNombresEstudiante;
     public static javax.swing.JTextField jtfTelefonoEstudiante;
     // End of variables declaration//GEN-END:variables

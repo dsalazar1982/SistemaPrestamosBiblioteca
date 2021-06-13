@@ -32,13 +32,13 @@ public class RegistroPrestamoLibrosGUI extends javax.swing.JInternalFrame {
         String[] encabezadoTabla = {"CODIGO", "TITULO", "EDITORIAL", "AÑO"};
         DefaultTableModel tablaDetallesLibros = new DefaultTableModel(null, encabezadoTabla);
         String[] registros = new String[4];
-        String consultaSQL = "SELECT * FROM t_libros WHERE CONCAT(isbn, nombre_lib, editorial_lib, ano_publicacion) LIKE '%" + dato + "%'";
+        String consultaSQL = "SELECT * FROM t_libros WHERE CONCAT(isbn, titulo_lib, editorial_lib, ano_publicacion) LIKE '%" + dato + "%'";
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 registros[0] = rs.getString("isbn");
-                registros[1] = rs.getString("nombre_lib");
+                registros[1] = rs.getString("titulo_lib");
                 registros[2] = rs.getString("editorial_lib");
                 registros[3] = rs.getString("ano_publicacion");
                 tablaDetallesLibros.addRow(registros);

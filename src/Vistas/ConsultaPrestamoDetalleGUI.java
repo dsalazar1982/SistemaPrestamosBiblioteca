@@ -24,11 +24,11 @@ public class ConsultaPrestamoDetalleGUI extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "NUMERO PRESTAMO", "ISBN"
+                "No", "NUMERO PRESTAMO", "ISBN"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

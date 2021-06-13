@@ -26,8 +26,8 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 Datos[0] = rs.getString("codigo_est");
-                Datos[1] = rs.getString("nombre_est");
-                Datos[2] = rs.getString("apellido_est");
+                Datos[1] = rs.getString("nombres_est");
+                Datos[2] = rs.getString("apellidos_est");
                 Datos[3] = rs.getString("telefono_est");
                 tablaDetalleEstudiantes.addRow(Datos);
             }
@@ -97,9 +97,9 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarUnEstudiante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfDatoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(jtfDatoEstudiante)
                         .addGap(18, 18, 18)
-                        .addComponent(jbBuscarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbBuscarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,8 +150,8 @@ private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 registros[0] = rs.getString("codigo_est");
-                registros[1] = rs.getString("nombre_est");
-                registros[2] = rs.getString("apellido_est");
+                registros[1] = rs.getString("nombres_est");
+                registros[2] = rs.getString("apellidos_est");
                 registros[3] = rs.getString("telefono_est");
                 tablaDetalleEstudiantes.addRow(registros);
             }

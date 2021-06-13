@@ -18,14 +18,14 @@ public class RegistroPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         String[] registros = new String[4];
         DefaultTableModel tablaDetallesEstudiantes = new DefaultTableModel(null, encabezadoTabla);
-        String consultaSQL = "SELECT * FROM t_estudiantes WHERE CONCAT(codigo_est, nombre_est, apellido_est, telefono_est) LIKE '%" + dato + "%'";
+        String consultaSQL = "SELECT * FROM t_estudiantes WHERE CONCAT(codigo_est, nombres_est, apellidos_est, telefono_est) LIKE '%" + dato + "%'";
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 registros[0] = rs.getString("codigo_est");
-                registros[1] = rs.getString("nombre_est");
-                registros[2] = rs.getString("apellido_est");
+                registros[1] = rs.getString("nombres_est");
+                registros[2] = rs.getString("apellidos_est");
                 registros[3] = rs.getString("telefono_est");
                 tablaDetallesEstudiantes.addRow(registros);
             }

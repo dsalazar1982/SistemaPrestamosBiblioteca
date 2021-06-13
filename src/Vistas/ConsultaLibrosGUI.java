@@ -26,7 +26,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
                 Datos[0] = rs.getString("isbn");
-                Datos[1] = rs.getString("nombre_lib");
+                Datos[1] = rs.getString("titulo_lib");
                 Datos[2] = rs.getString("editorial_lib");
                 Datos[3] = rs.getString("ano_publicacion");
                 tablaDetallesLibros.addRow(Datos);
@@ -168,13 +168,13 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
             tablaDetalleLibros.setColumnIdentifiers(encabezadoTabla);
             this.jtDetalleLibros.setModel(tablaDetalleLibros);
             try {
-                String consultaSQL = "SELECT * FROM t_libros WHERE nombre_lib LIKE '%" + dato + "%'";
+                String consultaSQL = "SELECT * FROM t_libros WHERE titulo_lib LIKE '%" + dato + "%'";
                 String[] registros = new String[4];
                 Statement st = conexionDB.createStatement();
                 ResultSet rs = st.executeQuery(consultaSQL);
                 while (rs.next()) {
                     registros[0] = rs.getString("isbn");
-                    registros[1] = rs.getString("nombre_lib");
+                    registros[1] = rs.getString("titulo_lib");
                     registros[2] = rs.getString("editorial_lib");
                     registros[3] = rs.getString("ano_publicacion");
                     tablaDetalleLibros.addRow(registros);
