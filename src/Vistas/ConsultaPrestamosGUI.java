@@ -25,7 +25,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Datos[0] = rs.getString("numero");
+                Datos[0] = rs.getString("id_prestamo");
                 Datos[1] = rs.getString("fecha");
                 Datos[2] = rs.getString("codigo_est");
                 tablaDetallesPrestamos.addRow(Datos);
@@ -189,7 +189,7 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
     String dato = jtfDatoPrestamo.getText();
     String consultaSQL = "";
     if (jrbConsultaUnPrestamo.isSelected() == true) {
-        consultaSQL = "SELECT * FROM t_prestamos WHERE numero='" + dato + "'";
+        consultaSQL = "SELECT * FROM t_prestamos WHERE id_prestamo='" + dato + "'";
     }
     if (jrbConsultaPorFecha.isSelected() == true) {
         String fecha = jtfDatoPrestamo.getText();
@@ -209,7 +209,7 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
         Statement st = conexionDB.createStatement();
         ResultSet rs = st.executeQuery(consultaSQL);
         while (rs.next()) {
-            Datos[0] = rs.getString("numero");
+            Datos[0] = rs.getString("id_prestamo");
             Datos[1] = rs.getString("fecha");
             Datos[2] = rs.getString("codigo_est");
             tablaDetallesPrestamos.addRow(Datos);
@@ -263,7 +263,7 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
         String[] encabezadoTabla = {"No", "NUMERO DE PRESTAMO", "ISBN"};
         tablaDetallePrestamosEmergente.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallePrestamosEmergente);
-        String consultaSQL = "SELECT * FROM t_detalles";
+        String consultaSQL = "SELECT * FROM t_detalles_prestamos";
         String[] datos = new String[3];
         try {
             Statement st = conexionDB.createStatement();
@@ -285,7 +285,7 @@ private void jpmEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEven
     if (filaSeleccionada >= 0) {
         String codigo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();
         try {
-            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_prestamos WHERE numero='" + codigo + "'");
+            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'");
             pst.executeUpdate();
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
