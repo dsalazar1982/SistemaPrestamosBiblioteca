@@ -245,12 +245,9 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
     if (filaSeleccionada == -1) {
         JOptionPane.showMessageDialog(null, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
     } else {
-
         ConsultaPrestamoDetalleGUI detallePrestamo = new ConsultaPrestamoDetalleGUI();
-
         int x = (Principal.jdpPrincipal.getWidth() / 2) - detallePrestamo.getWidth() / 2;
         int y = (Principal.jdpPrincipal.getHeight() / 2) - detallePrestamo.getHeight() / 2;
-
         if (detallePrestamo.isShowing()) {
             detallePrestamo.setLocation(x, y);
         } else {
@@ -258,7 +255,6 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
             detallePrestamo.setLocation(x, y);
             detallePrestamo.setVisible(true);
         }
-
         DefaultTableModel tablaDetallePrestamosEmergente = (DefaultTableModel) ConsultaPrestamoDetalleGUI.jtDetallePrestamos.getModel();
         String[] encabezadoTabla = {"No", "NUMERO DE PRESTAMO", "ISBN"};
         tablaDetallePrestamosEmergente.setColumnIdentifiers(encabezadoTabla);
