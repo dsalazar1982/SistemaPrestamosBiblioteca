@@ -7,9 +7,9 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class VistaPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
+public class RegistroPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
 
-    public VistaPrestamoEstudiantesGUI() {
+    public RegistroPrestamoEstudiantesGUI() {
         initComponents();
         mostrarListaEstudiantes("");
     }

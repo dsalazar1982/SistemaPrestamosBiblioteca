@@ -76,7 +76,7 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jbBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
+        jbBuscarEstudiante.setFont(new java.awt.Font("Eras Medium ITC", 0, 14)); // NOI18N
         jbBuscarEstudiante.setText("BUSCAR");
         jbBuscarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,28 +93,29 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarTodosEstudiante)
-                        .addGap(32, 223, Short.MAX_VALUE))
+                        .addGap(32, 303, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarUnEstudiante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfDatoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jbBuscarEstudiante)
-                        .addGap(35, 35, 35))))
+                        .addComponent(jtfDatoEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbBuscarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbConsultarUnEstudiante)
                     .addComponent(jtfDatoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscarEstudiante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jrbConsultarTodosEstudiante))
+                    .addComponent(jbBuscarEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jrbConsultarTodosEstudiante)
+                .addGap(25, 25, 25))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 470, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 550, 130));
 
         jtDetalleEstudiantes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtDetalleEstudiantes.setModel(new javax.swing.table.DefaultTableModel(
@@ -130,7 +131,7 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtDetalleEstudiantes);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 470, 121));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 540, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

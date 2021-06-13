@@ -223,7 +223,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CODIGO", "NOMBRE", "EDITORIAL", "AÑO"
+                "CODIGO", "TITULO", "EDITORIAL", "AÑO"
             }
         ) {
             Class[] types = new Class [] {
@@ -413,7 +413,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
     }
 
 private void jbSeleccionarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarEstudianteActionPerformed
-    VistaPrestamoEstudiantesGUI agregarEstudiante = new VistaPrestamoEstudiantesGUI();
+    RegistroPrestamoEstudiantesGUI agregarEstudiante = new RegistroPrestamoEstudiantesGUI();
     int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarEstudiante.getWidth() / 2;
     int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarEstudiante.getHeight() / 2;
     if (agregarEstudiante.isShowing()) {
@@ -427,7 +427,7 @@ private void jbSeleccionarEstudianteActionPerformed(java.awt.event.ActionEvent e
 
 private void jbSeleccionarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarLibroActionPerformed
     try {
-        VistaPrestamoLibrosGUI agregarLibro = new VistaPrestamoLibrosGUI();
+        RegistroPrestamoLibrosGUI agregarLibro = new RegistroPrestamoLibrosGUI();
         int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarLibro.getWidth() / 2;
         int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarLibro.getHeight() / 2;
         if (agregarLibro.isShowing()) {

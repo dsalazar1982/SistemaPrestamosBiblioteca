@@ -16,7 +16,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
     void cargarListaLibros() {
         DefaultTableModel tablaDetallesLibros = new DefaultTableModel();
-        String[] encabezadoTabla = {"CODIGO", "TITULO", "EDITORIAL", "AÑO"};
+        String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
         tablaDetallesLibros.setColumnIdentifiers(encabezadoTabla);
         jtDetalleLibros.setModel(tablaDetallesLibros);
         String consultaSQL = "SELECT * FROM tb_libros";
@@ -164,7 +164,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         if (jrbConsultarUnLibro.isSelected() == true) {
             String dato = jtfDatosLibro.getText();
             DefaultTableModel tablaDetalleLibros = new DefaultTableModel();
-            String[] encabezadoTabla = {"CODIGO", "TITULO", "EDITORIAL", "AÑO"};
+            String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
             tablaDetalleLibros.setColumnIdentifiers(encabezadoTabla);
             this.jtDetalleLibros.setModel(tablaDetalleLibros);
             try {

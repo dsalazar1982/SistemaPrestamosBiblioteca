@@ -10,7 +10,7 @@
       <SubComponents>
         <MenuItem class="javax.swing.JMenuItem" name="jpmiActualizarEstudiante">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Modificar Estudiante"/>
+            <Property name="text" type="java.lang.String" value="Modificar Registro"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmiActualizarEstudianteActionPerformed"/>
@@ -18,7 +18,7 @@
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jpmiEliminarEstudiante">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar Estudiante"/>
+            <Property name="text" type="java.lang.String" value="Eliminar Registro"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmiEliminarEstudianteActionPerformed"/>

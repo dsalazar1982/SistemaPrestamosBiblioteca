@@ -1,8 +1,8 @@
 package Vistas;
 
-public class DetallePrestamoGUI extends javax.swing.JInternalFrame {
+public class ConsultaPrestamoDetalleGUI extends javax.swing.JInternalFrame {
 
-    public DetallePrestamoGUI() {
+    public ConsultaPrestamoDetalleGUI() {
         initComponents();
     }
 

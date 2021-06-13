@@ -96,7 +96,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
 
-        jpmiActualizarEstudiante.setText("Modificar Estudiante");
+        jpmiActualizarEstudiante.setText("Modificar Registro");
         jpmiActualizarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpmiActualizarEstudianteActionPerformed(evt);
@@ -104,7 +104,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         });
         jPopupMenu1.add(jpmiActualizarEstudiante);
 
-        jpmiEliminarEstudiante.setText("Eliminar Estudiante");
+        jpmiEliminarEstudiante.setText("Eliminar Registro");
         jpmiEliminarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpmiEliminarEstudianteActionPerformed(evt);
