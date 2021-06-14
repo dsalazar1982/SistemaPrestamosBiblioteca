@@ -41,8 +41,8 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
         jbgBuscarPrestamo = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jpmVerDetallePrestamo = new javax.swing.JMenuItem();
-        jpmEliminarDetallePrestamo = new javax.swing.JMenuItem();
+        jpmiVerDetallePrestamo = new javax.swing.JMenuItem();
+        jpmiEliminarDetallePrestamo = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jrbConsultaUnPrestamo = new javax.swing.JRadioButton();
         jrbConsultaPorFecha = new javax.swing.JRadioButton();
@@ -52,22 +52,22 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetallePrestamos = new javax.swing.JTable();
 
-        jpmVerDetallePrestamo.setText("Ver Detalle");
-        jpmVerDetallePrestamo.setActionCommand("Ver Detalle Prestamo");
-        jpmVerDetallePrestamo.addActionListener(new java.awt.event.ActionListener() {
+        jpmiVerDetallePrestamo.setText("Ver Detalle");
+        jpmiVerDetallePrestamo.setActionCommand("Ver Detalle Prestamo");
+        jpmiVerDetallePrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jpmVerDetallePrestamoActionPerformed(evt);
+                jpmiVerDetallePrestamoActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(jpmVerDetallePrestamo);
+        jPopupMenu1.add(jpmiVerDetallePrestamo);
 
-        jpmEliminarDetallePrestamo.setText("Eliminar Prestamo");
-        jpmEliminarDetallePrestamo.addActionListener(new java.awt.event.ActionListener() {
+        jpmiEliminarDetallePrestamo.setText("Eliminar Prestamo");
+        jpmiEliminarDetallePrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jpmEliminarDetallePrestamoActionPerformed(evt);
+                jpmiEliminarDetallePrestamoActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(jpmEliminarDetallePrestamo);
+        jPopupMenu1.add(jpmiEliminarDetallePrestamo);
 
         setClosable(true);
         setIconifiable(true);
@@ -240,12 +240,15 @@ private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//
         cargarListaPrestamos();
     }
 }//GEN-LAST:event_jrbConsultaTodosActionPerformed
-private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmVerDetallePrestamoActionPerformed
+private void jpmiVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiVerDetallePrestamoActionPerformed
     int filaSeleccionada = jtDetallePrestamos.getSelectedRow();
+    String idPrestammo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();    
+    
     if (filaSeleccionada == -1) {
         JOptionPane.showMessageDialog(null, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
     } else {
         ConsultaPrestamoDetalleGUI detallePrestamo = new ConsultaPrestamoDetalleGUI();
+        detallePrestamo.cargarListaPrestamos(idPrestammo);
         int x = (Principal.jdpPrincipal.getWidth() / 2) - detallePrestamo.getWidth() / 2;
         int y = (Principal.jdpPrincipal.getHeight() / 2) - detallePrestamo.getHeight() / 2;
         if (detallePrestamo.isShowing()) {
@@ -256,9 +259,9 @@ private void jpmVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt
             detallePrestamo.setVisible(true);
         }
     }
-}//GEN-LAST:event_jpmVerDetallePrestamoActionPerformed
+}//GEN-LAST:event_jpmiVerDetallePrestamoActionPerformed
 
-private void jpmEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmEliminarDetallePrestamoActionPerformed
+private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarDetallePrestamoActionPerformed
     int filaSeleccionada = jtDetallePrestamos.getSelectedRow();
     if (filaSeleccionada >= 0) {
         String codigo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();
@@ -272,7 +275,7 @@ private void jpmEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEven
     } else {
         JOptionPane.showMessageDialog(this, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
     }
-}//GEN-LAST:event_jpmEliminarDetallePrestamoActionPerformed
+}//GEN-LAST:event_jpmiEliminarDetallePrestamoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
@@ -280,8 +283,8 @@ private void jpmEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEven
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscarPrestamo;
     private javax.swing.ButtonGroup jbgBuscarPrestamo;
-    private javax.swing.JMenuItem jpmEliminarDetallePrestamo;
-    private javax.swing.JMenuItem jpmVerDetallePrestamo;
+    private javax.swing.JMenuItem jpmiEliminarDetallePrestamo;
+    private javax.swing.JMenuItem jpmiVerDetallePrestamo;
     private javax.swing.JRadioButton jrbConsultaPorFecha;
     private javax.swing.JRadioButton jrbConsultaTodos;
     private javax.swing.JRadioButton jrbConsultaUnPrestamo;

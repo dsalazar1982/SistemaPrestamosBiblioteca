@@ -10,21 +10,21 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <MenuItem class="javax.swing.JMenuItem" name="jpmVerDetallePrestamo">
+        <MenuItem class="javax.swing.JMenuItem" name="jpmiVerDetallePrestamo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Detalle"/>
             <Property name="actionCommand" type="java.lang.String" value="Ver Detalle Prestamo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmVerDetallePrestamoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmiVerDetallePrestamoActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="jpmEliminarDetallePrestamo">
+        <MenuItem class="javax.swing.JMenuItem" name="jpmiEliminarDetallePrestamo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Prestamo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmEliminarDetallePrestamoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmiEliminarDetallePrestamoActionPerformed"/>
           </Events>
         </MenuItem>
       </SubComponents>
