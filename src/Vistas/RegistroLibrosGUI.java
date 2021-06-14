@@ -324,6 +324,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         desbloquear();
         limpiar();
         placeHolder();
+        jtfISBNLibro.setEditable(true);
         jtfISBNLibro.requestFocus();
     }//GEN-LAST:event_jbNuevoLibroActionPerformed
 
