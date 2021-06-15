@@ -20,16 +20,16 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         tablaDetallesLibros.setColumnIdentifiers(encabezadoTabla);
         jtDetalleLibros.setModel(tablaDetallesLibros);
         String consultaSQL = "SELECT * FROM t_libros";
-        String[] Datos = new String[4];
+        String[] registros = new String[4];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Datos[0] = rs.getString("isbn");
-                Datos[1] = rs.getString("titulo_lib");
-                Datos[2] = rs.getString("editorial_lib");
-                Datos[3] = rs.getString("ano_publicacion");
-                tablaDetallesLibros.addRow(Datos);
+                registros[0] = rs.getString("isbn");
+                registros[1] = rs.getString("titulo_lib");
+                registros[2] = rs.getString("editorial_lib");
+                registros[3] = rs.getString("ano_publicacion");
+                tablaDetallesLibros.addRow(registros);
             }
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);

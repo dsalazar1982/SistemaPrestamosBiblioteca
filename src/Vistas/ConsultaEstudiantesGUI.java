@@ -20,16 +20,16 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
         tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
         jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
         String consultaSQL = "SELECT * FROM t_estudiantes";
-        String[] Datos = new String[4];
+        String[] registros = new String[4];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                Datos[0] = rs.getString("codigo_est");
-                Datos[1] = rs.getString("nombres_est");
-                Datos[2] = rs.getString("apellidos_est");
-                Datos[3] = rs.getString("telefono_est");
-                tablaDetalleEstudiantes.addRow(Datos);
+                registros[0] = rs.getString("codigo_est");
+                registros[1] = rs.getString("nombres_est");
+                registros[2] = rs.getString("apellidos_est");
+                registros[3] = rs.getString("telefono_est");
+                tablaDetalleEstudiantes.addRow(registros);
             }
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);

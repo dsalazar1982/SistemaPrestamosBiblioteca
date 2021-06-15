@@ -355,11 +355,10 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             }
             placeHolder();
         } catch (SQLException excepcion) {
-            if(excepcion.getSQLState().equalsIgnoreCase("23000")){
+            if (excepcion.getSQLState().equalsIgnoreCase("23000")) {
                 JOptionPane.showMessageDialog(null, "El codigo ISBN " + isbn + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
                 jtfISBNLibro.requestFocus();
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         }

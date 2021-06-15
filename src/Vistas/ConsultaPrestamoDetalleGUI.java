@@ -7,54 +7,33 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaPrestamoDetalleGUI extends javax.swing.JInternalFrame {
-    
+
     public ConsultaPrestamoDetalleGUI() {
         initComponents();
         cargarListaPrestamos("");
     }
-    
-    /*void cargarListaPrestamos() {
-        DefaultTableModel tablaDetallePrestamos = new DefaultTableModel();
-        String[] encabezadoTabla = {"No", "NUMERO DE PRESTAMO", "ISBN"};
-        tablaDetallePrestamos.setColumnIdentifiers(encabezadoTabla);
-        this.jtDetallePrestamos.setModel(tablaDetallePrestamos);
-        String consultaSQL = "SELECT * FROM t_detalles_prestamos";
-        String[] datos = new String[3];
-        try {
-            Statement st = conexionDB.createStatement();
-            ResultSet rs = st.executeQuery(consultaSQL);
-            while (rs.next()) {
-                datos[0] = rs.getString("id_detalle");
-                datos[1] = rs.getString("id_prestamo");
-                datos[2] = rs.getString("isbn");
-                tablaDetallePrestamos.addRow(datos);
-            }
-        } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
-        }
-    }*/
-    
+
     void cargarListaPrestamos(String dato) {
         DefaultTableModel tablaDetallePrestamos = new DefaultTableModel();
         String[] encabezadoTabla = {"No", "NUMERO DE PRESTAMO", "ISBN"};
         tablaDetallePrestamos.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallePrestamos);
         String consultaSQL = "SELECT * FROM t_detalles_prestamos WHERE id_prestamo = '" + dato + "'";
-        String[] datos = new String[3];
+        String[] registros = new String[3];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                datos[0] = rs.getString("id_detalle");
-                datos[1] = rs.getString("id_prestamo");
-                datos[2] = rs.getString("isbn");
-                tablaDetallePrestamos.addRow(datos);
+                registros[0] = rs.getString("id_detalle");
+                registros[1] = rs.getString("id_prestamo");
+                registros[2] = rs.getString("isbn");
+                tablaDetallePrestamos.addRow(registros);
             }
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -111,5 +90,5 @@ public class ConsultaPrestamoDetalleGUI extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     ClaseConexion objConexion = new ClaseConexion();
-    java.sql.Connection conexionDB = objConexion.conexion();
+    Connection conexionDB = objConexion.conexion();
 }

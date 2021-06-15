@@ -20,15 +20,15 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
         this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
         String consultaSQL = "SELECT * FROM t_prestamos";
-        String[] datos = new String[3];
+        String[] registros = new String[3];
         try {
             Statement st = conexionDB.createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
             while (rs.next()) {
-                datos[0] = rs.getString("id_prestamo");
-                datos[1] = rs.getString("fecha");
-                datos[2] = rs.getString("codigo_est");
-                tablaDetallesPrestamos.addRow(datos);
+                registros[0] = rs.getString("id_prestamo");
+                registros[1] = rs.getString("fecha");
+                registros[2] = rs.getString("codigo_est");
+                tablaDetallesPrestamos.addRow(registros);
             }
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
@@ -204,15 +204,15 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
     String[] encabezadoTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
     tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
     this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
-    String[] Datos = new String[4];
+    String[] registros = new String[4];
     try {
         Statement st = conexionDB.createStatement();
         ResultSet rs = st.executeQuery(consultaSQL);
         while (rs.next()) {
-            Datos[0] = rs.getString("id_prestamo");
-            Datos[1] = rs.getString("fecha");
-            Datos[2] = rs.getString("codigo_est");
-            tablaDetallesPrestamos.addRow(Datos);
+            registros[0] = rs.getString("id_prestamo");
+            registros[1] = rs.getString("fecha");
+            registros[2] = rs.getString("codigo_est");
+            tablaDetallesPrestamos.addRow(registros);
         }
     } catch (SQLException excepcion) {
         JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
@@ -242,8 +242,7 @@ private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//
 }//GEN-LAST:event_jrbConsultaTodosActionPerformed
 private void jpmiVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiVerDetallePrestamoActionPerformed
     int filaSeleccionada = jtDetallePrestamos.getSelectedRow();
-    String idPrestammo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();    
-    
+    String idPrestammo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();
     if (filaSeleccionada == -1) {
         JOptionPane.showMessageDialog(null, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
     } else {

@@ -472,11 +472,10 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                 cargar("");
             }
         } catch (SQLException excepcion) {
-            if(excepcion.getSQLState().equalsIgnoreCase("23000")){
+            if (excepcion.getSQLState().equalsIgnoreCase("23000")) {
                 JOptionPane.showMessageDialog(null, "El codigo " + codigo + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
                 jtfCodigoEstudiante.requestFocus();
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -514,8 +513,8 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                 cargar("");
             } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
-        }
+                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         }

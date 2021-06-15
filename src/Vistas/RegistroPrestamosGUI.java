@@ -449,11 +449,9 @@ private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPrestarLibroActionPerformed
     if (jtfCodigoEstudiante.getText().equals("")) {
         JOptionPane.showMessageDialog(this, "No selecciono un estudiante.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
-    } 
-    else if (jtDetallePrestamo.getRowCount() == 0){
+    } else if (jtDetallePrestamo.getRowCount() == 0) {
         JOptionPane.showMessageDialog(this, "No selecciono libros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
-    }
-    else {
+    } else {
         String capturarCodigo = "", capturarCantidad = "";
         for (int i = 0; i < RegistroPrestamosGUI.jtDetallePrestamo.getRowCount(); i++) {
             capturarCodigo = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 0).toString();
