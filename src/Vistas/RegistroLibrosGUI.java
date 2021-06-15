@@ -344,12 +344,11 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     // Acción del botón guardar libro
     private void jbGuardarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarLibroActionPerformed
         String isbn, titulo, editorial, anoPublicacion;
-        String consultaSQL = "";
         isbn = jtfISBNLibro.getText();
         titulo = jtfTituloLibro.getText();
         editorial = jtfEditorialLibro.getText();
         anoPublicacion = jtfAnoPublicacionLibro.getText();
-        consultaSQL = "INSERT INTO t_libros (isbn, titulo_lib, editorial_lib, ano_publicacion) VALUES (?,?,?,?)";
+        String consultaSQL = "INSERT INTO t_libros (isbn, titulo_lib, editorial_lib, ano_publicacion) VALUES (?,?,?,?)";
         try {
             if (isbn.isEmpty() || titulo.isEmpty() || editorial.isEmpty() || anoPublicacion.equalsIgnoreCase("AAAA-MM-DD")) {
                 JOptionPane.showMessageDialog(this, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
@@ -388,12 +387,11 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     // Acción del botón actualizar libro
     private void jbActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarLibroActionPerformed
         String isbn, titulo, editorial, anoPublicacion;
-        String consultaSQL = "";
         isbn = jtfISBNLibro.getText();
         titulo = jtfTituloLibro.getText();
         editorial = jtfEditorialLibro.getText();
         anoPublicacion = jtfAnoPublicacionLibro.getText();
-        consultaSQL = "UPDATE t_libros SET titulo_lib = ?, editorial_lib = ?, ano_publicacion = ? WHERE isbn = ?";
+        String consultaSQL = "UPDATE t_libros SET titulo_lib = ?, editorial_lib = ?, ano_publicacion = ? WHERE isbn = ?";
         try {
             PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
             pst.setString(1, titulo);
