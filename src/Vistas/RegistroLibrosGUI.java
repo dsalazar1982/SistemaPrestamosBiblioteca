@@ -399,16 +399,21 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             if (registroSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
-                String isbn = jtDetalleLibros.getValueAt(registroSeleccionado, 0).toString();
-                String consultaSQL = "DELETE FROM t_libros WHERE isbn = '" + isbn + "'";
-                try {
-                    PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-                    pst.executeUpdate();
-                    JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-                } catch (SQLException excepcion) {
-                    JOptionPane.showMessageDialog(this, "Error al elimianr registro: " + excepcion, "Eliminacion fallo", JOptionPane.ERROR_MESSAGE);
+                int respuesta = JOptionPane.showConfirmDialog(this, "Realmente desea eliminar el registro: " + registroSeleccionado,
+                        "Eliminar registro?", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (respuesta == 0) {
+                    String isbn = jtDetalleLibros.getValueAt(registroSeleccionado, 0).toString();
+                    String consultaSQL = "DELETE FROM t_libros WHERE isbn = '" + isbn + "'";
+                    try {
+                        PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+                        pst.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (SQLException excepcion) {
+                        JOptionPane.showMessageDialog(this, "Error al elimianr registro: " + excepcion, "Eliminacion fallo", JOptionPane.ERROR_MESSAGE);
+                    }
+                    cargarListaLibros("");
                 }
-                cargarListaLibros("");
             }
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

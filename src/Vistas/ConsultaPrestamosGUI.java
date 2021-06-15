@@ -266,16 +266,21 @@ private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEv
             if (registroSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
-                String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
-                String consultaSQL = "DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'";
-                try {
-                    PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-                    pst.executeUpdate();
-                    JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-                } catch (SQLException excepcion) {
-                    JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                int respuesta = JOptionPane.showConfirmDialog(this, "Realmente desea eliminar el registro: " + registroSeleccionado,
+                        "Eliminar registro?", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (respuesta == 0) {
+                    String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
+                    String consultaSQL = "DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'";
+                    try {
+                        PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+                        pst.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    } catch (SQLException excepcion) {
+                        JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                    }
+                    cargarListaPrestamos();
                 }
-                cargarListaPrestamos();
             }
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
