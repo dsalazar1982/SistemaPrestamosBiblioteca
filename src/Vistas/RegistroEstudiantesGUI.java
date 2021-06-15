@@ -1,3 +1,11 @@
+/*
+ * Programa         : RegistroEstudiantesGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla estudiantes de la base de datos a traves de una GUI, 
+                      de igual forma, permite realizar registro de un estudiante.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -9,12 +17,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public RegistroEstudiantesGUI() {
         initComponents();
         bloquear();
         cargarListaEstudiantes("");
     }
 
+    // Método que des activa los controles, campos de textos y botones
     void bloquear() {
         jtfCodigoEstudiante.setEnabled(false);
         jtfNombresEstudiante.setEnabled(false);
@@ -28,6 +38,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jbSalir.setEnabled(true);
     }
 
+    // Método que limpia las cajas de texto
     void limpiar() {
         jtfCodigoEstudiante.setText("");
         jtfNombresEstudiante.setText("");
@@ -35,6 +46,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jtfApellidosEstudiante.setText("");
     }
 
+    // Método que activa los controles, campos de textos y botones
     void desbloquear() {
         jtfCodigoEstudiante.setEnabled(true);
         jtfNombresEstudiante.setEnabled(true);
@@ -45,6 +57,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jbActualizarEstudiante.setEnabled(true);
     }
 
+    // Método que carga la lista de estudiantes en la tabla
     void cargarListaEstudiantes(String dato) {
         String consultaSQL = "SELECT * FROM t_estudiantes WHERE CONCAT(codigo_est, nombres_est, apellidos_est, telefono_est) LIKE '%" + dato + "%'";
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
@@ -379,6 +392,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Método que valida el campo de texto del nombre del estudiante sea solo texto
     private void jtfNombresEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombresEstudianteKeyTyped
         char caracter = evt.getKeyChar();
         if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != (char) KeyEvent.VK_SPACE) && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
@@ -387,6 +401,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jtfNombresEstudianteKeyTyped
 
+    // Método que valida el campo de texto de los apellidos del estudiante sea solo texto
     private void jtfApellidosEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidosEstudianteKeyTyped
         char caracter = evt.getKeyChar();
         if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != (char) KeyEvent.VK_SPACE) && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
@@ -395,6 +410,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jtfApellidosEstudianteKeyTyped
 
+    // Método que valida el campo de texto del teléfono del estudiante sea solo números
     private void jtfTelefonoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoEstudianteKeyTyped
         char caracter = evt.getKeyChar();
         if (jtfTelefonoEstudiante.getText().length() >= 10) {
@@ -406,6 +422,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jtfTelefonoEstudianteKeyTyped
 
+    // Acción del botón nuevo estudiante
     private void jbNuevoEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoEstudianteActionPerformed
         desbloquear();
         limpiar();
@@ -414,12 +431,14 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jtfCodigoEstudiante.requestFocus();
     }//GEN-LAST:event_jbNuevoEstudianteActionPerformed
 
+    // Acción del botón cancelar
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         limpiar();
         bloquear();
         jbCancelar.setEnabled(false);
     }//GEN-LAST:event_jbCancelarActionPerformed
 
+    // Acción del botón actualizar estudiante
     private void jbActualizarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarEstudianteActionPerformed
         String codigo, nombres, apellidos, telefono;
         String consultaSQL = "";
@@ -446,6 +465,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbActualizarEstudianteActionPerformed
 
+    // Acción del botón guardar estudiante
     private void jbGuardarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarEstudianteActionPerformed
         String codigo, nombres, apellidos, telefono;
         String consultaSQL = "";
@@ -481,10 +501,12 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbGuardarEstudianteActionPerformed
 
+    // Acción del botón salir
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    // Acción del JPopupMenuItem actualizar datos del estudiante
     private void jpmiActualizarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiActualizarEstudianteActionPerformed
         desbloquear();
         jbCancelar.setEnabled(true);
@@ -502,6 +524,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jpmiActualizarEstudianteActionPerformed
 
+    // Acción del JPopupMenuItem eliminar datos del estudiante
     private void jpmiEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarEstudianteActionPerformed
         int registroSeleccionado = jtDetalleEstudiantes.getSelectedRow();
         String codigo = jtDetalleEstudiantes.getValueAt(registroSeleccionado, 0).toString();
@@ -529,6 +552,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jpmiEliminarEstudianteActionPerformed
 
+    // Método que valida el campo de texto del código del estudiante sea solo números
     private void jtfCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyTyped
         char caracter = evt.getKeyChar();
         if ((caracter < '0' || caracter > '9') && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
@@ -565,6 +589,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfTelefonoEstudiante;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

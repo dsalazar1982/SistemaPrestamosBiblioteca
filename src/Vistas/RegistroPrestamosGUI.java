@@ -1,3 +1,10 @@
+/*
+ * Programa         : RegistroPrestamosGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite seleccionar un estudiante y uno o varios libros para crear un pestramo a traves de una GUI.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -11,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public RegistroPrestamosGUI() {
         initComponents();
         this.setLocation(25, 15);
@@ -21,6 +29,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         numeros();
     }
 
+    // Método que consulta el consecutivo de la tabla prestamos en la base de datos y genera el nuevo consecutivo
     void numeros() {
         int j;
         int contador = 1;
@@ -46,6 +55,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         }
     }
 
+    // Método que permite agregar el préstamo a la base de datos
     void prestamo() {
         String consultaSQL = "INSERT INTO t_prestamos (id_prestamo, fecha, codigo_est) VALUES (?,?,?)";
         String idPrestamo = jtfIdPrestamo.getText();
@@ -65,6 +75,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         }
     }
 
+    // Método que permite agregar los detalles del préstamo a la base de datos
     void detallePrestamo() {
         for (int i = 0; i < jtDetallePrestamo.getRowCount(); i++) {
             String consultaSQL = "INSERT INTO t_detalles_prestamos (id_prestamo, isbn) VALUES (?,?)";
@@ -406,12 +417,14 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         setBounds(0, 0, 839, 538);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Metodo que permite agregar la fecha de registro al prestamo
     public static String fechaHoy() {
         Date fecha = new Date();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatoFecha.format(fecha);
     }
 
+    // Acción del botón seleccionar estudiante
 private void jbSeleccionarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarEstudianteActionPerformed
     RegistroPrestamoEstudiantesGUI agregarEstudiante = new RegistroPrestamoEstudiantesGUI();
     int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarEstudiante.getWidth() / 2;
@@ -425,6 +438,7 @@ private void jbSeleccionarEstudianteActionPerformed(java.awt.event.ActionEvent e
     }
 }//GEN-LAST:event_jbSeleccionarEstudianteActionPerformed
 
+// Acción del botón seleccionar libros
 private void jbSeleccionarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarLibroActionPerformed
     try {
         RegistroPrestamoLibrosGUI agregarLibro = new RegistroPrestamoLibrosGUI();
@@ -442,10 +456,12 @@ private void jbSeleccionarLibroActionPerformed(java.awt.event.ActionEvent evt) {
     }
 }//GEN-LAST:event_jbSeleccionarLibroActionPerformed
 
+// Acción del botón salir
 private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
     this.dispose();
 }//GEN-LAST:event_jbSalirActionPerformed
 
+// Acción del botón prestar libros, generar préstamo
 private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPrestarLibroActionPerformed
     if (jtfCodigoEstudiante.getText().equals("")) {
         JOptionPane.showMessageDialog(this, "No selecciono un estudiante.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
@@ -473,6 +489,7 @@ private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
     }
 }//GEN-LAST:event_jbPrestarLibroActionPerformed
 
+// Acción del botón retirar libro, retira el libro de la lista de libros a prestar
 private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRetirarLibroActionPerformed
     DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) jtDetallePrestamo.getModel();
     int registroSeleccionado = jtDetallePrestamo.getSelectedRow();
@@ -509,6 +526,7 @@ private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
     public static javax.swing.JTextField jtfTelefonoEstudiante;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

@@ -1,3 +1,11 @@
+/*
+ * Programa         : RegistroLibrosGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla libros de la base de datos a traves de una GUI, 
+                      de igual forma, permite realizar registro de un libro.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -9,6 +17,7 @@ import com.placeholder.PlaceHolder;
 
 public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public RegistroLibrosGUI() {
         initComponents();
         this.setLocation(150, 15);
@@ -17,6 +26,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         placeHolder();
     }
 
+    // Método que des activa los controles, campos de textos y botones
     void bloquear() {
         jtfISBNLibro.setEnabled(false);
         jtfTituloLibro.setEnabled(false);
@@ -28,6 +38,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jbActualizarLibro.setEnabled(false);
     }
 
+    // Método que limpia las cajas de texto
     void limpiar() {
         jtfISBNLibro.setText("");
         jtfTituloLibro.setText("");
@@ -35,6 +46,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jtfAnoPublicacionLibro.setText("");
     }
 
+    // Método que activa los controles, campos de textos y botones
     void desbloquear() {
         jtfISBNLibro.setEnabled(true);
         jtfTituloLibro.setEnabled(true);
@@ -45,6 +57,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jbCancelar.setEnabled(true);
     }
 
+    // Método que carga la lista de libros en la tabla
     void cargarListaLibros(String dato) {
         String consultaSQL = "SELECT * FROM t_libros WHERE CONCAT(isbn, titulo_lib, editorial_lib, ano_publicacion) LIKE '%" + dato + "%'";
         String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
@@ -66,6 +79,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         }
     }
 
+    // Método que agrega el place holder al campo de texto tipo de fecha
     void placeHolder() {
         PlaceHolder placeHolder = new PlaceHolder(jtfAnoPublicacionLibro, "AAAA-MM-DD");
     }
@@ -320,6 +334,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Acción del botón nuevo libro
     private void jbNuevoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoLibroActionPerformed
         desbloquear();
         limpiar();
@@ -328,6 +343,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jtfISBNLibro.requestFocus();
     }//GEN-LAST:event_jbNuevoLibroActionPerformed
 
+    // Acción del botón guardar libro
     private void jbGuardarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarLibroActionPerformed
         String isbn, titulo, editorial, anoPublicacion;
         String consultaSQL = "";
@@ -364,16 +380,19 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbGuardarLibroActionPerformed
 
+    // Acción del botón cancelar
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
         limpiar();
         bloquear();
         placeHolder();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
+    // Acción del botón salir
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
+    // Acción del JPopupMenuItem actualizar datos del libro
     private void jpmiActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiActualizarLibroActionPerformed
         desbloquear();
         jbCancelar.setEnabled(true);
@@ -393,6 +412,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jpmiActualizarLibroActionPerformed
 
+    // Acción del JPopupMenuItem eliminar datos del libro
     private void jpmiEliminarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarLibroActionPerformed
         int registroSeleccionado = jtDetalleLibros.getSelectedRow();
         String isbn = jtDetalleLibros.getValueAt(registroSeleccionado, 0).toString();
@@ -420,6 +440,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jpmiEliminarLibroActionPerformed
 
+    // Acción del botón actualizar libro
     private void jbActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarLibroActionPerformed
         String isbn, titulo, editorial, anoPublicacion;
         String consultaSQL = "";
@@ -472,6 +493,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfTituloLibro;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

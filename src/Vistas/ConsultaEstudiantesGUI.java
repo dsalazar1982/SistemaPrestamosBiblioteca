@@ -1,3 +1,11 @@
+/*
+ * Programa         : ConsultaEstudiantesGUI.java
+ * Fecha            : 15/06/2021 02:00:00 p. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla estudiantes de la base de datos a traves de una GUI, 
+                      de igual forma, permite realizar la busqueda de un estudiante por codigo.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -8,12 +16,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public ConsultaEstudiantesGUI() {
         initComponents();
-        jtfDatoEstudiante.setEnabled(false);
+        jtfCodigoEstudiante.setEnabled(false);
         cargarListaEstudiantes();
     }
 
+    // Método que carga la lista de estudiantes en la tabla
     void cargarListaEstudiantes() {
         DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
@@ -44,7 +54,7 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jrbConsultarTodosEstudiante = new javax.swing.JRadioButton();
         jrbConsultarUnEstudiante = new javax.swing.JRadioButton();
-        jtfDatoEstudiante = new javax.swing.JTextField();
+        jtfCodigoEstudiante = new javax.swing.JTextField();
         jbBuscarEstudiante = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetalleEstudiantes = new javax.swing.JTable();
@@ -97,7 +107,7 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarUnEstudiante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtfDatoEstudiante)
+                        .addComponent(jtfCodigoEstudiante)
                         .addGap(18, 18, 18)
                         .addComponent(jbBuscarEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
@@ -108,7 +118,7 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbConsultarUnEstudiante)
-                    .addComponent(jtfDatoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCodigoEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbBuscarEstudiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jrbConsultarTodosEstudiante)
@@ -136,9 +146,10 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+// Acción del botón buscar estudiante mediante el código de estudiante
 private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarEstudianteActionPerformed
     if (jrbConsultarUnEstudiante.isSelected() == true) {
-        String dato = jtfDatoEstudiante.getText();
+        String dato = jtfCodigoEstudiante.getText();
         DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
@@ -162,18 +173,20 @@ private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {
     }
 }//GEN-LAST:event_jbBuscarEstudianteActionPerformed
 
+// Acción del JRadioButton consultar todos los estudiantes
 private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosEstudianteActionPerformed
     if (jrbConsultarTodosEstudiante.isSelected() == true) {
-        jtfDatoEstudiante.setText("");
-        jtfDatoEstudiante.setEnabled(false);
+        jtfCodigoEstudiante.setText("");
+        jtfCodigoEstudiante.setEnabled(false);
         cargarListaEstudiantes();
     }
 }//GEN-LAST:event_jrbConsultarTodosEstudianteActionPerformed
 
+// Acción del JRadioButton consultar un estudiante
     private void jrbConsultarUnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnEstudianteActionPerformed
         if (jrbConsultarUnEstudiante.isSelected() == true) {
-            jtfDatoEstudiante.setEnabled(true);
-            jtfDatoEstudiante.requestFocus();
+            jtfCodigoEstudiante.setEnabled(true);
+            jtfCodigoEstudiante.requestFocus();
         }
     }//GEN-LAST:event_jrbConsultarUnEstudianteActionPerformed
 
@@ -185,9 +198,10 @@ private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEve
     private javax.swing.JRadioButton jrbConsultarTodosEstudiante;
     private javax.swing.JRadioButton jrbConsultarUnEstudiante;
     private javax.swing.JTable jtDetalleEstudiantes;
-    private javax.swing.JTextField jtfDatoEstudiante;
+    private javax.swing.JTextField jtfCodigoEstudiante;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

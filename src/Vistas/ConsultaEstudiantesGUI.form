@@ -66,7 +66,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jrbConsultarUnEstudiante" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jtfDatoEstudiante" max="32767" attributes="0"/>
+                          <Component id="jtfCodigoEstudiante" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jbBuscarEstudiante" min="-2" pref="110" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -81,7 +81,7 @@
                   <EmptySpace pref="21" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jrbConsultarUnEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfDatoEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfCodigoEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbBuscarEstudiante" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbConsultarUnEstudianteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfDatoEstudiante">
+        <Component class="javax.swing.JTextField" name="jtfCodigoEstudiante">
         </Component>
         <Component class="javax.swing.JButton" name="jbBuscarEstudiante">
           <Properties>

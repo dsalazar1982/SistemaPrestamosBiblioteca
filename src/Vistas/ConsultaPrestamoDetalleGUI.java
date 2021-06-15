@@ -1,3 +1,11 @@
+/*
+ * Programa         : ConsultaPrestamoDetalleGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla detalles_prestamos de la base de datos a traves de una GUI, 
+                      detalles de cada uno de los prestamos.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -8,11 +16,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultaPrestamoDetalleGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public ConsultaPrestamoDetalleGUI() {
         initComponents();
         cargarListaPrestamos("");
     }
 
+    // Método que carga la lista de detalles de los préstamos en la tabla
     void cargarListaPrestamos(String dato) {
         DefaultTableModel tablaDetallePrestamos = new DefaultTableModel();
         String[] encabezadoTabla = {"No", "NUMERO DE PRESTAMO", "ISBN"};
@@ -89,6 +99,7 @@ public class ConsultaPrestamoDetalleGUI extends javax.swing.JInternalFrame {
     public static javax.swing.JTable jtDetallePrestamos;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

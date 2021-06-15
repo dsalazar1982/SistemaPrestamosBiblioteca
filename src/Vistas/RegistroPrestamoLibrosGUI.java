@@ -1,3 +1,11 @@
+/*
+ * Programa         : RegistroPrestamoLibrosGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla libros de la base de datos a traves de una GUI, 
+                      y enviarlos a un prestamo.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -8,26 +16,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistroPrestamoLibrosGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public RegistroPrestamoLibrosGUI() {
         initComponents();
         cargarListaLibros("");
     }
 
-    String comparar(String dato) {
-        String cantidad = "";
-        String consultaSQL = "SELECT * FROM t_libros WHERE isbn='" + dato + "'";
-        try {
-            Statement st = conexionDB.createStatement();
-            ResultSet rs = st.executeQuery(consultaSQL);
-            while (rs.next()) {
-                cantidad = rs.getString(4);
-            }
-        } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
-        }
-        return cantidad;
-    }
-
+    // Método que carga la lista de libros en la tabla
     void cargarListaLibros(String dato) {
         String[] encabezadoTabla = {"CODIGO", "TITULO", "EDITORIAL", "AÑO"};
         DefaultTableModel tablaDetallesLibros = new DefaultTableModel(null, encabezadoTabla);
@@ -150,12 +145,18 @@ public class RegistroPrestamoLibrosGUI extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    // Acción del botón listar todos los registros de la tabla libros de la base de datos
 private void jbMostrarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarTodosLibrosActionPerformed
     cargarListaLibros("");
 }//GEN-LAST:event_jbMostrarTodosLibrosActionPerformed
+
+// Acción que consulta un libro en la tabla de libros, de acuerdo con el valor ingresado en la caja de texto título de libro
 private void jtfTituloLibroConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTituloLibroConsultarKeyReleased
     cargarListaLibros(jtfTituloLibroConsultar.getText());
 }//GEN-LAST:event_jtfTituloLibroConsultarKeyReleased
+
+// Acción del JPopupMenuItem enviar datos del listado de libros al préstamo
 private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
     try {
         DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) RegistroPrestamosGUI.jtDetallePrestamo.getModel();
@@ -180,6 +181,7 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
     }
 }//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
 
+// Acción del botón registrar libro
     private void jbRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarLibroActionPerformed
         try {
             RegistroLibrosGUI registrarLibro = new RegistroLibrosGUI();
@@ -208,6 +210,7 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JTextField jtfTituloLibroConsultar;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

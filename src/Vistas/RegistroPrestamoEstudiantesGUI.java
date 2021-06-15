@@ -1,3 +1,11 @@
+/*
+ * Programa         : RegistroPrestamoEstudiantesGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla estudiantes de la base de datos a traves de una GUI, 
+                      y enviarlos a un prestamo.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -9,12 +17,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegistroPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public RegistroPrestamoEstudiantesGUI() {
         initComponents();
-        mostrarListaEstudiantes("");
+        cargarListaEstudiantes("");
     }
 
-    void mostrarListaEstudiantes(String dato) {
+    // Método que carga la lista de estudiantes en la tabla
+    void cargarListaEstudiantes(String dato) {
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         String[] registros = new String[4];
         DefaultTableModel tablaDetallesEstudiantes = new DefaultTableModel(null, encabezadoTabla);
@@ -153,15 +163,19 @@ public class RegistroPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+// Acción del botón listar todos los registros de la tabla estudiantes de la base de datos
 private void jbMostrarTodosEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarTodosEstudiantesActionPerformed
-    mostrarListaEstudiantes("");
+    cargarListaEstudiantes("");
     jtfCodigoEstudiante.setText("");
 }//GEN-LAST:event_jbMostrarTodosEstudiantesActionPerformed
 
+// Acción que consulta un estudiante en la tabla de estudiantes, de acuerdo con el valor ingresado en la caja de texto código de estudiante
 private void jtfCodigoEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyReleased
-    mostrarListaEstudiantes(jtfCodigoEstudiante.getText());
+    cargarListaEstudiantes(jtfCodigoEstudiante.getText());
 }//GEN-LAST:event_jtfCodigoEstudianteKeyReleased
 
+// Acción del JPopupMenuItem enviar datos del listado de estudiantes al préstamo
 private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
     String codigo = "", nombres = "", apellidos = "", telefono = "";
     int registroSeleccionado = jtDetallesEstudiantes.getSelectedRow();
@@ -187,6 +201,8 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
         JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
+
+// Acción del botón registrar estudiante
 private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarEstudianteActionPerformed
     try {
         RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
@@ -215,6 +231,7 @@ private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt
     private javax.swing.JTextField jtfCodigoEstudiante;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

@@ -1,3 +1,11 @@
+/*
+ * Programa         : ConsultaLibrosGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla libros de la base de datos a traves de una GUI, 
+                      de igual forma, permite realizar la busqueda de un libro por titulo.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -8,12 +16,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public ConsultaLibrosGUI() {
         initComponents();
-        jtfDatosLibro.setEnabled(false);
+        jtfTituloLibro.setEnabled(false);
         cargarListaLibros();
     }
 
+    // Método que carga la lista de libros en la tabla
     void cargarListaLibros() {
         DefaultTableModel tablaDetallesLibros = new DefaultTableModel();
         String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
@@ -44,7 +54,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jrbConsultarUnLibro = new javax.swing.JRadioButton();
         jrbConsultarTodosLibros = new javax.swing.JRadioButton();
-        jtfDatosLibro = new javax.swing.JTextField();
+        jtfTituloLibro = new javax.swing.JTextField();
         jbBuscarLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetalleLibros = new javax.swing.JTable();
@@ -76,7 +86,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jtfDatosLibro.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+        jtfTituloLibro.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
 
         jbBuscarLibro.setFont(new java.awt.Font("Eras Medium ITC", 0, 11)); // NOI18N
         jbBuscarLibro.setText("Buscar");
@@ -100,7 +110,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jrbConsultarUnLibro)
                         .addGap(18, 18, 18)
-                        .addComponent(jtfDatosLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfTituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))))
@@ -111,7 +121,7 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtfDatosLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfTituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbBuscarLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jrbConsultarUnLibro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,9 +170,10 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Acción del botón buscar libro mediante el titulo
     private void jbBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarLibroActionPerformed
         if (jrbConsultarUnLibro.isSelected() == true) {
-            String dato = jtfDatosLibro.getText();
+            String dato = jtfTituloLibro.getText();
             DefaultTableModel tablaDetalleLibros = new DefaultTableModel();
             String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
             tablaDetalleLibros.setColumnIdentifiers(encabezadoTabla);
@@ -186,18 +197,20 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbBuscarLibroActionPerformed
 
+    // Acción del JRadioButton consultar todos los libros
     private void jrbConsultarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosLibrosActionPerformed
         if (jrbConsultarTodosLibros.isSelected() == true) {
-            jtfDatosLibro.setText("");
-            jtfDatosLibro.setEnabled(false);
+            jtfTituloLibro.setText("");
+            jtfTituloLibro.setEnabled(false);
             cargarListaLibros();
         }
     }//GEN-LAST:event_jrbConsultarTodosLibrosActionPerformed
 
+    // Acción del JRadioButton consultar un libro
     private void jrbConsultarUnLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnLibroActionPerformed
         if (jrbConsultarUnLibro.isSelected() == true) {
-            jtfDatosLibro.setEnabled(true);
-            jtfDatosLibro.requestFocus();
+            jtfTituloLibro.setEnabled(true);
+            jtfTituloLibro.requestFocus();
         }
     }//GEN-LAST:event_jrbConsultarUnLibroActionPerformed
 
@@ -209,9 +222,10 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jrbConsultarTodosLibros;
     private javax.swing.JRadioButton jrbConsultarUnLibro;
     private javax.swing.JTable jtDetalleLibros;
-    private javax.swing.JTextField jtfDatosLibro;
+    private javax.swing.JTextField jtfTituloLibro;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

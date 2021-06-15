@@ -1,3 +1,10 @@
+/*
+ * Programa         : Principal.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que genera una GUI del programa de gestion de prestamos de libros en una biblioteca.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -7,6 +14,7 @@ import javax.swing.*;
 
 public class Principal extends javax.swing.JFrame {
 
+    // Método constructor de la GUI
     public Principal() {
         initComponents();
     }
@@ -201,6 +209,7 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Acción del JMenuItem registrar un préstamo
     private void jmiRegistarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistarPrestamoActionPerformed
         RegistroPrestamosGUI prestarLibro = new RegistroPrestamosGUI();
         int x = (jdpPrincipal.getWidth() / 2) - prestarLibro.getWidth() / 2;
@@ -214,6 +223,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiRegistarPrestamoActionPerformed
 
+    // Acción del JMenuItem registrar un libro
     private void jmiRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarLibroActionPerformed
         RegistroLibrosGUI ingresarLibro = new RegistroLibrosGUI();
         int x = (jdpPrincipal.getWidth() / 2) - ingresarLibro.getWidth() / 2;
@@ -227,6 +237,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiRegistrarLibroActionPerformed
 
+    // Acción del JMenuItem consultar un libro
     private void jmiConsultarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarLibroActionPerformed
         ConsultaLibrosGUI verLibro = new ConsultaLibrosGUI();
         int x = (jdpPrincipal.getWidth() / 2) - verLibro.getWidth() / 2;
@@ -241,6 +252,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiConsultarLibroActionPerformed
 
+    // Acción del JMenuItem registrar un estudiante
     private void jmiRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarEstudianteActionPerformed
         RegistroEstudiantesGUI crearEstudiante = new RegistroEstudiantesGUI();
         int x = (jdpPrincipal.getWidth() / 2) - crearEstudiante.getWidth() / 2;
@@ -254,6 +266,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiRegistrarEstudianteActionPerformed
 
+    // Acción del JMenuItem consultar un estudiante
     private void jmiConsultarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarEstudianteActionPerformed
         ConsultaEstudiantesGUI consultarEstudiante = new ConsultaEstudiantesGUI();
         int x = (jdpPrincipal.getWidth() / 2) - consultarEstudiante.getWidth() / 2;
@@ -267,6 +280,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiConsultarEstudianteActionPerformed
 
+    // Acción del JMenuItem consultar un préstamo
     private void jmiConsultarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarPrestamoActionPerformed
         ConsultaPrestamosGUI consultarPrestamo = new ConsultaPrestamosGUI();
         int x = (jdpPrincipal.getWidth() / 2) - consultarPrestamo.getWidth() / 2;
@@ -280,6 +294,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiConsultarPrestamoActionPerformed
 
+    // Acción del JMenuItem consultar informe de prestamos
     private void jmiInformePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiInformePrestamoActionPerformed
         JTextArea areaDeTexto = new JTextArea(20, 70);
         JScrollPane panelInforme = new JScrollPane(areaDeTexto);
@@ -308,6 +323,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiInformePrestamoActionPerformed
 
+    // Método principal que genera el GUI
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -351,6 +367,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiRegistrarLibro;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }

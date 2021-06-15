@@ -1,3 +1,11 @@
+/*
+ * Programa         : ConsultaPrestamosGUI.java
+ * Fecha            : 10/06/2021 10:03:45 a. m.
+ * Objetivo         : Programa que permite listar todos los registros presentes en la tabla prestamos de la base de datos a traves de una GUI, 
+                      de igual forma, permite realizar la busqueda de un prestamo por numero o por fecha de registro, permite consultar detales de cada uno de los prestamos.
+ * Desarrollador    : Daniel Alberto Salazar Erazo
+ */
+
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -8,12 +16,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
+    // Método constructor de la GUI con datos cargados
     public ConsultaPrestamosGUI() {
         initComponents();
         cargarListaPrestamos();
         this.setLocation(25, 15);
     }
 
+    // Método que carga la lista de préstamos en la tabla
     void cargarListaPrestamos() {
         DefaultTableModel tablaDetallesPrestamos = new DefaultTableModel();
         String[] encabezadoTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
@@ -185,6 +195,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         setBounds(0, 0, 674, 308);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Acción del botón buscar un préstamo mediante el numero o la fecha de registro
 private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPrestamoActionPerformed
     String dato = jtfDatoPrestamo.getText();
     String consultaSQL = "";
@@ -219,6 +230,7 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
     }
 }//GEN-LAST:event_jbBuscarPrestamoActionPerformed
 
+// Acción del JRadioButton consultar un préstamo mediante el número de registro
 private void jrbConsultaUnPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaUnPrestamoActionPerformed
     if (jrbConsultaUnPrestamo.isSelected() == true) {
         jtfDatoPrestamo.setEnabled(true);
@@ -226,6 +238,8 @@ private void jrbConsultaUnPrestamoActionPerformed(java.awt.event.ActionEvent evt
         jtfDatoPrestamo.requestFocus();
     }
 }//GEN-LAST:event_jrbConsultaUnPrestamoActionPerformed
+
+// Acción del JRadioButton consultar un préstamo mediante la fecha de registro
 private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaPorFechaActionPerformed
     if (jrbConsultaPorFecha.isSelected() == true) {
         jtfDatoPrestamo.setEnabled(true);
@@ -233,6 +247,8 @@ private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) 
         jtfDatoPrestamo.requestFocus();
     }
 }//GEN-LAST:event_jrbConsultaPorFechaActionPerformed
+
+// Acción del JRadioButton consultar todos los préstamos
 private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaTodosActionPerformed
     if (jrbConsultaTodos.isSelected() == true) {
         jtfDatoPrestamo.setEnabled(false);
@@ -240,6 +256,8 @@ private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//
         cargarListaPrestamos();
     }
 }//GEN-LAST:event_jrbConsultaTodosActionPerformed
+
+// Acción del JPopupMenuItem consultar detalles de un préstamo
 private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiConsultarDetallePrestamoActionPerformed
     int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
     String idPrestammo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
@@ -260,6 +278,7 @@ private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEv
     }
 }//GEN-LAST:event_jpmiConsultarDetallePrestamoActionPerformed
 
+// Acción del JPopupMenuItem eliminar detalles de un préstamo
     private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarDetallePrestamoActionPerformed
         int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
         String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
@@ -302,6 +321,7 @@ private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEv
     private javax.swing.JTextField jtfDatoPrestamo;
     // End of variables declaration//GEN-END:variables
 
+    // Instancia a la conexión de la base de datos
     ClaseConexion objConexion = new ClaseConexion();
     Connection conexionDB = objConexion.conexion();
 }
