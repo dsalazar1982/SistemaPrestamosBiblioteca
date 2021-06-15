@@ -30,7 +30,7 @@ public class ConsultaPrestamoDetalleGUI extends javax.swing.JInternalFrame {
                 tablaDetallePrestamos.addRow(registros);
             }
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 

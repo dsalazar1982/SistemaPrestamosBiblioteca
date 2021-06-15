@@ -16,8 +16,9 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpPrincipal = new javax.swing.JDesktopPane();
-        jlImagenFCECEP = new javax.swing.JLabel();
         jlTituloBiblioteca = new javax.swing.JLabel();
+        jlTituloBiblioteca1 = new javax.swing.JLabel();
+        jlTituloBiblioteca2 = new javax.swing.JLabel();
         jmbPrincipal = new javax.swing.JMenuBar();
         jmEstudiantes = new javax.swing.JMenu();
         jmiRegistrarEstudiante = new javax.swing.JMenuItem();
@@ -32,15 +33,12 @@ public class Principal extends javax.swing.JFrame {
         jmiInformePrestamo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema Biblioteca FCECEP");
+        setTitle(".: Sistema De Prestamos Biblioteca");
+        setResizable(false);
 
         jdpPrincipal.setMaximumSize(new java.awt.Dimension(1100, 900));
         jdpPrincipal.setPreferredSize(new java.awt.Dimension(1300, 640));
         jdpPrincipal.setRequestFocusEnabled(false);
-
-        jlImagenFCECEP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlImagenFCECEP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cecep.PNG"))); // NOI18N
-        jlImagenFCECEP.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jlTituloBiblioteca.setFont(new java.awt.Font("DialogInput", 3, 48)); // NOI18N
         jlTituloBiblioteca.setForeground(new java.awt.Color(255, 255, 255));
@@ -49,31 +47,49 @@ public class Principal extends javax.swing.JFrame {
         jlTituloBiblioteca.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlTituloBiblioteca.setPreferredSize(new java.awt.Dimension(200, 48));
 
-        jdpPrincipal.setLayer(jlImagenFCECEP, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jlTituloBiblioteca1.setFont(new java.awt.Font("DialogInput", 3, 48)); // NOI18N
+        jlTituloBiblioteca1.setForeground(new java.awt.Color(255, 255, 255));
+        jlTituloBiblioteca1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTituloBiblioteca1.setText("SISTEMA");
+        jlTituloBiblioteca1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlTituloBiblioteca1.setPreferredSize(new java.awt.Dimension(200, 48));
+
+        jlTituloBiblioteca2.setFont(new java.awt.Font("DialogInput", 3, 48)); // NOI18N
+        jlTituloBiblioteca2.setForeground(new java.awt.Color(255, 255, 255));
+        jlTituloBiblioteca2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTituloBiblioteca2.setText("DE PRESTAMOS");
+        jlTituloBiblioteca2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlTituloBiblioteca2.setPreferredSize(new java.awt.Dimension(200, 48));
+
         jdpPrincipal.setLayer(jlTituloBiblioteca, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jlTituloBiblioteca1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jlTituloBiblioteca2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
         jdpPrincipalLayout.setHorizontalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdpPrincipalLayout.createSequentialGroup()
-                .addContainerGap(347, Short.MAX_VALUE)
-                .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
-                        .addComponent(jlImagenFCECEP)
-                        .addGap(365, 365, 365))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
-                        .addComponent(jlTituloBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(377, 377, 377))))
+                .addGap(391, 391, 391)
+                .addComponent(jlTituloBiblioteca1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
+                .addGap(0, 327, Short.MAX_VALUE)
+                .addGroup(jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlTituloBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlTituloBiblioteca2, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(369, 369, 369))
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdpPrincipalLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(jlTituloBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jlImagenFCECEP, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(291, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpPrincipalLayout.createSequentialGroup()
+                .addContainerGap(155, Short.MAX_VALUE)
+                .addComponent(jlTituloBiblioteca1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlTituloBiblioteca2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlTituloBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(273, 273, 273))
         );
 
         jmbPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, java.awt.Color.magenta, java.awt.Color.green));
@@ -286,9 +302,9 @@ public class Principal extends javax.swing.JFrame {
                         + rs.getString("editorialLib") + "\n";
                 areaDeTexto.append(listado);
             }
-            JOptionPane.showMessageDialog(null, panelInforme, "Informe De Prestamos", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, panelInforme, "Informe De Prestamos", JOptionPane.PLAIN_MESSAGE);
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jmiInformePrestamoActionPerformed
 
@@ -318,8 +334,9 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JDesktopPane jdpPrincipal;
-    private javax.swing.JLabel jlImagenFCECEP;
     private javax.swing.JLabel jlTituloBiblioteca;
+    private javax.swing.JLabel jlTituloBiblioteca1;
+    private javax.swing.JLabel jlTituloBiblioteca2;
     private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenu jmEstudiantes;
     private javax.swing.JMenu jmLibros;

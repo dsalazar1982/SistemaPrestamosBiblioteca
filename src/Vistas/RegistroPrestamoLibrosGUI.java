@@ -23,7 +23,7 @@ public class RegistroPrestamoLibrosGUI extends javax.swing.JInternalFrame {
                 cantidad = rs.getString(4);
             }
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
         return cantidad;
     }
@@ -45,7 +45,7 @@ public class RegistroPrestamoLibrosGUI extends javax.swing.JInternalFrame {
             }
             jtDetalleLibros.setModel(tablaDetallesLibros);
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -162,7 +162,7 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
         String[] dato = new String[5];
         int registroSeleccionado = jtDetalleLibros.getSelectedRow();
         if (registroSeleccionado == -1) {
-            JOptionPane.showMessageDialog(null, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         } else {
             String isbn = jtDetalleLibros.getValueAt(registroSeleccionado, 0).toString();
             String titulo = jtDetalleLibros.getValueAt(registroSeleccionado, 1).toString();
@@ -176,7 +176,7 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
             RegistroPrestamosGUI.jtDetallePrestamo.setModel(tablaDetallePrestamo);
         }
     } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(null, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
 
@@ -193,7 +193,7 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
                 registrarLibro.setVisible(true);
             }
         } catch (Exception excepcion) {
-            JOptionPane.showMessageDialog(null, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbRegistrarLibroActionPerformed
 

@@ -62,7 +62,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             }
             jtDetalleEstudiantes.setModel(tablaDetallesEstudiante);
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -383,7 +383,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         char caracter = evt.getKeyChar();
         if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != (char) KeyEvent.VK_SPACE) && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Los nombres ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Los nombres ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfNombresEstudianteKeyTyped
 
@@ -391,7 +391,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         char caracter = evt.getKeyChar();
         if ((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z') && (caracter != (char) KeyEvent.VK_SPACE) && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "Los apellidos ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Los apellidos ingresados no son validos.\nIngrese solo texto.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfApellidosEstudianteKeyTyped
 
@@ -402,7 +402,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         }
         if ((caracter < '0' || caracter > '9') && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "El telefono ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El telefono ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfTelefonoEstudianteKeyTyped
 
@@ -436,13 +436,13 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             pst.setString(4, codigo);
             int n = pst.executeUpdate();
             if (n > 0) {
-                JOptionPane.showMessageDialog(null, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
                 bloquear();
             }
             cargar("");
             limpiar();
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbActualizarEstudianteActionPerformed
 
@@ -456,7 +456,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         consultaSQL = "INSERT INTO t_estudiantes (codigo_est, nombres_est, apellidos_est, telefono_est) VALUES (?,?,?,?)";
         try {
             if (codigo.isEmpty() || nombres.isEmpty() || apellidos.isEmpty() || telefono.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
             } else {
                 PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
                 pst.setString(1, codigo);
@@ -465,7 +465,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                 pst.setString(4, telefono);
                 int n = pst.executeUpdate();
                 if (n > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                     limpiar();
                     bloquear();
                 }
@@ -473,10 +473,10 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             }
         } catch (SQLException excepcion) {
             if (excepcion.getSQLState().equalsIgnoreCase("23000")) {
-                JOptionPane.showMessageDialog(null, "El codigo " + codigo + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El codigo " + codigo + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
                 jtfCodigoEstudiante.requestFocus();
             } else {
-                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbGuardarEstudianteActionPerformed
@@ -510,10 +510,10 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             try {
                 PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_estudiantes WHERE Codigo_est='" + codigo + "'");
                 pst.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                 cargar("");
             } catch (SQLException excepcion) {
-                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
@@ -524,7 +524,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         char caracter = evt.getKeyChar();
         if ((caracter < '0' || caracter > '9') && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
             evt.consume();
-            JOptionPane.showMessageDialog(null, "El codigo ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El codigo ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jtfCodigoEstudianteKeyTyped
 

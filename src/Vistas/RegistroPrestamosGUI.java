@@ -42,7 +42,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
                 jtfIdPrestamo.setText(gen.serie());
             }
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -58,10 +58,10 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
             pst.setString(3, codigoEstudiante);
             int n = pst.executeUpdate();
             if (n > 0) {
-                JOptionPane.showMessageDialog(null, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -76,7 +76,7 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
                 pst.setString(2, isbn);
                 pst.executeUpdate();
             } catch (SQLException excepcion) {
-                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -438,7 +438,7 @@ private void jbSeleccionarLibroActionPerformed(java.awt.event.ActionEvent evt) {
             agregarLibro.setVisible(true);
         }
     } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(null, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jbSeleccionarLibroActionPerformed
 
@@ -479,7 +479,7 @@ private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GE
     if (registroSeleccionado >= 0) {
         tablaDetallePrestamo.removeRow(registroSeleccionado);
     } else {
-        JOptionPane.showMessageDialog(null, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
     }
 }//GEN-LAST:event_jbRetirarLibroActionPerformed
 

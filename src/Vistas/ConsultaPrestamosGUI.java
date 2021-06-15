@@ -31,7 +31,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
                 tablaDetallesPrestamos.addRow(registros);
             }
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -215,7 +215,7 @@ private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//
             tablaDetallesPrestamos.addRow(registros);
         }
     } catch (SQLException excepcion) {
-        JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jbBuscarPrestamoActionPerformed
 
@@ -244,7 +244,7 @@ private void jpmiVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent ev
     int filaSeleccionada = jtDetallePrestamos.getSelectedRow();
     String idPrestammo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();
     if (filaSeleccionada == -1) {
-        JOptionPane.showMessageDialog(null, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
     } else {
         ConsultaPrestamoDetalleGUI detallePrestamo = new ConsultaPrestamoDetalleGUI();
         detallePrestamo.cargarListaPrestamos(idPrestammo);
@@ -268,7 +268,7 @@ private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEve
             PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'");
             pst.executeUpdate();
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
         cargarListaPrestamos();
     } else {

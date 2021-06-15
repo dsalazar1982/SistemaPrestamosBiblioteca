@@ -62,7 +62,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             }
             jtDetalleLibros.setModel(tablaDetallesLibros);
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -338,7 +338,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         consultaSQL = "INSERT INTO t_libros (isbn, titulo_lib, editorial_lib, ano_publicacion) VALUES (?,?,?,?)";
         try {
             if (isbn.isEmpty() || titulo.isEmpty() || editorial.isEmpty() || anoPublicacion.equalsIgnoreCase("AAAA-MM-DD")) {
-                JOptionPane.showMessageDialog(null, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Diligencie todos los campos.", "Informacion incompleta", JOptionPane.WARNING_MESSAGE);
             } else {
                 PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
                 pst.setString(1, isbn);
@@ -347,7 +347,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
                 pst.setString(4, anoPublicacion);
                 int n = pst.executeUpdate();
                 if (n > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                     bloquear();
                 }
                 cargar("");
@@ -356,10 +356,10 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             placeHolder();
         } catch (SQLException excepcion) {
             if (excepcion.getSQLState().equalsIgnoreCase("23000")) {
-                JOptionPane.showMessageDialog(null, "El codigo ISBN " + isbn + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El codigo ISBN " + isbn + " ya existe en el sistema.", "Informacion invalida", JOptionPane.ERROR_MESSAGE);
                 jtfISBNLibro.requestFocus();
             } else {
-                JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jbGuardarLibroActionPerformed
@@ -397,17 +397,17 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         int eliminarSeleccion = jtDetalleLibros.getSelectedRow();
         try {
             if (eliminarSeleccion == -1) {
-                JOptionPane.showMessageDialog(null, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
                 String isbn = (String) jtDetalleLibros.getValueAt(eliminarSeleccion, 0);
                 String eliminarSQL = "DELETE FROM t_libros WHERE isbn = '" + isbn + "'";
                 try {
                     PreparedStatement pst = conexionDB.prepareStatement(eliminarSQL);
                     pst.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                     cargar("");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error al elimianr registro: " + e, "Eliminacion fallo", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Error al elimianr registro: " + e, "Eliminacion fallo", JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception e) {
@@ -430,7 +430,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             pst.setString(4, isbn);
             int n = pst.executeUpdate();
             if (n > 0) {
-                JOptionPane.showMessageDialog(null, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
                 bloquear();
             }
             cargar("");
@@ -438,7 +438,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             bloquear();
             placeHolder();
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbActualizarLibroActionPerformed
 

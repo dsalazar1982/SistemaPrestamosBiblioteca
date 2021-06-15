@@ -31,7 +31,7 @@ public class RegistroPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
             }
             jtDetallesEstudiantes.setModel(tablaDetallesEstudiantes);
         } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(null, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -167,7 +167,7 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
     int registroSeleccionado = jtDetallesEstudiantes.getSelectedRow();
     try {
         if (registroSeleccionado == -1) {
-            JOptionPane.showMessageDialog(null, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         } else {
             codigo = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 0);
             nombres = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 1);
@@ -184,7 +184,7 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
             this.dispose();
         }
     } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(null, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
 private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarEstudianteActionPerformed
@@ -200,7 +200,7 @@ private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt
             registrarEstudiante.setVisible(true);
         }
     } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(null, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }//GEN-LAST:event_jbRegistrarEstudianteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
