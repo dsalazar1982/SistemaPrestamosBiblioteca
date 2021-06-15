@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.62, for Win64 (AMD64)
 --
--- Host: 10.0.0.51    Database: db_bibliotecaFCECEP
+-- Host: 10.0.0.51    Database: db_SistemaPrestamosBiblioteca
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.3.27-MariaDB-0+deb10u1-log
 
@@ -16,12 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `db_bibliotecaFCECEP`
+-- Current Database: `db_SistemaPrestamosBiblioteca`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `db_bibliotecaFCECEP` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `db_SistemaPrestamosBiblioteca` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci */;
 
-USE `db_bibliotecaFCECEP`;
+USE `db_SistemaPrestamosBiblioteca`;
 
 --
 -- Table structure for table `t_detalles_prestamos`
@@ -34,8 +34,12 @@ CREATE TABLE `t_detalles_prestamos` (
   `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
   `id_prestamo` int(11) NOT NULL,
   `isbn` int(11) NOT NULL,
-  PRIMARY KEY (`id_detalle`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+  PRIMARY KEY (`id_detalle`),
+  KEY `t_detalles_prestamos_FK` (`isbn`),
+  KEY `t_detalles_prestamos_FK_1` (`id_prestamo`),
+  CONSTRAINT `t_detalles_prestamos_FK` FOREIGN KEY (`isbn`) REFERENCES `t_libros` (`ISBN`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `t_detalles_prestamos_FK_1` FOREIGN KEY (`id_prestamo`) REFERENCES `t_prestamos` (`id_prestamo`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +48,7 @@ CREATE TABLE `t_detalles_prestamos` (
 
 LOCK TABLES `t_detalles_prestamos` WRITE;
 /*!40000 ALTER TABLE `t_detalles_prestamos` DISABLE KEYS */;
-INSERT INTO `t_detalles_prestamos` VALUES (1,1,2021001),(2,1,2021004),(3,1,2021001),(4,1,2021002),(5,2,2021001),(6,2,2010001),(7,2,2021001),(8,2,2021003),(9,3,2021000),(10,3,2021003),(11,3,2021000),(12,4,2021001),(13,4,2021001),(14,4,2021000),(16,5,2021000),(17,5,2021001),(18,6,2021000),(19,6,2021003),(20,6,2021001),(21,6,1),(22,17,2021001),(23,15,2021004),(24,15,2021003),(25,15,2021002),(26,15,2021001);
+INSERT INTO `t_detalles_prestamos` VALUES (45,5,2021061301),(46,5,2021061303),(47,5,2021061305),(48,6,2021010104),(49,6,2021061301),(50,6,2021061302),(51,7,2021010104),(52,8,2021010104),(53,8,2021061302);
 /*!40000 ALTER TABLE `t_detalles_prestamos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +74,7 @@ CREATE TABLE `t_estudiantes` (
 
 LOCK TABLES `t_estudiantes` WRITE;
 /*!40000 ALTER TABLE `t_estudiantes` DISABLE KEYS */;
-INSERT INTO `t_estudiantes` VALUES (2021031000,'DIANA','SABOGAL','3212100'),(2021031001,'PEPITO','PEREZ','3212100'),(2021031002,'MARIA','LARRAONDO','895541789'),(2021061001,'BENITO','CAMELAS','5788475'),(2021061002,'MANUELA','BELTRAN SAS','5552255'),(2021061003,'BOB','ESPONJA','552255'),(2021061004,'ALEJANDRO','LERNER','8882245'),(2021061005,'SIMON','BOLIVAR','8987844');
+INSERT INTO `t_estudiantes` VALUES (1001,'DIANA MARIA','GALINDO SUAREZ','3212100'),(1002,'ANGEL JOSE','MURCIA ESCOBAR','3212100'),(1003,'DANIEL MANUEL','PEREZ IPIA','3212100'),(1005,'CRISTIAN EDUARDO','CORTES PALENCIA','3212100'),(2001,'INES JANETH','CALDAS GOMEZ','3212100'),(2002,'JUAN SEBASTIAN','CAMPO SANCHEZ','3212100'),(2003,'JORGE ANDRES','MORALES TRUJILLO','3212100'),(2004,'LUIS EDUARDO','SANCHEZ JIMENEZ','3212100');
 /*!40000 ALTER TABLE `t_estudiantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +100,7 @@ CREATE TABLE `t_libros` (
 
 LOCK TABLES `t_libros` WRITE;
 /*!40000 ALTER TABLE `t_libros` DISABLE KEYS */;
-INSERT INTO `t_libros` VALUES (2021001,'PROGRAMACION','RAMA','2021-06-10'),(2021002,'BASE DE DATOS','PERSON','2012-01-06'),(2021003,'LARAVEL','USERS','2010-06-12'),(2021004,'SQL','TURPIAL','2015-06-02'),(2021005,'ANGULAR','PIRAMIDE','2017-12-12');
+INSERT INTO `t_libros` VALUES (2021010101,'COMO DISEÑAR CON EXITO','DINERS','2010-04-17'),(2021010103,'PHP8','PHP','2021-06-13'),(2021010104,'BONAY, ARTE MILENARIO','FENSHUI','2000-08-23'),(2021061301,'LA BIBLIA DEL SOFTWARE LIBRE','PERSON','2001-01-31'),(2021061302,'TODO SOBRE SQL','RA-MA','2021-06-13'),(2021061303,'LINUX A FONDO','McGRADO','2015-06-06'),(2021061304,'PROGRAMADOR FULL STACK','USERS','2020-12-24'),(2021061305,'DIETA SALUDABLE','HEALD','2021-05-13');
 /*!40000 ALTER TABLE `t_libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +115,9 @@ CREATE TABLE `t_prestamos` (
   `id_prestamo` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `codigo_est` int(11) NOT NULL,
-  PRIMARY KEY (`id_prestamo`)
+  PRIMARY KEY (`id_prestamo`),
+  KEY `t_prestamos_FK` (`codigo_est`),
+  CONSTRAINT `t_prestamos_FK` FOREIGN KEY (`codigo_est`) REFERENCES `t_estudiantes` (`codigo_est`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -121,12 +127,12 @@ CREATE TABLE `t_prestamos` (
 
 LOCK TABLES `t_prestamos` WRITE;
 /*!40000 ALTER TABLE `t_prestamos` DISABLE KEYS */;
-INSERT INTO `t_prestamos` VALUES (1,'2005-07-23',2021031001),(2,'2005-07-23',2021061002),(3,'2021-06-12',2021031000),(4,'2021-06-12',2021031002),(5,'2017-03-17',2021031000),(7,'2000-01-31',2021061004),(9,'2021-06-13',2021031000),(10,'2021-06-13',2021031000),(11,'2021-06-13',2021031001),(12,'2021-06-13',2021031001),(13,'2021-06-13',2021031000);
+INSERT INTO `t_prestamos` VALUES (5,'2021-06-14',2002),(6,'2021-06-14',2002),(7,'2021-06-14',1002),(8,'2021-06-15',1001);
 /*!40000 ALTER TABLE `t_prestamos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'db_bibliotecaFCECEP'
+-- Dumping routines for database 'db_SistemaPrestamosBiblioteca'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -138,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-13 10:26:52
+-- Dump completed on 2021-06-15  8:10:56
