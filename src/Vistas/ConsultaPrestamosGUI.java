@@ -267,9 +267,11 @@ private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEv
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
                 String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
+                String consultaSQL = "DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'";
                 try {
-                    PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'");
+                    PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
                     pst.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException excepcion) {
                     JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
                 }

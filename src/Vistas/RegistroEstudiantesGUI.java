@@ -12,7 +12,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     public RegistroEstudiantesGUI() {
         initComponents();
         bloquear();
-        cargar("");
+        cargarListaEstudiantes("");
     }
 
     void bloquear() {
@@ -45,7 +45,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         jbActualizarEstudiante.setEnabled(true);
     }
 
-    void cargar(String dato) {
+    void cargarListaEstudiantes(String dato) {
         String consultaSQL = "SELECT * FROM t_estudiantes WHERE CONCAT(codigo_est, nombres_est, apellidos_est, telefono_est) LIKE '%" + dato + "%'";
         String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
         String[] registros = new String[4];
@@ -439,7 +439,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
                 bloquear();
             }
-            cargar("");
+            cargarListaEstudiantes("");
             limpiar();
         } catch (SQLException excepcion) {
             JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
@@ -469,7 +469,7 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                     limpiar();
                     bloquear();
                 }
-                cargar("");
+                cargarListaEstudiantes("");
             }
         } catch (SQLException excepcion) {
             if (excepcion.getSQLState().equalsIgnoreCase("23000")) {
@@ -509,14 +509,15 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
                 String codigo = jtDetalleEstudiantes.getValueAt(registroSeleccionado, 0).toString();
+                String consultaSQL = "DELETE FROM t_estudiantes WHERE Codigo_est='" + codigo + "'";
                 try {
-                    PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_estudiantes WHERE Codigo_est='" + codigo + "'");
+                    PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-                    cargar("");
                 } catch (SQLException excepcion) {
                     JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
                 }
+                cargarListaEstudiantes("");
             }
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

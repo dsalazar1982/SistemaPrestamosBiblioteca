@@ -13,7 +13,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         initComponents();
         this.setLocation(150, 15);
         bloquear();
-        cargar("");
+        cargarListaLibros("");
         placeHolder();
     }
 
@@ -45,7 +45,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jbCancelar.setEnabled(true);
     }
 
-    void cargar(String dato) {
+    void cargarListaLibros(String dato) {
         String consultaSQL = "SELECT * FROM t_libros WHERE CONCAT(isbn, titulo_lib, editorial_lib, ano_publicacion) LIKE '%" + dato + "%'";
         String[] encabezadoTabla = {"ISBN", "TITULO", "EDITORIAL", "AÑO"};
         String[] registros = new String[4];
@@ -350,7 +350,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, "Registro guardado con exito", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                     bloquear();
                 }
-                cargar("");
+                cargarListaLibros("");
                 limpiar();
             }
             placeHolder();
@@ -399,16 +399,16 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             if (registroSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
-                String isbn = (String) jtDetalleLibros.getValueAt(registroSeleccionado, 0);
-                String eliminarSQL = "DELETE FROM t_libros WHERE isbn = '" + isbn + "'";
+                String isbn = jtDetalleLibros.getValueAt(registroSeleccionado, 0).toString();
+                String consultaSQL = "DELETE FROM t_libros WHERE isbn = '" + isbn + "'";
                 try {
-                    PreparedStatement pst = conexionDB.prepareStatement(eliminarSQL);
+                    PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-                    cargar("");
                 } catch (SQLException excepcion) {
                     JOptionPane.showMessageDialog(this, "Error al elimianr registro: " + excepcion, "Eliminacion fallo", JOptionPane.ERROR_MESSAGE);
                 }
+                cargarListaLibros("");
             }
         } catch (Exception excepcion) {
             JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -434,7 +434,7 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
                 bloquear();
             }
-            cargar("");
+            cargarListaLibros("");
             limpiar();
             bloquear();
             placeHolder();
