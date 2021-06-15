@@ -262,15 +262,15 @@ private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEv
 
     private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarDetallePrestamoActionPerformed
         int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
+        String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
         try {
             if (registroSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
-                int respuesta = JOptionPane.showConfirmDialog(this, "Realmente desea eliminar el registro: " + registroSeleccionado,
+                int respuesta = JOptionPane.showConfirmDialog(this, "Realmente desea eliminar el prestamo con numero: " + codigo,
                         "Eliminar registro?", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (respuesta == 0) {
-                    String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
                     String consultaSQL = "DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'";
                     try {
                         PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);

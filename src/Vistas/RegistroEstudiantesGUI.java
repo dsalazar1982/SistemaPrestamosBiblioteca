@@ -504,15 +504,15 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
 
     private void jpmiEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarEstudianteActionPerformed
         int registroSeleccionado = jtDetalleEstudiantes.getSelectedRow();
+        String codigo = jtDetalleEstudiantes.getValueAt(registroSeleccionado, 0).toString();
         try {
             if (registroSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
-                int respuesta = JOptionPane.showConfirmDialog(this, "Realmente desea eliminar el registro: " + registroSeleccionado,
+                int respuesta = JOptionPane.showConfirmDialog(this, "Realmente desea eliminar el estudiante con codigo: " + codigo,
                         "Eliminar registro?", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (respuesta == 0) {
-                    String codigo = jtDetalleEstudiantes.getValueAt(registroSeleccionado, 0).toString();
                     String consultaSQL = "DELETE FROM t_estudiantes WHERE Codigo_est='" + codigo + "'";
                     try {
                         PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
