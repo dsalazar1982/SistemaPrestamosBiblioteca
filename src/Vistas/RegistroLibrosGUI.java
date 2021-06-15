@@ -394,23 +394,24 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jpmiActualizarLibroActionPerformed
 
     private void jpmiEliminarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarLibroActionPerformed
-        int eliminarSeleccion = jtDetalleLibros.getSelectedRow();
+        int registroSeleccionado = jtDetalleLibros.getSelectedRow();
         try {
-            if (eliminarSeleccion == -1) {
+            if (registroSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
             } else {
-                String isbn = (String) jtDetalleLibros.getValueAt(eliminarSeleccion, 0);
+                String isbn = (String) jtDetalleLibros.getValueAt(registroSeleccionado, 0);
                 String eliminarSQL = "DELETE FROM t_libros WHERE isbn = '" + isbn + "'";
                 try {
                     PreparedStatement pst = conexionDB.prepareStatement(eliminarSQL);
                     pst.executeUpdate();
                     JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
                     cargar("");
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(this, "Error al elimianr registro: " + e, "Eliminacion fallo", JOptionPane.ERROR_MESSAGE);
+                } catch (SQLException excepcion) {
+                    JOptionPane.showMessageDialog(this, "Error al elimianr registro: " + excepcion, "Eliminacion fallo", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jpmiEliminarLibroActionPerformed
 

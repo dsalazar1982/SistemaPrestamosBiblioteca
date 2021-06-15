@@ -10,13 +10,13 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <MenuItem class="javax.swing.JMenuItem" name="jpmiVerDetallePrestamo">
+        <MenuItem class="javax.swing.JMenuItem" name="jpmiConsultarDetallePrestamo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver Detalle"/>
             <Property name="actionCommand" type="java.lang.String" value="Ver Detalle Prestamo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmiVerDetallePrestamoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jpmiConsultarDetallePrestamoActionPerformed"/>
           </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jpmiEliminarDetallePrestamo">

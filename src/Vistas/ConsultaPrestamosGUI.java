@@ -41,7 +41,7 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
 
         jbgBuscarPrestamo = new javax.swing.ButtonGroup();
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        jpmiVerDetallePrestamo = new javax.swing.JMenuItem();
+        jpmiConsultarDetallePrestamo = new javax.swing.JMenuItem();
         jpmiEliminarDetallePrestamo = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jrbConsultaUnPrestamo = new javax.swing.JRadioButton();
@@ -52,14 +52,14 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtDetallePrestamos = new javax.swing.JTable();
 
-        jpmiVerDetallePrestamo.setText("Ver Detalle");
-        jpmiVerDetallePrestamo.setActionCommand("Ver Detalle Prestamo");
-        jpmiVerDetallePrestamo.addActionListener(new java.awt.event.ActionListener() {
+        jpmiConsultarDetallePrestamo.setText("Ver Detalle");
+        jpmiConsultarDetallePrestamo.setActionCommand("Ver Detalle Prestamo");
+        jpmiConsultarDetallePrestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jpmiVerDetallePrestamoActionPerformed(evt);
+                jpmiConsultarDetallePrestamoActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(jpmiVerDetallePrestamo);
+        jPopupMenu1.add(jpmiConsultarDetallePrestamo);
 
         jpmiEliminarDetallePrestamo.setText("Eliminar Prestamo");
         jpmiEliminarDetallePrestamo.addActionListener(new java.awt.event.ActionListener() {
@@ -240,10 +240,10 @@ private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//
         cargarListaPrestamos();
     }
 }//GEN-LAST:event_jrbConsultaTodosActionPerformed
-private void jpmiVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiVerDetallePrestamoActionPerformed
-    int filaSeleccionada = jtDetallePrestamos.getSelectedRow();
-    String idPrestammo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();
-    if (filaSeleccionada == -1) {
+private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiConsultarDetallePrestamoActionPerformed
+    int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
+    String idPrestammo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
+    if (registroSeleccionado == -1) {
         JOptionPane.showMessageDialog(this, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
     } else {
         ConsultaPrestamoDetalleGUI detallePrestamo = new ConsultaPrestamoDetalleGUI();
@@ -258,23 +258,27 @@ private void jpmiVerDetallePrestamoActionPerformed(java.awt.event.ActionEvent ev
             detallePrestamo.setVisible(true);
         }
     }
-}//GEN-LAST:event_jpmiVerDetallePrestamoActionPerformed
+}//GEN-LAST:event_jpmiConsultarDetallePrestamoActionPerformed
 
-private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarDetallePrestamoActionPerformed
-    int filaSeleccionada = jtDetallePrestamos.getSelectedRow();
-    if (filaSeleccionada >= 0) {
-        String codigo = jtDetallePrestamos.getValueAt(filaSeleccionada, 0).toString();
+    private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarDetallePrestamoActionPerformed
+        int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
         try {
-            PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'");
-            pst.executeUpdate();
-        } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            if (registroSeleccionado == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
+            } else {
+                String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
+                try {
+                    PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_prestamos WHERE id_prestamo='" + codigo + "'");
+                    pst.executeUpdate();
+                } catch (SQLException excepcion) {
+                    JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                }
+                cargarListaPrestamos();
+            }
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        cargarListaPrestamos();
-    } else {
-        JOptionPane.showMessageDialog(this, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
-    }
-}//GEN-LAST:event_jpmiEliminarDetallePrestamoActionPerformed
+    }//GEN-LAST:event_jpmiEliminarDetallePrestamoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
@@ -282,8 +286,8 @@ private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEve
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscarPrestamo;
     private javax.swing.ButtonGroup jbgBuscarPrestamo;
+    private javax.swing.JMenuItem jpmiConsultarDetallePrestamo;
     private javax.swing.JMenuItem jpmiEliminarDetallePrestamo;
-    private javax.swing.JMenuItem jpmiVerDetallePrestamo;
     private javax.swing.JRadioButton jrbConsultaPorFecha;
     private javax.swing.JRadioButton jrbConsultaTodos;
     private javax.swing.JRadioButton jrbConsultaUnPrestamo;

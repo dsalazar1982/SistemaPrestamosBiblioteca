@@ -503,20 +503,23 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jpmiActualizarEstudianteActionPerformed
 
     private void jpmiEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarEstudianteActionPerformed
-        int eliminarRegistro = jtDetalleEstudiantes.getSelectedRow();
-        String codigo = "";
-        codigo = jtDetalleEstudiantes.getValueAt(eliminarRegistro, 0).toString();
-        if (eliminarRegistro >= 0) {
-            try {
-                PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_estudiantes WHERE Codigo_est='" + codigo + "'");
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-                cargar("");
-            } catch (SQLException excepcion) {
-                JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+        int registroSeleccionado = jtDetalleEstudiantes.getSelectedRow();
+        try {
+            if (registroSeleccionado == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un registro.", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
+            } else {
+                String codigo = jtDetalleEstudiantes.getValueAt(registroSeleccionado, 0).toString();
+                try {
+                    PreparedStatement pst = conexionDB.prepareStatement("DELETE FROM t_estudiantes WHERE Codigo_est='" + codigo + "'");
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Registro borrado exitosamente.", "Eliminacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    cargar("");
+                } catch (SQLException excepcion) {
+                    JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+                }
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "No ha seleccionado un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jpmiEliminarEstudianteActionPerformed
 
