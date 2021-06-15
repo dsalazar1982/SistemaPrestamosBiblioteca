@@ -5,7 +5,6 @@
                       de igual forma, permite realizar registro de un estudiante.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -392,6 +391,15 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Método que valida el campo de texto del código del estudiante sea solo números
+    private void jtfCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyTyped
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0' || caracter > '9') && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "El codigo ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jtfCodigoEstudianteKeyTyped
+
     // Método que valida el campo de texto del nombre del estudiante sea solo texto
     private void jtfNombresEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombresEstudianteKeyTyped
         char caracter = evt.getKeyChar();
@@ -551,15 +559,6 @@ public class RegistroEstudiantesGUI extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jpmiEliminarEstudianteActionPerformed
-
-    // Método que valida el campo de texto del código del estudiante sea solo números
-    private void jtfCodigoEstudianteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyTyped
-        char caracter = evt.getKeyChar();
-        if ((caracter < '0' || caracter > '9') && (caracter != (char) KeyEvent.VK_BACK_SPACE) && (caracter != (char) KeyEvent.VK_DELETE)) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "El codigo ingresado no es valido.\nIngrese solo numeros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_jtfCodigoEstudianteKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu jPopupMenu1;

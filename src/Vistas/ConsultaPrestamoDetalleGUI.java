@@ -5,7 +5,6 @@
                       detalles de cada uno de los prestamos.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;

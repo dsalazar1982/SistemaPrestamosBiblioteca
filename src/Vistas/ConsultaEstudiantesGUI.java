@@ -5,7 +5,6 @@
                       de igual forma, permite realizar la busqueda de un estudiante por codigo.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -146,49 +145,49 @@ public class ConsultaEstudiantesGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-// Acción del botón buscar estudiante mediante el código de estudiante
-private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarEstudianteActionPerformed
-    if (jrbConsultarUnEstudiante.isSelected() == true) {
-        String dato = jtfCodigoEstudiante.getText();
-        DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
-        String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
-        tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
-        this.jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
-        try {
-            String consultaSQL = "SELECT * FROM t_estudiantes WHERE codigo_est='" + dato + "'";
-            String[] registros = new String[4];
-            Statement st = conexionDB.createStatement();
-            ResultSet rs = st.executeQuery(consultaSQL);
-            while (rs.next()) {
-                registros[0] = rs.getString("codigo_est");
-                registros[1] = rs.getString("nombres_est");
-                registros[2] = rs.getString("apellidos_est");
-                registros[3] = rs.getString("telefono_est");
-                tablaDetalleEstudiantes.addRow(registros);
-            }
-            jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
-        } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-}//GEN-LAST:event_jbBuscarEstudianteActionPerformed
-
-// Acción del JRadioButton consultar todos los estudiantes
-private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosEstudianteActionPerformed
-    if (jrbConsultarTodosEstudiante.isSelected() == true) {
-        jtfCodigoEstudiante.setText("");
-        jtfCodigoEstudiante.setEnabled(false);
-        cargarListaEstudiantes();
-    }
-}//GEN-LAST:event_jrbConsultarTodosEstudianteActionPerformed
-
-// Acción del JRadioButton consultar un estudiante
+    // Acción del JRadioButton consultar un estudiante
     private void jrbConsultarUnEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnEstudianteActionPerformed
         if (jrbConsultarUnEstudiante.isSelected() == true) {
             jtfCodigoEstudiante.setEnabled(true);
             jtfCodigoEstudiante.requestFocus();
         }
     }//GEN-LAST:event_jrbConsultarUnEstudianteActionPerformed
+
+    // Acción del JRadioButton consultar todos los estudiantes
+    private void jrbConsultarTodosEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosEstudianteActionPerformed
+        if (jrbConsultarTodosEstudiante.isSelected() == true) {
+            jtfCodigoEstudiante.setText("");
+            jtfCodigoEstudiante.setEnabled(false);
+            cargarListaEstudiantes();
+        }
+    }//GEN-LAST:event_jrbConsultarTodosEstudianteActionPerformed
+
+    // Acción del botón buscar estudiante mediante el código de estudiante
+    private void jbBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarEstudianteActionPerformed
+        if (jrbConsultarUnEstudiante.isSelected() == true) {
+            String dato = jtfCodigoEstudiante.getText();
+            DefaultTableModel tablaDetalleEstudiantes = new DefaultTableModel();
+            String[] encabezadoTabla = {"CODIGO", "NOMBRES", "APELLIDOS", "TELEFONO"};
+            tablaDetalleEstudiantes.setColumnIdentifiers(encabezadoTabla);
+            this.jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
+            try {
+                String consultaSQL = "SELECT * FROM t_estudiantes WHERE codigo_est='" + dato + "'";
+                String[] registros = new String[4];
+                Statement st = conexionDB.createStatement();
+                ResultSet rs = st.executeQuery(consultaSQL);
+                while (rs.next()) {
+                    registros[0] = rs.getString("codigo_est");
+                    registros[1] = rs.getString("nombres_est");
+                    registros[2] = rs.getString("apellidos_est");
+                    registros[3] = rs.getString("telefono_est");
+                    tablaDetalleEstudiantes.addRow(registros);
+                }
+                jtDetalleEstudiantes.setModel(tablaDetalleEstudiantes);
+            } catch (SQLException excepcion) {
+                JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jbBuscarEstudianteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

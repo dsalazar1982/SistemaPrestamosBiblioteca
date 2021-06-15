@@ -5,7 +5,6 @@
                       de igual forma, permite realizar la busqueda de un prestamo por numero o por fecha de registro, permite consultar detales de cada uno de los prestamos.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -195,90 +194,90 @@ public class ConsultaPrestamosGUI extends javax.swing.JInternalFrame {
         setBounds(0, 0, 674, 308);
     }// </editor-fold>//GEN-END:initComponents
 
+    // Acción del JRadioButton consultar un préstamo mediante el número de registro
+    private void jrbConsultaUnPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaUnPrestamoActionPerformed
+        if (jrbConsultaUnPrestamo.isSelected() == true) {
+            jtfDatoPrestamo.setEnabled(true);
+            jtfDatoPrestamo.setText("");
+            jtfDatoPrestamo.requestFocus();
+        }
+    }//GEN-LAST:event_jrbConsultaUnPrestamoActionPerformed
+
+    // Acción del JRadioButton consultar un préstamo mediante la fecha de registro
+    private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaPorFechaActionPerformed
+        if (jrbConsultaPorFecha.isSelected() == true) {
+            jtfDatoPrestamo.setEnabled(true);
+            jtfDatoPrestamo.setText("");
+            jtfDatoPrestamo.requestFocus();
+        }
+    }//GEN-LAST:event_jrbConsultaPorFechaActionPerformed
+
+    // Acción del JRadioButton consultar todos los préstamos
+    private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaTodosActionPerformed
+        if (jrbConsultaTodos.isSelected() == true) {
+            jtfDatoPrestamo.setEnabled(false);
+            jtfDatoPrestamo.setText("");
+            cargarListaPrestamos();
+        }
+    }//GEN-LAST:event_jrbConsultaTodosActionPerformed
+
     // Acción del botón buscar un préstamo mediante el numero o la fecha de registro
-private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPrestamoActionPerformed
-    String dato = jtfDatoPrestamo.getText();
-    String consultaSQL = "";
-    if (jrbConsultaUnPrestamo.isSelected() == true) {
-        consultaSQL = "SELECT * FROM t_prestamos WHERE id_prestamo='" + dato + "'";
-    }
-    if (jrbConsultaPorFecha.isSelected() == true) {
-        String fecha = jtfDatoPrestamo.getText();
-        consultaSQL = "SELECT * FROM t_prestamos WHERE fecha='" + fecha + "'";
-    }
-    if (jrbConsultaTodos.isSelected() == true) {
-        consultaSQL = "SELECT * FROM t_prestamos";
-        jtfDatoPrestamo.setText("");
-        jtfDatoPrestamo.setEnabled(false);
-    }
-    DefaultTableModel tablaDetallesPrestamos = new DefaultTableModel();
-    String[] encabezadoTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
-    tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
-    this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
-    String[] registros = new String[4];
-    try {
-        Statement st = conexionDB.createStatement();
-        ResultSet rs = st.executeQuery(consultaSQL);
-        while (rs.next()) {
-            registros[0] = rs.getString("id_prestamo");
-            registros[1] = rs.getString("fecha");
-            registros[2] = rs.getString("codigo_est");
-            tablaDetallesPrestamos.addRow(registros);
+    private void jbBuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPrestamoActionPerformed
+        String dato = jtfDatoPrestamo.getText();
+        String consultaSQL = "";
+        if (jrbConsultaUnPrestamo.isSelected() == true) {
+            consultaSQL = "SELECT * FROM t_prestamos WHERE id_prestamo='" + dato + "'";
         }
-    } catch (SQLException excepcion) {
-        JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
-    }
-}//GEN-LAST:event_jbBuscarPrestamoActionPerformed
+        if (jrbConsultaPorFecha.isSelected() == true) {
+            String fecha = jtfDatoPrestamo.getText();
+            consultaSQL = "SELECT * FROM t_prestamos WHERE fecha='" + fecha + "'";
+        }
+        if (jrbConsultaTodos.isSelected() == true) {
+            consultaSQL = "SELECT * FROM t_prestamos";
+            jtfDatoPrestamo.setText("");
+            jtfDatoPrestamo.setEnabled(false);
+        }
+        DefaultTableModel tablaDetallesPrestamos = new DefaultTableModel();
+        String[] encabezadoTabla = {"NUMERO", "FECHA DE PRESTAMO", "CODIGO DE ESTUDIANTE"};
+        tablaDetallesPrestamos.setColumnIdentifiers(encabezadoTabla);
+        this.jtDetallePrestamos.setModel(tablaDetallesPrestamos);
+        String[] registros = new String[4];
+        try {
+            Statement st = conexionDB.createStatement();
+            ResultSet rs = st.executeQuery(consultaSQL);
+            while (rs.next()) {
+                registros[0] = rs.getString("id_prestamo");
+                registros[1] = rs.getString("fecha");
+                registros[2] = rs.getString("codigo_est");
+                tablaDetallesPrestamos.addRow(registros);
+            }
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jbBuscarPrestamoActionPerformed
 
-// Acción del JRadioButton consultar un préstamo mediante el número de registro
-private void jrbConsultaUnPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaUnPrestamoActionPerformed
-    if (jrbConsultaUnPrestamo.isSelected() == true) {
-        jtfDatoPrestamo.setEnabled(true);
-        jtfDatoPrestamo.setText("");
-        jtfDatoPrestamo.requestFocus();
-    }
-}//GEN-LAST:event_jrbConsultaUnPrestamoActionPerformed
-
-// Acción del JRadioButton consultar un préstamo mediante la fecha de registro
-private void jrbConsultaPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaPorFechaActionPerformed
-    if (jrbConsultaPorFecha.isSelected() == true) {
-        jtfDatoPrestamo.setEnabled(true);
-        jtfDatoPrestamo.setText("");
-        jtfDatoPrestamo.requestFocus();
-    }
-}//GEN-LAST:event_jrbConsultaPorFechaActionPerformed
-
-// Acción del JRadioButton consultar todos los préstamos
-private void jrbConsultaTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultaTodosActionPerformed
-    if (jrbConsultaTodos.isSelected() == true) {
-        jtfDatoPrestamo.setEnabled(false);
-        jtfDatoPrestamo.setText("");
-        cargarListaPrestamos();
-    }
-}//GEN-LAST:event_jrbConsultaTodosActionPerformed
-
-// Acción del JPopupMenuItem consultar detalles de un préstamo
-private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiConsultarDetallePrestamoActionPerformed
-    int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
-    String idPrestammo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
-    if (registroSeleccionado == -1) {
-        JOptionPane.showMessageDialog(this, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
-    } else {
-        ConsultaPrestamoDetalleGUI detallePrestamo = new ConsultaPrestamoDetalleGUI();
-        detallePrestamo.cargarListaPrestamos(idPrestammo);
-        int x = (Principal.jdpPrincipal.getWidth() / 2) - detallePrestamo.getWidth() / 2;
-        int y = (Principal.jdpPrincipal.getHeight() / 2) - detallePrestamo.getHeight() / 2;
-        if (detallePrestamo.isShowing()) {
-            detallePrestamo.setLocation(x, y);
+    // Acción del JPopupMenuItem consultar detalles de un préstamo
+    private void jpmiConsultarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiConsultarDetallePrestamoActionPerformed
+        int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
+        String idPrestammo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();
+        if (registroSeleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "No seleciono un registro", "Seleccion invalida", JOptionPane.WARNING_MESSAGE);
         } else {
-            Principal.jdpPrincipal.add(detallePrestamo);
-            detallePrestamo.setLocation(x, y);
-            detallePrestamo.setVisible(true);
+            ConsultaPrestamoDetalleGUI detallePrestamo = new ConsultaPrestamoDetalleGUI();
+            detallePrestamo.cargarListaPrestamos(idPrestammo);
+            int x = (Principal.jdpPrincipal.getWidth() / 2) - detallePrestamo.getWidth() / 2;
+            int y = (Principal.jdpPrincipal.getHeight() / 2) - detallePrestamo.getHeight() / 2;
+            if (detallePrestamo.isShowing()) {
+                detallePrestamo.setLocation(x, y);
+            } else {
+                Principal.jdpPrincipal.add(detallePrestamo);
+                detallePrestamo.setLocation(x, y);
+                detallePrestamo.setVisible(true);
+            }
         }
-    }
-}//GEN-LAST:event_jpmiConsultarDetallePrestamoActionPerformed
+    }//GEN-LAST:event_jpmiConsultarDetallePrestamoActionPerformed
 
-// Acción del JPopupMenuItem eliminar detalles de un préstamo
+    // Acción del JPopupMenuItem eliminar detalles de un préstamo
     private void jpmiEliminarDetallePrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEliminarDetallePrestamoActionPerformed
         int registroSeleccionado = jtDetallePrestamos.getSelectedRow();
         String codigo = jtDetallePrestamos.getValueAt(registroSeleccionado, 0).toString();

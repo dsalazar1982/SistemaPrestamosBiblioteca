@@ -5,7 +5,6 @@
                       de igual forma, permite realizar registro de un libro.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -119,7 +118,6 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         jPopupMenu1.add(jpmiActualizarLibro);
 
         jpmiEliminarLibro.setText("Eliminar Registro");
-        jpmiEliminarLibro.setActionCommand("Eliminar Registro");
         jpmiEliminarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jpmiEliminarLibroActionPerformed(evt);
@@ -387,6 +385,35 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
         placeHolder();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
+    // Acción del botón actualizar libro
+    private void jbActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarLibroActionPerformed
+        String isbn, titulo, editorial, anoPublicacion;
+        String consultaSQL = "";
+        isbn = jtfISBNLibro.getText();
+        titulo = jtfTituloLibro.getText();
+        editorial = jtfEditorialLibro.getText();
+        anoPublicacion = jtfAnoPublicacionLibro.getText();
+        consultaSQL = "UPDATE t_libros SET titulo_lib = ?, editorial_lib = ?, ano_publicacion = ? WHERE isbn = ?";
+        try {
+            PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
+            pst.setString(1, titulo);
+            pst.setString(2, editorial);
+            pst.setString(3, anoPublicacion);
+            pst.setString(4, isbn);
+            int n = pst.executeUpdate();
+            if (n > 0) {
+                JOptionPane.showMessageDialog(this, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
+                bloquear();
+            }
+            cargarListaLibros("");
+            limpiar();
+            bloquear();
+            placeHolder();
+        } catch (SQLException excepcion) {
+            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jbActualizarLibroActionPerformed
+
     // Acción del botón salir
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         this.dispose();
@@ -439,35 +466,6 @@ public class RegistroLibrosGUI extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jpmiEliminarLibroActionPerformed
-
-    // Acción del botón actualizar libro
-    private void jbActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarLibroActionPerformed
-        String isbn, titulo, editorial, anoPublicacion;
-        String consultaSQL = "";
-        isbn = jtfISBNLibro.getText();
-        titulo = jtfTituloLibro.getText();
-        editorial = jtfEditorialLibro.getText();
-        anoPublicacion = jtfAnoPublicacionLibro.getText();
-        consultaSQL = "UPDATE t_libros SET titulo_lib = ?, editorial_lib = ?, ano_publicacion = ? WHERE isbn = ?";
-        try {
-            PreparedStatement pst = conexionDB.prepareStatement(consultaSQL);
-            pst.setString(1, titulo);
-            pst.setString(2, editorial);
-            pst.setString(3, anoPublicacion);
-            pst.setString(4, isbn);
-            int n = pst.executeUpdate();
-            if (n > 0) {
-                JOptionPane.showMessageDialog(this, "Registro actualizado con exito", "Actualizacion exitoso", JOptionPane.INFORMATION_MESSAGE);
-                bloquear();
-            }
-            cargarListaLibros("");
-            limpiar();
-            bloquear();
-            placeHolder();
-        } catch (SQLException excepcion) {
-            JOptionPane.showMessageDialog(this, "Codigo de error: " + excepcion.getErrorCode() + "\n" + "Mensaje de error: " + excepcion.getMessage(), "Error en conexion a DB", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jbActualizarLibroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu jPopupMenu1;

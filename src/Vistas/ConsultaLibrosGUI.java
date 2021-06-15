@@ -5,7 +5,6 @@
                       de igual forma, permite realizar la busqueda de un libro por titulo.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -170,6 +169,23 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Acción del JRadioButton consultar un libro
+    private void jrbConsultarUnLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnLibroActionPerformed
+        if (jrbConsultarUnLibro.isSelected() == true) {
+            jtfTituloLibro.setEnabled(true);
+            jtfTituloLibro.requestFocus();
+        }
+    }//GEN-LAST:event_jrbConsultarUnLibroActionPerformed
+
+    // Acción del JRadioButton consultar todos los libros
+    private void jrbConsultarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosLibrosActionPerformed
+        if (jrbConsultarTodosLibros.isSelected() == true) {
+            jtfTituloLibro.setText("");
+            jtfTituloLibro.setEnabled(false);
+            cargarListaLibros();
+        }
+    }//GEN-LAST:event_jrbConsultarTodosLibrosActionPerformed
+
     // Acción del botón buscar libro mediante el titulo
     private void jbBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarLibroActionPerformed
         if (jrbConsultarUnLibro.isSelected() == true) {
@@ -196,23 +212,6 @@ public class ConsultaLibrosGUI extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jbBuscarLibroActionPerformed
-
-    // Acción del JRadioButton consultar todos los libros
-    private void jrbConsultarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarTodosLibrosActionPerformed
-        if (jrbConsultarTodosLibros.isSelected() == true) {
-            jtfTituloLibro.setText("");
-            jtfTituloLibro.setEnabled(false);
-            cargarListaLibros();
-        }
-    }//GEN-LAST:event_jrbConsultarTodosLibrosActionPerformed
-
-    // Acción del JRadioButton consultar un libro
-    private void jrbConsultarUnLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConsultarUnLibroActionPerformed
-        if (jrbConsultarUnLibro.isSelected() == true) {
-            jtfTituloLibro.setEnabled(true);
-            jtfTituloLibro.requestFocus();
-        }
-    }//GEN-LAST:event_jrbConsultarUnLibroActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

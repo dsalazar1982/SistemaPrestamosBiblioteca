@@ -4,7 +4,6 @@
  * Objetivo         : Programa que permite seleccionar un estudiante y uno o varios libros para crear un pestramo a traves de una GUI.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -29,11 +28,16 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         numeros();
     }
 
+    // Método que permite agregar la fecha de registro al prestamo, es agregada al método constructor en la caja de texto de fecha
+    String fechaHoy() {
+        Date fecha = new Date();
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
+        return formatoFecha.format(fecha);
+    }
+
     // Método que consulta el consecutivo de la tabla prestamos en la base de datos y genera el nuevo consecutivo
     void numeros() {
         int j;
-        int contador = 1;
-        String numero = "";
         String c = "";
         String consultaSQL = "SELECT MAX(id_prestamo) FROM t_prestamos";
         try {
@@ -417,88 +421,82 @@ public class RegistroPrestamosGUI extends javax.swing.JInternalFrame {
         setBounds(0, 0, 839, 538);
     }// </editor-fold>//GEN-END:initComponents
 
-    // Metodo que permite agregar la fecha de registro al prestamo
-    public static String fechaHoy() {
-        Date fecha = new Date();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-        return formatoFecha.format(fecha);
-    }
-
     // Acción del botón seleccionar estudiante
-private void jbSeleccionarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarEstudianteActionPerformed
-    RegistroPrestamoEstudiantesGUI agregarEstudiante = new RegistroPrestamoEstudiantesGUI();
-    int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarEstudiante.getWidth() / 2;
-    int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarEstudiante.getHeight() / 2;
-    if (agregarEstudiante.isShowing()) {
-        agregarEstudiante.setLocation(x, y);
-    } else {
-        Principal.jdpPrincipal.add(agregarEstudiante);
-        agregarEstudiante.setLocation(x, y);
-        agregarEstudiante.setVisible(true);
-    }
-}//GEN-LAST:event_jbSeleccionarEstudianteActionPerformed
-
-// Acción del botón seleccionar libros
-private void jbSeleccionarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarLibroActionPerformed
-    try {
-        RegistroPrestamoLibrosGUI agregarLibro = new RegistroPrestamoLibrosGUI();
-        int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarLibro.getWidth() / 2;
-        int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarLibro.getHeight() / 2;
-        if (agregarLibro.isShowing()) {
-            agregarLibro.setLocation(x, y);
+    private void jbSeleccionarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarEstudianteActionPerformed
+        RegistroPrestamoEstudiantesGUI agregarEstudiante = new RegistroPrestamoEstudiantesGUI();
+        int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarEstudiante.getWidth() / 2;
+        int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarEstudiante.getHeight() / 2;
+        if (agregarEstudiante.isShowing()) {
+            agregarEstudiante.setLocation(x, y);
         } else {
-            Principal.jdpPrincipal.add(agregarLibro);
-            agregarLibro.setLocation(x, y);
-            agregarLibro.setVisible(true);
+            Principal.jdpPrincipal.add(agregarEstudiante);
+            agregarEstudiante.setLocation(x, y);
+            agregarEstudiante.setVisible(true);
         }
-    } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}//GEN-LAST:event_jbSeleccionarLibroActionPerformed
+    }//GEN-LAST:event_jbSeleccionarEstudianteActionPerformed
 
-// Acción del botón salir
-private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-    this.dispose();
-}//GEN-LAST:event_jbSalirActionPerformed
-
-// Acción del botón prestar libros, generar préstamo
-private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPrestarLibroActionPerformed
-    if (jtfCodigoEstudiante.getText().equals("")) {
-        JOptionPane.showMessageDialog(this, "No selecciono un estudiante.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
-    } else if (jtDetallePrestamo.getRowCount() == 0) {
-        JOptionPane.showMessageDialog(this, "No selecciono libros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
-    } else {
-        String capturarCodigo = "", capturarCantidad = "";
-        for (int i = 0; i < RegistroPrestamosGUI.jtDetallePrestamo.getRowCount(); i++) {
-            capturarCodigo = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 0).toString();
-            capturarCantidad = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 1).toString();
+    // Acción del botón seleccionar libros
+    private void jbSeleccionarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSeleccionarLibroActionPerformed
+        try {
+            RegistroPrestamoLibrosGUI agregarLibro = new RegistroPrestamoLibrosGUI();
+            int x = (Principal.jdpPrincipal.getWidth() / 2) - agregarLibro.getWidth() / 2;
+            int y = (Principal.jdpPrincipal.getHeight() / 2) - agregarLibro.getHeight() / 2;
+            if (agregarLibro.isShowing()) {
+                agregarLibro.setLocation(x, y);
+            } else {
+                Principal.jdpPrincipal.add(agregarLibro);
+                agregarLibro.setLocation(x, y);
+                agregarLibro.setVisible(true);
+            }
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        prestamo();
-        detallePrestamo();
-        jtfCodigoEstudiante.setText("");
-        jtfNombresEstudiante.setText("");
-        jtfApellidosEstudiante.setText("");
-        jtfTelefonoEstudiante.setText("");
+    }//GEN-LAST:event_jbSeleccionarLibroActionPerformed
+
+    // Acción del botón prestar libros, generar préstamo
+    private void jbPrestarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPrestarLibroActionPerformed
+        if (jtfCodigoEstudiante.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "No selecciono un estudiante.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+        } else if (jtDetallePrestamo.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No selecciono libros.", "Dato invalido", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String capturarCodigo = "", capturarCantidad = "";
+            for (int i = 0; i < RegistroPrestamosGUI.jtDetallePrestamo.getRowCount(); i++) {
+                capturarCodigo = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 0).toString();
+                capturarCantidad = RegistroPrestamosGUI.jtDetallePrestamo.getValueAt(i, 1).toString();
+            }
+            prestamo();
+            detallePrestamo();
+            jtfCodigoEstudiante.setText("");
+            jtfNombresEstudiante.setText("");
+            jtfApellidosEstudiante.setText("");
+            jtfTelefonoEstudiante.setText("");
+            DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) jtDetallePrestamo.getModel();
+            int a = jtDetallePrestamo.getRowCount() - 1;
+            int i;
+            for (i = a; i >= 0; i--) {
+                tablaDetallePrestamo.removeRow(i);
+            }
+            numeros();
+        }
+    }//GEN-LAST:event_jbPrestarLibroActionPerformed
+
+    // Acción del botón retirar libro, retira el libro de la lista de libros a prestar
+    private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRetirarLibroActionPerformed
         DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) jtDetallePrestamo.getModel();
-        int a = jtDetallePrestamo.getRowCount() - 1;
-        int i;
-        for (i = a; i >= 0; i--) {
-            tablaDetallePrestamo.removeRow(i);
+        int registroSeleccionado = jtDetallePrestamo.getSelectedRow();
+        if (registroSeleccionado >= 0) {
+            tablaDetallePrestamo.removeRow(registroSeleccionado);
+        } else {
+            JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
         }
-        numeros();
-    }
-}//GEN-LAST:event_jbPrestarLibroActionPerformed
+    }//GEN-LAST:event_jbRetirarLibroActionPerformed
 
-// Acción del botón retirar libro, retira el libro de la lista de libros a prestar
-private void jbRetirarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRetirarLibroActionPerformed
-    DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) jtDetallePrestamo.getModel();
-    int registroSeleccionado = jtDetallePrestamo.getSelectedRow();
-    if (registroSeleccionado >= 0) {
-        tablaDetallePrestamo.removeRow(registroSeleccionado);
-    } else {
-        JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
-    }
-}//GEN-LAST:event_jbRetirarLibroActionPerformed
+    // Acción del botón salir
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;

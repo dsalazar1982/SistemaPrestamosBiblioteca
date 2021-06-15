@@ -5,7 +5,6 @@
                       y enviarlos a un prestamo.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -164,61 +163,62 @@ public class RegistroPrestamoEstudiantesGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-// Acción del botón listar todos los registros de la tabla estudiantes de la base de datos
-private void jbMostrarTodosEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarTodosEstudiantesActionPerformed
-    cargarListaEstudiantes("");
-    jtfCodigoEstudiante.setText("");
-}//GEN-LAST:event_jbMostrarTodosEstudiantesActionPerformed
+    // Acción que consulta un estudiante en la tabla de estudiantes, de acuerdo con el valor ingresado en la caja de texto código de estudiante
+    private void jtfCodigoEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyReleased
+        cargarListaEstudiantes(jtfCodigoEstudiante.getText());
+    }//GEN-LAST:event_jtfCodigoEstudianteKeyReleased
 
-// Acción que consulta un estudiante en la tabla de estudiantes, de acuerdo con el valor ingresado en la caja de texto código de estudiante
-private void jtfCodigoEstudianteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCodigoEstudianteKeyReleased
-    cargarListaEstudiantes(jtfCodigoEstudiante.getText());
-}//GEN-LAST:event_jtfCodigoEstudianteKeyReleased
+    // Acción del botón listar todos los registros de la tabla estudiantes de la base de datos
+    private void jbMostrarTodosEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarTodosEstudiantesActionPerformed
+        cargarListaEstudiantes("");
+        jtfCodigoEstudiante.setText("");
+    }//GEN-LAST:event_jbMostrarTodosEstudiantesActionPerformed
 
-// Acción del JPopupMenuItem enviar datos del listado de estudiantes al préstamo
-private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
-    String codigo = "", nombres = "", apellidos = "", telefono = "";
-    int registroSeleccionado = jtDetallesEstudiantes.getSelectedRow();
-    try {
-        if (registroSeleccionado == -1) {
-            JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
-        } else {
-            codigo = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 0);
-            nombres = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 1);
-            apellidos = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 2);
-            telefono = (String) jtDetallesEstudiantes.getValueAt(registroSeleccionado, 3);
-            RegistroPrestamosGUI.jtfCodigoEstudiante.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.jtfCodigoEstudiante.setText(codigo);
-            RegistroPrestamosGUI.jtfNombresEstudiante.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.jtfNombresEstudiante.setText(nombres);
-            RegistroPrestamosGUI.jtfApellidosEstudiante.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.jtfApellidosEstudiante.setText(apellidos);
-            RegistroPrestamosGUI.jtfTelefonoEstudiante.setDisabledTextColor(Color.blue);
-            RegistroPrestamosGUI.jtfTelefonoEstudiante.setText(telefono);
-            this.dispose();
+    // Acción del botón registrar estudiante
+    private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarEstudianteActionPerformed
+        try {
+            RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
+            int x = (Principal.jdpPrincipal.getWidth() / 2) - registrarEstudiante.getWidth() / 2;
+            int y = (Principal.jdpPrincipal.getHeight() / 2) - registrarEstudiante.getHeight() / 2;
+            if (registrarEstudiante.isShowing()) {
+                registrarEstudiante.setLocation(x, y);
+            } else {
+                Principal.jdpPrincipal.add(registrarEstudiante);
+                registrarEstudiante.setLocation(x, y);
+                registrarEstudiante.setVisible(true);
+            }
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
+    }//GEN-LAST:event_jbRegistrarEstudianteActionPerformed
 
-// Acción del botón registrar estudiante
-private void jbRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarEstudianteActionPerformed
-    try {
-        RegistroEstudiantesGUI registrarEstudiante = new RegistroEstudiantesGUI();
-        int x = (Principal.jdpPrincipal.getWidth() / 2) - registrarEstudiante.getWidth() / 2;
-        int y = (Principal.jdpPrincipal.getHeight() / 2) - registrarEstudiante.getHeight() / 2;
-        if (registrarEstudiante.isShowing()) {
-            registrarEstudiante.setLocation(x, y);
-        } else {
-            Principal.jdpPrincipal.add(registrarEstudiante);
-            registrarEstudiante.setLocation(x, y);
-            registrarEstudiante.setVisible(true);
+    // Acción del JPopupMenuItem enviar datos del listado de estudiantes al préstamo
+    private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
+        String codigo = "", nombres = "", apellidos = "", telefono = "";
+        int registroSeleccionado = jtDetallesEstudiantes.getSelectedRow();
+        try {
+            if (registroSeleccionado == -1) {
+                JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+            } else {
+                codigo = jtDetallesEstudiantes.getValueAt(registroSeleccionado, 0).toString();
+                nombres = jtDetallesEstudiantes.getValueAt(registroSeleccionado, 1).toString();
+                apellidos = jtDetallesEstudiantes.getValueAt(registroSeleccionado, 2).toString();
+                telefono = jtDetallesEstudiantes.getValueAt(registroSeleccionado, 3).toString();
+                RegistroPrestamosGUI.jtfCodigoEstudiante.setDisabledTextColor(Color.blue);
+                RegistroPrestamosGUI.jtfCodigoEstudiante.setText(codigo);
+                RegistroPrestamosGUI.jtfNombresEstudiante.setDisabledTextColor(Color.blue);
+                RegistroPrestamosGUI.jtfNombresEstudiante.setText(nombres);
+                RegistroPrestamosGUI.jtfApellidosEstudiante.setDisabledTextColor(Color.blue);
+                RegistroPrestamosGUI.jtfApellidosEstudiante.setText(apellidos);
+                RegistroPrestamosGUI.jtfTelefonoEstudiante.setDisabledTextColor(Color.blue);
+                RegistroPrestamosGUI.jtfTelefonoEstudiante.setText(telefono);
+                this.dispose();
+            }
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}//GEN-LAST:event_jbRegistrarEstudianteActionPerformed
+    }//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;

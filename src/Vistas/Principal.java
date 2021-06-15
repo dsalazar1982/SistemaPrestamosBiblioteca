@@ -4,7 +4,6 @@
  * Objetivo         : Programa que genera una GUI del programa de gestion de prestamos de libros en una biblioteca.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -209,49 +208,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Acción del JMenuItem registrar un préstamo
-    private void jmiRegistarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistarPrestamoActionPerformed
-        RegistroPrestamosGUI prestarLibro = new RegistroPrestamosGUI();
-        int x = (jdpPrincipal.getWidth() / 2) - prestarLibro.getWidth() / 2;
-        int y = (jdpPrincipal.getHeight() / 2) - prestarLibro.getHeight() / 2;
-        if (prestarLibro.isShowing()) {
-            prestarLibro.setLocation(x, y);
-        } else {
-            jdpPrincipal.add(prestarLibro);
-            prestarLibro.setLocation(x, y);
-            prestarLibro.setVisible(true);
-        }
-    }//GEN-LAST:event_jmiRegistarPrestamoActionPerformed
-
-    // Acción del JMenuItem registrar un libro
-    private void jmiRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarLibroActionPerformed
-        RegistroLibrosGUI ingresarLibro = new RegistroLibrosGUI();
-        int x = (jdpPrincipal.getWidth() / 2) - ingresarLibro.getWidth() / 2;
-        int y = (jdpPrincipal.getHeight() / 2) - ingresarLibro.getHeight() / 2;
-        if (ingresarLibro.isShowing()) {
-            ingresarLibro.setLocation(x, y);
-        } else {
-            jdpPrincipal.add(ingresarLibro);
-            ingresarLibro.setLocation(x, y);
-            ingresarLibro.setVisible(true);
-        }
-    }//GEN-LAST:event_jmiRegistrarLibroActionPerformed
-
-    // Acción del JMenuItem consultar un libro
-    private void jmiConsultarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarLibroActionPerformed
-        ConsultaLibrosGUI verLibro = new ConsultaLibrosGUI();
-        int x = (jdpPrincipal.getWidth() / 2) - verLibro.getWidth() / 2;
-        int y = (jdpPrincipal.getHeight() / 2) - verLibro.getHeight() / 2;
-
-        if (verLibro.isShowing()) {
-            verLibro.setLocation(x, y);
-        } else {
-            jdpPrincipal.add(verLibro);
-            verLibro.setLocation(x, y);
-            verLibro.setVisible(true);
-        }
-    }//GEN-LAST:event_jmiConsultarLibroActionPerformed
-
     // Acción del JMenuItem registrar un estudiante
     private void jmiRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarEstudianteActionPerformed
         RegistroEstudiantesGUI crearEstudiante = new RegistroEstudiantesGUI();
@@ -279,6 +235,48 @@ public class Principal extends javax.swing.JFrame {
             consultarEstudiante.setVisible(true);
         }
     }//GEN-LAST:event_jmiConsultarEstudianteActionPerformed
+
+    // Acción del JMenuItem registrar un libro
+    private void jmiRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarLibroActionPerformed
+        RegistroLibrosGUI ingresarLibro = new RegistroLibrosGUI();
+        int x = (jdpPrincipal.getWidth() / 2) - ingresarLibro.getWidth() / 2;
+        int y = (jdpPrincipal.getHeight() / 2) - ingresarLibro.getHeight() / 2;
+        if (ingresarLibro.isShowing()) {
+            ingresarLibro.setLocation(x, y);
+        } else {
+            jdpPrincipal.add(ingresarLibro);
+            ingresarLibro.setLocation(x, y);
+            ingresarLibro.setVisible(true);
+        }
+    }//GEN-LAST:event_jmiRegistrarLibroActionPerformed
+
+    // Acción del JMenuItem consultar un libro
+    private void jmiConsultarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarLibroActionPerformed
+        ConsultaLibrosGUI verLibro = new ConsultaLibrosGUI();
+        int x = (jdpPrincipal.getWidth() / 2) - verLibro.getWidth() / 2;
+        int y = (jdpPrincipal.getHeight() / 2) - verLibro.getHeight() / 2;
+        if (verLibro.isShowing()) {
+            verLibro.setLocation(x, y);
+        } else {
+            jdpPrincipal.add(verLibro);
+            verLibro.setLocation(x, y);
+            verLibro.setVisible(true);
+        }
+    }//GEN-LAST:event_jmiConsultarLibroActionPerformed
+
+    // Acción del JMenuItem registrar un préstamo
+    private void jmiRegistarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistarPrestamoActionPerformed
+        RegistroPrestamosGUI prestarLibro = new RegistroPrestamosGUI();
+        int x = (jdpPrincipal.getWidth() / 2) - prestarLibro.getWidth() / 2;
+        int y = (jdpPrincipal.getHeight() / 2) - prestarLibro.getHeight() / 2;
+        if (prestarLibro.isShowing()) {
+            prestarLibro.setLocation(x, y);
+        } else {
+            jdpPrincipal.add(prestarLibro);
+            prestarLibro.setLocation(x, y);
+            prestarLibro.setVisible(true);
+        }
+    }//GEN-LAST:event_jmiRegistarPrestamoActionPerformed
 
     // Acción del JMenuItem consultar un préstamo
     private void jmiConsultarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiConsultarPrestamoActionPerformed

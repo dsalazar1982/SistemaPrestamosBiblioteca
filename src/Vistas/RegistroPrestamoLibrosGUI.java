@@ -5,7 +5,6 @@
                       y enviarlos a un prestamo.
  * Desarrollador    : Daniel Alberto Salazar Erazo
  */
-
 package Vistas;
 
 import Servicios.ClaseConexion;
@@ -146,42 +145,17 @@ public class RegistroPrestamoLibrosGUI extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Acción que consulta un libro en la tabla de libros, de acuerdo con el valor ingresado en la caja de texto título de libro
+    private void jtfTituloLibroConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTituloLibroConsultarKeyReleased
+        cargarListaLibros(jtfTituloLibroConsultar.getText());
+    }//GEN-LAST:event_jtfTituloLibroConsultarKeyReleased
+
     // Acción del botón listar todos los registros de la tabla libros de la base de datos
-private void jbMostrarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarTodosLibrosActionPerformed
-    cargarListaLibros("");
-}//GEN-LAST:event_jbMostrarTodosLibrosActionPerformed
+    private void jbMostrarTodosLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarTodosLibrosActionPerformed
+        cargarListaLibros("");
+    }//GEN-LAST:event_jbMostrarTodosLibrosActionPerformed
 
-// Acción que consulta un libro en la tabla de libros, de acuerdo con el valor ingresado en la caja de texto título de libro
-private void jtfTituloLibroConsultarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTituloLibroConsultarKeyReleased
-    cargarListaLibros(jtfTituloLibroConsultar.getText());
-}//GEN-LAST:event_jtfTituloLibroConsultarKeyReleased
-
-// Acción del JPopupMenuItem enviar datos del listado de libros al préstamo
-private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
-    try {
-        DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) RegistroPrestamosGUI.jtDetallePrestamo.getModel();
-        String[] dato = new String[5];
-        int registroSeleccionado = jtDetalleLibros.getSelectedRow();
-        if (registroSeleccionado == -1) {
-            JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
-        } else {
-            String isbn = jtDetalleLibros.getValueAt(registroSeleccionado, 0).toString();
-            String titulo = jtDetalleLibros.getValueAt(registroSeleccionado, 1).toString();
-            String editorial = jtDetalleLibros.getValueAt(registroSeleccionado, 2).toString();
-            String ano = jtDetalleLibros.getValueAt(registroSeleccionado, 3).toString();
-            dato[0] = isbn;
-            dato[1] = titulo;
-            dato[2] = editorial;
-            dato[3] = ano;
-            tablaDetallePrestamo.addRow(dato);
-            RegistroPrestamosGUI.jtDetallePrestamo.setModel(tablaDetallePrestamo);
-        }
-    } catch (Exception excepcion) {
-        JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
-
-// Acción del botón registrar libro
+    // Acción del botón registrar libro
     private void jbRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarLibroActionPerformed
         try {
             RegistroLibrosGUI registrarLibro = new RegistroLibrosGUI();
@@ -198,6 +172,31 @@ private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {
             JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbRegistrarLibroActionPerformed
+
+    // Acción del JPopupMenuItem enviar datos del listado de libros al préstamo
+    private void jpmiEnviarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpmiEnviarPrestamoActionPerformed
+        try {
+            DefaultTableModel tablaDetallePrestamo = (DefaultTableModel) RegistroPrestamosGUI.jtDetallePrestamo.getModel();
+            String[] dato = new String[5];
+            int registroSeleccionado = jtDetalleLibros.getSelectedRow();
+            if (registroSeleccionado == -1) {
+                JOptionPane.showMessageDialog(this, "No selecciono un registro", "Error en seleccion", JOptionPane.WARNING_MESSAGE);
+            } else {
+                String isbn = jtDetalleLibros.getValueAt(registroSeleccionado, 0).toString();
+                String titulo = jtDetalleLibros.getValueAt(registroSeleccionado, 1).toString();
+                String editorial = jtDetalleLibros.getValueAt(registroSeleccionado, 2).toString();
+                String ano = jtDetalleLibros.getValueAt(registroSeleccionado, 3).toString();
+                dato[0] = isbn;
+                dato[1] = titulo;
+                dato[2] = editorial;
+                dato[3] = ano;
+                tablaDetallePrestamo.addRow(dato);
+                RegistroPrestamosGUI.jtDetallePrestamo.setModel(tablaDetallePrestamo);
+            }
+        } catch (Exception excepcion) {
+            JOptionPane.showMessageDialog(this, "Mensaje de error: " + excepcion.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jpmiEnviarPrestamoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPopupMenu jPopupMenu1;
